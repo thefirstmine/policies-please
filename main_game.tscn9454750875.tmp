@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://rpl8flekvmlc"]
+
+[ext_resource type="PackedScene" uid="uid://bucwegmqhbbyh" path="res://developer_screen.tscn" id="1_1oj5k"]
+[ext_resource type="Script" uid="uid://dud2yp4j1yr4l" path="res://signalBus.gd" id="1_ykeeq"]
+[ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://economy_engine.tscn" id="2_6bm6p"]
+
+[node name="root" type="Node2D"]
+script = ExtResource("1_ykeeq")
+
+[node name="Economy" parent="." node_paths=PackedStringArray("signalBus") instance=ExtResource("2_6bm6p")]
+signalBus = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Control" parent="." node_paths=PackedStringArray("signalBus") instance=ExtResource("1_1oj5k")]
+offset_left = -572.0
+offset_top = -322.0
+offset_right = -572.0
+offset_bottom = -322.0
+signalBus = NodePath("..")

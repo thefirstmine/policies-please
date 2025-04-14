@@ -10,6 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Policies, Please!"
+config/name="Policies Please"
+run/main_scene="uid://rpl8flekvmlc"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.0539878, 1.92523e-07, 0.352747, 1)

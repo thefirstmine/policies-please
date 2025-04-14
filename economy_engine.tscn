@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://q8vlmxq300cd"]
+
+[ext_resource type="Script" uid="uid://dyvib5ky8qt3e" path="res://economy_engine.gd" id="1_63mlv"]
+[ext_resource type="Script" uid="uid://x1ub2fwcs8pt" path="res://Policies.gd" id="2_oct6w"]
+
+[node name="Economy" type="Node2D"]
+script = ExtResource("1_63mlv")
+
+[node name="Policies" type="Node2D" parent="."]
+script = ExtResource("2_oct6w")
