@@ -9,7 +9,6 @@ func passPolicy(policy_data: Array):
 			econ.set(key, econ.get(key) + policy_stats[key])
 		else:
 			push_warning("Policy key '" + str(key) + "' not found in econ.")
-		print("test")
 	interdependentEffects()
 func interdependentEffects():
 	var demand_gap = econ.ag_demand - econ.ag_supply
@@ -31,7 +30,7 @@ func interdependentEffects():
 	# Consumer happiness reacts to inflation & unemployment
 	econ.main_econ_PopulationSatisfaction -= econ.inflation_rate * 0.5
 	econ.main_econ_PopulationSatisfaction -= econ.unemployment * 0.3
-	
+	econ.main_econ_PopulationSatisfaction = clamp(econ.main_econ_PopulationSatisfaction, 0.0, 1.0)
 	# Debt increases if GDP is low (less revenue)
 	econ.tax_rate = 0.2
 	var gov_revenue = econ.main_econ_GDP * econ.tax_rate
@@ -50,7 +49,9 @@ var policy1 = [{
 		"inflation_rate": 0.01    
 
 	},
-	{}
+	{"type": "FISCAL", 
+	 "description": "A Fiscal expansionary policy that strongly increases aggregate demand and population satisfaction a bit, 
+					but increases government debt and decreases exports"}
 	]
 
 

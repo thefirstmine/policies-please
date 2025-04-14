@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://rpl8flekvmlc"]
+[gd_scene load_steps=7 format=3 uid="uid://rpl8flekvmlc"]
 
 [ext_resource type="PackedScene" uid="uid://bucwegmqhbbyh" path="res://developer_screen.tscn" id="1_1oj5k"]
 [ext_resource type="Script" uid="uid://dud2yp4j1yr4l" path="res://signalBus.gd" id="1_ykeeq"]
 [ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://economy_engine.tscn" id="2_6bm6p"]
+[ext_resource type="Script" uid="uid://wm8wa045ttys" path="res://SwitchPerspectives.gd" id="3_6bm6p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bm6p"]
+bg_color = Color(1, 0.308823, 0.477609, 0.270588)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.205226, 0.391202, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykeeq"]
+bg_color = Color(0, 0.684943, 0.690489, 0.270588)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.588829, 0.963078, 1)
 
 [node name="root" type="Node2D"]
 script = ExtResource("1_ykeeq")
@@ -12,9 +29,50 @@ signalBus = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Control" parent="." node_paths=PackedStringArray("signalBus") instance=ExtResource("1_1oj5k")]
+[node name="DeveloperStats" parent="." node_paths=PackedStringArray("signalBus") instance=ExtResource("1_1oj5k")]
+visible = false
 offset_left = -572.0
 offset_top = -322.0
 offset_right = -572.0
 offset_bottom = -322.0
 signalBus = NodePath("..")
+
+[node name="Control" type="Control" parent="." node_paths=PackedStringArray("signalBus")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+mouse_force_pass_scroll_events = false
+script = ExtResource("3_6bm6p")
+signalBus = NodePath("..")
+
+[node name="MoveLeft" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 124.0
+offset_right = 60.0
+offset_bottom = -124.0
+grow_vertical = 2
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_6bm6p")
+
+[node name="MoveRight" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = 124.0
+offset_bottom = -124.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_ykeeq")
+
+[connection signal="mouse_entered" from="Control/MoveLeft" to="Control" method="_on_move_left_mouse_entered"]
+[connection signal="mouse_entered" from="Control/MoveRight" to="Control" method="_on_move_right_mouse_entered"]
