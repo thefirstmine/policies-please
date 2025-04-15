@@ -14,6 +14,7 @@ var net_exports = 0.0
 var growth_multiplier = 0.0
 var inflation_rate = 0.0
 var currency_value = 0.0
+
 func _init():
 	pass
 
@@ -25,6 +26,7 @@ func has_variable(var_name: String) -> bool:
 	return var_name in self
 func defaultValues():
 	main_econ_GDP = 900.0
+	tax_rate = 0.1
 	unemployment = 0.09
 	inflation_rate = -0.01
 	gov_debt = 800.0

@@ -24,6 +24,7 @@ texture = ExtResource("1_ge6w1")
 
 [node name="Paper" type="Panel" parent="TextureRect"]
 z_index = -55
+layout_mode = 0
 offset_left = 25.0
 offset_top = 217.0
 offset_right = 1321.0
