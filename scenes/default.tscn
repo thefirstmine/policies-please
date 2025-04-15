@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxeh8jilnmpia"]
+
+[ext_resource type="Texture2D" uid="uid://35yhm3l2ghfc" path="res://assets/Art/IMG_8296.png" id="1_e232d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7vjpr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e232d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="background" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_7vjpr")

@@ -15,14 +15,11 @@ func _on_move_left_mouse_entered() -> void:
 	print("Perspective:", Perspective)
 	signalBus.switchPerspective.emit(Perspective)
 	if Perspective == -1:
-		$"MoveLeft".modulate.a = 0
-		$"MoveRight".modulate.a = 1
+		showFiscalReport()
 	elif Perspective == 1:
-		$"MoveRight".modulate.a = 0
-		$"MoveLeft".modulate.a = 1
+		showPolicyPassing()
 	else:
-		$"MoveLeft".modulate.a = 1
-		$"MoveRight".modulate.a = 1
+		showDefault()
 func _on_move_right_mouse_entered() -> void:
 	print("Move Right Is Hovered")
 	if Perspective <= 0:
@@ -31,11 +28,26 @@ func _on_move_right_mouse_entered() -> void:
 	signalBus.switchPerspective.emit(Perspective)
 
 	if Perspective == -1:
-		$"MoveLeft".modulate.a = 0
-		$"MoveRight".modulate.a = 1
+		showFiscalReport()
 	elif Perspective == 1:
-		$"MoveRight".modulate.a = 0
-		$"MoveLeft".modulate.a = 1
+		showPolicyPassing()
 	else:
-		$"MoveLeft".modulate.a = 1
-		$"MoveRight".modulate.a = 1
+		showDefault()
+		
+func showFiscalReport():
+	$"MoveLeft".visible = false
+	$"MoveRight".visible = true	
+	$"../FiscalReport".visible = true
+	$"../background".visible = false
+func showPolicyPassing():
+	$"MoveRight".visible = false
+	$"MoveLeft".visible= true
+	$"../PassingPolicies".visible = true
+	$"../background".visible = false
+
+func showDefault():
+	$"MoveLeft".visible= true
+	$"MoveRight".visible= true
+	$"../PassingPolicies".visible = false
+	$"../FiscalReport".visible = false
+	$"../background".visible = true

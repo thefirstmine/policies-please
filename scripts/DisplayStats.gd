@@ -14,6 +14,7 @@ func _ready():
 		economyLabels.append(Label.new())
 		economyLabels[valueCount].name = str(key)
 		economyLabels[valueCount].position.y = (30*valueCount)
+		economyLabels[valueCount].modulate = Color(0, 0, 0, 1)
 		self.add_child(economyLabels[valueCount])
 		valueCount+=1
 

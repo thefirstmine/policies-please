@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbybs0coya5ir"]
+
+[ext_resource type="Texture2D" uid="uid://bx1eqg4y3x4pe" path="res://assets/Art/sample_clipboard.png" id="1_ge6w1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ge6w1"]
+bg_color = Color(0.999999, 0.889265, 0.690087, 1)
+
+[node name="fiscal_report_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -158.0
+offset_top = -261.0
+offset_right = 1208.0
+offset_bottom = 1739.0
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("1_ge6w1")
+
+[node name="Paper" type="Panel" parent="TextureRect"]
+z_index = -55
+offset_left = 25.0
+offset_top = 217.0
+offset_right = 1321.0
+offset_bottom = 1967.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ge6w1")

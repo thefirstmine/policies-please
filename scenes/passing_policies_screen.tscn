@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://3ehs24ltueon"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oy5xl"]
+bg_color = Color(0.999999, 0.889265, 0.690087, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Paper" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -105.0
+offset_top = -148.5
+offset_right = 105.0
+offset_bottom = 148.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_oy5xl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = -104.0
+offset_top = -142.0
+offset_right = 996.0
+offset_bottom = -14.0
+scale = Vector2(0.19, 0.19)
+theme_override_font_sizes/normal_font_size = 96
+text = "Policy Passing:"
+fit_content = true

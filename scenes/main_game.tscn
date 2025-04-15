@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://rpl8flekvmlc"]
+[gd_scene load_steps=10 format=3 uid="uid://rpl8flekvmlc"]
 
-[ext_resource type="PackedScene" uid="uid://bucwegmqhbbyh" path="res://developer_screen.tscn" id="1_1oj5k"]
-[ext_resource type="Script" uid="uid://dud2yp4j1yr4l" path="res://signalBus.gd" id="1_ykeeq"]
-[ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://economy_engine.tscn" id="2_6bm6p"]
-[ext_resource type="Script" uid="uid://wm8wa045ttys" path="res://SwitchPerspectives.gd" id="3_6bm6p"]
+[ext_resource type="Script" uid="uid://dud2yp4j1yr4l" path="res://scripts/signalBus.gd" id="1_0rdsr"]
+[ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://scenes/economy_engine.tscn" id="2_ipu61"]
+[ext_resource type="PackedScene" uid="uid://bucwegmqhbbyh" path="res://scenes/developer_screen.tscn" id="3_ygxny"]
+[ext_resource type="Script" uid="uid://wm8wa045ttys" path="res://scripts/SwitchPerspectives.gd" id="4_wi4c7"]
+[ext_resource type="PackedScene" uid="uid://3ehs24ltueon" path="res://scenes/passing_policies_screen.tscn" id="5_ipu61"]
+[ext_resource type="PackedScene" uid="uid://cbybs0coya5ir" path="res://scenes/fiscal_report_screen.tscn" id="6_ygxny"]
+[ext_resource type="PackedScene" uid="uid://cxeh8jilnmpia" path="res://scenes/default.tscn" id="7_wi4c7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bm6p"]
 bg_color = Color(1, 0.308823, 0.477609, 0.270588)
@@ -22,19 +25,19 @@ border_width_bottom = 2
 border_color = Color(0, 0.588829, 0.963078, 1)
 
 [node name="root" type="Node2D"]
-script = ExtResource("1_ykeeq")
+script = ExtResource("1_0rdsr")
 
-[node name="Economy" parent="." node_paths=PackedStringArray("signalBus") instance=ExtResource("2_6bm6p")]
+[node name="Economy" parent="." node_paths=PackedStringArray("signalBus") instance=ExtResource("2_ipu61")]
 signalBus = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="DeveloperStats" parent="." node_paths=PackedStringArray("signalBus") instance=ExtResource("1_1oj5k")]
+[node name="DeveloperStats" parent="." node_paths=PackedStringArray("signalBus") instance=ExtResource("3_ygxny")]
 visible = false
-offset_left = -572.0
-offset_top = -322.0
-offset_right = -572.0
-offset_bottom = -322.0
+offset_left = -120.61
+offset_top = -190.0
+offset_right = -120.61
+offset_bottom = -190.0
 signalBus = NodePath("..")
 
 [node name="Control" type="Control" parent="." node_paths=PackedStringArray("signalBus")]
@@ -45,7 +48,7 @@ offset_top = -324.0
 offset_right = 576.0
 offset_bottom = 324.0
 mouse_force_pass_scroll_events = false
-script = ExtResource("3_6bm6p")
+script = ExtResource("4_wi4c7")
 signalBus = NodePath("..")
 
 [node name="MoveLeft" type="Panel" parent="Control"]
@@ -73,6 +76,18 @@ grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ykeeq")
+
+[node name="PassingPolicies" parent="." instance=ExtResource("5_ipu61")]
+visible = false
+scale = Vector2(1.74, 1.74)
+
+[node name="FiscalReport" parent="." instance=ExtResource("6_ygxny")]
+visible = false
+
+[node name="background" parent="." instance=ExtResource("7_wi4c7")]
+z_index = -105
+position = Vector2(-0.24999, -3.51667e-06)
+scale = Vector2(0.720312, 0.72)
 
 [connection signal="mouse_entered" from="Control/MoveLeft" to="Control" method="_on_move_left_mouse_entered"]
 [connection signal="mouse_entered" from="Control/MoveRight" to="Control" method="_on_move_right_mouse_entered"]
