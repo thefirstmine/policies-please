@@ -17,7 +17,7 @@ func interdependentEffects():
 	#Demand-driven GDP (with growth multiplier)
 	var demand_gdp = econ.ag_demand * econ.growth_multiplier
 
-	# Real GDP is the lesser of the two
+	# Real GDP is the lesser of the two, ag_supply acts as a ceiling for GDP basically.
 	econ.main_econ_GDP = min(potential_gdp, demand_gdp)
 
 	# Unemployment adjusts inversely to GDP (approximate)
@@ -42,12 +42,16 @@ func interdependentEffects():
 	econ.main_econ_PopulationSatisfaction -= econ.unemployment * 0.3
 	econ.main_econ_PopulationSatisfaction = clamp(econ.main_econ_PopulationSatisfaction, 0.0, 1.0)
 
-	# Government debt = spending - tax revenue
+	# govt debt = spending - tax revenue
 	econ.tax_rate = 0.2
 	var gov_revenue = econ.main_econ_GDP * econ.tax_rate
 	var gov_spending = 250.0  # can be dynamic
 	econ.gov_debt += gov_spending - gov_revenue
-
+	if econ.gov_debt > 1000:
+		# Lower investor confidence and raise inflation risk ior something
+		econ.growth_multiplier -= 0.01
+		econ.inflation_rate += 0.005
+		econ.main_econ_PopulationSatisfaction -= 0.02
 	# Growth multiplier reacts to happiness
 	econ.growth_multiplier = 1.0 if econ.main_econ_PopulationSatisfaction > 0.7 else 0.95
 # Fiscal Policies
