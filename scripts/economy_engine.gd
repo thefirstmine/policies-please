@@ -1,7 +1,5 @@
 extends Node2D
 
-@export var signalBus: Node2D
-
 var main_econ_GDP = 0.0
 var main_econ_PopulationSatisfaction = 0.0
 
@@ -39,7 +37,7 @@ func defaultValues():
 	
 func updateEconomy():
 	print("updating economy...")
-	signalBus.economyUpdated.emit(
+	SignalBus.economyUpdated.emit(
 		{	"GDP": main_econ_GDP,
 			"PopulationSatisfaction": main_econ_PopulationSatisfaction,
 			"taxRate": tax_rate,

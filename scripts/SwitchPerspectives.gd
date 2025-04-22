@@ -43,7 +43,6 @@ func showPolicyPassing():
 	$"MoveRight".visible = false
 	$"MoveLeft".visible= true
 	$"../PassingPolicies".visible = true
-	$"../background".visible = false
 
 func showDefault():
 	$"MoveLeft".visible= true

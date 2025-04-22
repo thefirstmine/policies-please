@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://rpl8flekvmlc"]
+[gd_scene load_steps=11 format=3 uid="uid://rpl8flekvmlc"]
 
-[ext_resource type="Script" uid="uid://dud2yp4j1yr4l" path="res://scripts/signalBus.gd" id="1_0rdsr"]
 [ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://scenes/economy_engine.tscn" id="2_ipu61"]
+[ext_resource type="Script" uid="uid://d0guekvm4yrdf" path="res://scenes/GameControl.gd" id="3_70vka"]
 [ext_resource type="PackedScene" uid="uid://bucwegmqhbbyh" path="res://scenes/developer_screen.tscn" id="3_ygxny"]
-[ext_resource type="Script" uid="uid://wm8wa045ttys" path="res://scripts/SwitchPerspectives.gd" id="4_wi4c7"]
 [ext_resource type="PackedScene" uid="uid://3ehs24ltueon" path="res://scenes/passing_policies_screen.tscn" id="5_ipu61"]
+[ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="6_wi4c7"]
 [ext_resource type="PackedScene" uid="uid://cbybs0coya5ir" path="res://scenes/fiscal_report_screen.tscn" id="6_ygxny"]
 [ext_resource type="PackedScene" uid="uid://cxeh8jilnmpia" path="res://scenes/default.tscn" id="7_wi4c7"]
+[ext_resource type="Texture2D" uid="uid://b8qp8ypdet0vv" path="res://assets/Art/stampDeny.png" id="8_70vka"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bm6p"]
 bg_color = Color(1, 0.308823, 0.477609, 0.270588)
@@ -25,34 +26,35 @@ border_width_bottom = 2
 border_color = Color(0, 0.588829, 0.963078, 1)
 
 [node name="root" type="Node2D"]
-script = ExtResource("1_0rdsr")
 
-[node name="Economy" parent="." node_paths=PackedStringArray("signalBus") instance=ExtResource("2_ipu61")]
-signalBus = NodePath("..")
+[node name="Economy" parent="." instance=ExtResource("2_ipu61")]
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Canvas" type="CanvasLayer" parent="."]
+script = ExtResource("3_70vka")
 
-[node name="DeveloperStats" parent="." node_paths=PackedStringArray("signalBus") instance=ExtResource("3_ygxny")]
+[node name="FiscalReport" parent="Canvas" instance=ExtResource("6_ygxny")]
 visible = false
-offset_left = -120.61
-offset_top = -190.0
-offset_right = -120.61
-offset_bottom = -190.0
-signalBus = NodePath("..")
 
-[node name="Control" type="Control" parent="." node_paths=PackedStringArray("signalBus")]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -576.0
-offset_top = -324.0
-offset_right = 576.0
-offset_bottom = 324.0
-mouse_force_pass_scroll_events = false
-script = ExtResource("4_wi4c7")
-signalBus = NodePath("..")
+[node name="DeveloperStats" parent="Canvas" instance=ExtResource("3_ygxny")]
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 8.0
+offset_bottom = 10.0
+mouse_filter = 2
 
-[node name="MoveLeft" type="Panel" parent="Control"]
-layout_mode = 1
+[node name="Default" parent="Canvas" instance=ExtResource("7_wi4c7")]
+
+[node name="PassingPolicies" parent="Canvas" instance=ExtResource("5_ipu61")]
+visible = false
+layout_direction = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+scale = Vector2(1.74, 1.74)
+
+[node name="MoveLeft" type="Panel" parent="Canvas"]
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_top = 124.0
@@ -63,8 +65,27 @@ mouse_filter = 1
 mouse_force_pass_scroll_events = false
 theme_override_styles/panel = SubResource("StyleBoxFlat_6bm6p")
 
-[node name="MoveRight" type="Panel" parent="Control"]
+[node name="Label" type="Label" parent="Canvas/MoveLeft"]
+texture_filter = 1
 layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -97.0
+offset_right = 679.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+scale = Vector2(0.325, 0.325)
+theme_override_fonts/font = ExtResource("6_wi4c7")
+theme_override_font_sizes/font_size = 111
+text = "Check Outside"
+
+[node name="MoveRight" type="Panel" parent="Canvas"]
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -77,17 +98,28 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ykeeq")
 
-[node name="PassingPolicies" parent="." instance=ExtResource("5_ipu61")]
+[node name="Label" type="Label" parent="Canvas/MoveRight"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 75.0
+offset_right = 448.0
+offset_bottom = 187.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+scale = Vector2(0.325, 0.325)
+theme_override_fonts/font = ExtResource("6_wi4c7")
+theme_override_font_sizes/font_size = 111
+text = "Statistics"
+
+[node name="HiddenCursor" type="Sprite2D" parent="Canvas"]
 visible = false
-scale = Vector2(1.74, 1.74)
-
-[node name="FiscalReport" parent="." instance=ExtResource("6_ygxny")]
-visible = false
-
-[node name="background" parent="." instance=ExtResource("7_wi4c7")]
-z_index = -105
-position = Vector2(-0.24999, -3.51667e-06)
-scale = Vector2(0.720312, 0.72)
-
-[connection signal="mouse_entered" from="Control/MoveLeft" to="Control" method="_on_move_left_mouse_entered"]
-[connection signal="mouse_entered" from="Control/MoveRight" to="Control" method="_on_move_right_mouse_entered"]
+z_index = 10
+position = Vector2(376, 195)
+texture = ExtResource("8_70vka")

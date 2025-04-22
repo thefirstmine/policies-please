@@ -1,12 +1,12 @@
 extends Control
 
-@export var signalBus: Node2D
+
 const COUNT_ECONOMY_STATS = 11
 var economyLabels = []
 func _ready():
 	print("connecting...")
-	signalBus.economyUpdated.connect(_on_economy_update)
-	signalBus.switchPerspective.connect(_on_perspective_switch)
+	SignalBus.economyUpdated.connect(_on_economy_update)
+	SignalBus.switchPerspective.connect(_on_perspective_switch)
 
 	var valueCount = 0
 
@@ -14,7 +14,7 @@ func _ready():
 		economyLabels.append(Label.new())
 		economyLabels[valueCount].name = str(key)
 		economyLabels[valueCount].position.y = (30*valueCount)
-		economyLabels[valueCount].modulate = Color(0, 0, 0, 1)
+		economyLabels[valueCount].modulate = Color(255,255,255, 1)
 		self.add_child(economyLabels[valueCount])
 		valueCount+=1
 

@@ -1,17 +1,80 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxeh8jilnmpia"]
+[gd_scene load_steps=10 format=3 uid="uid://cxeh8jilnmpia"]
 
-[ext_resource type="Texture2D" uid="uid://35yhm3l2ghfc" path="res://assets/Art/IMG_8296.png" id="1_e232d"]
+[ext_resource type="Texture2D" uid="uid://dbys3jsbjkfnq" path="res://assets/Art/background.png" id="1_e232d"]
+[ext_resource type="Script" uid="uid://bnyy5f5qx0cy0" path="res://scenes/DefaultActions.gd" id="1_u4rra"]
+[ext_resource type="Texture2D" uid="uid://bkb8m4hpn2l54" path="res://assets/Art/table.png" id="2_7vjpr"]
+[ext_resource type="Texture2D" uid="uid://twwvjtyud25a" path="res://assets/Art/papers.png" id="3_ya6ni"]
+[ext_resource type="Texture2D" uid="uid://4wabqj7ea7p5" path="res://assets/Art/papers_hover.png" id="4_6y2o2"]
+[ext_resource type="Texture2D" uid="uid://bdy0qgt7ip2js" path="res://assets/Art/stampApprove.png" id="5_wdrtm"]
+[ext_resource type="Texture2D" uid="uid://b6cfsxfm2xof6" path="res://assets/Art/stampApprove_hover.png" id="6_u4rra"]
+[ext_resource type="Texture2D" uid="uid://b8qp8ypdet0vv" path="res://assets/Art/stampDeny.png" id="7_1grx1"]
+[ext_resource type="Texture2D" uid="uid://ccahwluycak46" path="res://assets/Art/stampDeny_hover.png" id="8_hvtui"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7vjpr"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_e232d")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[node name="Default" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u4rra")
 
-[node name="background" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_7vjpr")
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_e232d")
+
+[node name="Table" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = -101.0
+offset_right = -47.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_7vjpr")
+
+[node name="PaperStack" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 461.0
+offset_right = 481.0
+offset_bottom = 664.0
+toggle_mode = true
+texture_normal = ExtResource("3_ya6ni")
+texture_hover = ExtResource("4_6y2o2")
+stretch_mode = 0
+
+[node name="StampApprove" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 826.0
+offset_top = 530.0
+offset_right = 873.0
+offset_bottom = 587.0
+scale = Vector2(2.2, 2.2)
+toggle_mode = true
+texture_normal = ExtResource("5_wdrtm")
+texture_hover = ExtResource("6_u4rra")
+
+[node name="StampDeny" type="TextureButton" parent="."]
+offset_left = 756.0
+offset_top = 503.0
+offset_right = 803.0
+offset_bottom = 560.0
+scale = Vector2(2.2, 2.2)
+toggle_mode = true
+texture_normal = ExtResource("7_1grx1")
+texture_hover = ExtResource("8_hvtui")
+
+[connection signal="pressed" from="PaperStack" to="." method="_on_paper_stack_pressed"]
+[connection signal="toggled" from="PaperStack" to="." method="_on_paper_stack_toggled"]
+[connection signal="toggled" from="StampApprove" to="." method="_on_stamp_approve_toggled"]
+[connection signal="toggled" from="StampDeny" to="." method="_on_stamp_deny_toggled"]
