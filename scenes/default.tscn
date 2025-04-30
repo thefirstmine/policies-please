@@ -65,6 +65,7 @@ texture_normal = ExtResource("5_wdrtm")
 texture_hover = ExtResource("6_u4rra")
 
 [node name="StampDeny" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 756.0
 offset_top = 503.0
 offset_right = 803.0

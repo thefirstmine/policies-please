@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://rpl8flekvmlc"]
+[gd_scene load_steps=13 format=3 uid="uid://rpl8flekvmlc"]
 
 [ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://scenes/economy_engine.tscn" id="2_ipu61"]
 [ext_resource type="Script" uid="uid://d0guekvm4yrdf" path="res://scenes/GameControl.gd" id="3_70vka"]
@@ -9,21 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://cxeh8jilnmpia" path="res://scenes/default.tscn" id="7_wi4c7"]
 [ext_resource type="Texture2D" uid="uid://b8qp8ypdet0vv" path="res://assets/Art/stampDeny.png" id="8_70vka"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bm6p"]
-bg_color = Color(1, 0.308823, 0.477609, 0.270588)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.205226, 0.391202, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70vka"]
+bg_color = Color(1, 0, 0.235294, 0.509804)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykeeq"]
-bg_color = Color(0, 0.684943, 0.690489, 0.270588)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0.588829, 0.963078, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqdth"]
+bg_color = Color(1, 0, 0.235294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2l77h"]
+bg_color = Color(0.239216, 0.211765, 1, 0.509804)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cypo"]
+bg_color = Color(0.239216, 0.211765, 1, 1)
 
 [node name="root" type="Node2D"]
 
@@ -34,13 +30,6 @@ script = ExtResource("3_70vka")
 
 [node name="FiscalReport" parent="Canvas" instance=ExtResource("6_ygxny")]
 visible = false
-
-[node name="DeveloperStats" parent="Canvas" instance=ExtResource("3_ygxny")]
-offset_left = 8.0
-offset_top = 10.0
-offset_right = 8.0
-offset_bottom = 10.0
-mouse_filter = 2
 
 [node name="Default" parent="Canvas" instance=ExtResource("7_wi4c7")]
 
@@ -54,7 +43,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 scale = Vector2(1.74, 1.74)
 
-[node name="MoveLeft" type="Panel" parent="Canvas"]
+[node name="MoveLeft" type="Button" parent="Canvas"]
+texture_filter = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_top = 124.0
@@ -63,29 +53,32 @@ offset_bottom = -124.0
 grow_vertical = 2
 mouse_filter = 1
 mouse_force_pass_scroll_events = false
-theme_override_styles/panel = SubResource("StyleBoxFlat_6bm6p")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_70vka")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nqdth")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_70vka")
+theme_override_styles/normal = SubResource("StyleBoxFlat_70vka")
 
 [node name="Label" type="Label" parent="Canvas/MoveLeft"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 0.513
 anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -97.0
-offset_right = 679.0
-offset_bottom = 15.0
+offset_left = 19.0
+offset_top = -98.0
+offset_right = 677.22
+offset_bottom = 14.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
 scale = Vector2(0.325, 0.325)
 theme_override_fonts/font = ExtResource("6_wi4c7")
 theme_override_font_sizes/font_size = 111
-text = "Check Outside"
+text = "Look Outside"
 
-[node name="MoveRight" type="Panel" parent="Canvas"]
+[node name="MoveRight" type="Button" parent="Canvas"]
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
@@ -96,7 +89,10 @@ offset_bottom = -124.0
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_ykeeq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2l77h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5cypo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2l77h")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2l77h")
 
 [node name="Label" type="Label" parent="Canvas/MoveRight"]
 texture_filter = 1
@@ -117,6 +113,13 @@ scale = Vector2(0.325, 0.325)
 theme_override_fonts/font = ExtResource("6_wi4c7")
 theme_override_font_sizes/font_size = 111
 text = "Statistics"
+
+[node name="DeveloperStats" parent="Canvas" instance=ExtResource("3_ygxny")]
+offset_left = 8.0
+offset_top = 10.0
+offset_right = 8.0
+offset_bottom = 10.0
+mouse_filter = 2
 
 [node name="HiddenCursor" type="Sprite2D" parent="Canvas"]
 visible = false

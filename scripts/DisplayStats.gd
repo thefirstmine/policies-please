@@ -4,7 +4,6 @@ extends Control
 const COUNT_ECONOMY_STATS = 11
 var economyLabels = []
 func _ready():
-	print("connecting...")
 	SignalBus.economyUpdated.connect(_on_economy_update)
 	SignalBus.switchPerspective.connect(_on_perspective_switch)
 

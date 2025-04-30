@@ -57,9 +57,25 @@ func interdependentEffects():
 # Fiscal Policies
 
 var policies = []
+var passedPoliciesIDs = []
+var rolledPolicies = []
 
+func getRandomPolicy():
+	var rng
+	var randomPolicyIndex
+	while true:
+		rng = RandomNumberGenerator.new()
+		randomPolicyIndex = rng.randi_range(0, 9)
+		if !rolledPolicies.has(randomPolicyIndex):
+			rolledPolicies.append(randomPolicyIndex)
+			break
+
+	return policies[randomPolicyIndex]
 
 func _ready():
+	SignalBus.connect("newPolicy", newPolicy)
+	SignalBus.connect("policyPassed", _on_PolicyPassed)
+
 	policies.resize(10)
 	policies[0] = {
 		"name": "Emergency Infrastructure & Stimulus Act (EISA)",
@@ -173,9 +189,20 @@ func _ready():
 			"gov_debt": 100
 		}
 	}
-			
-	await get_tree().create_timer(2).timeout
-	print("sigma")
+	await get_tree().create_timer(.01).timeout
 	passPolicy(policies[2])
 	#await get_tree().create_timer(1).timeout
+	var policy = getRandomPolicy()
+	SignalBus.emit_signal("displayPolicy", getRandomPolicy())
+	SignalBus.emit_signal('broadcastCurrentPolicy', policy)
+
 	get_parent().updateEconomy()
+
+func newPolicy():
+	var policy = getRandomPolicy()
+	SignalBus.emit_signal("displayPolicy", policy)
+	SignalBus.emit_signal('broadcastCurrentPolicy', policy)
+
+func _on_PolicyPassed(policy):
+		print("Passed Policy")
+		print(policy)

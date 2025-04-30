@@ -36,7 +36,6 @@ func defaultValues():
 	growth_multiplier = 0.9
 	
 func updateEconomy():
-	print("updating economy...")
 	SignalBus.economyUpdated.emit(
 		{	"GDP": main_econ_GDP,
 			"PopulationSatisfaction": main_econ_PopulationSatisfaction,

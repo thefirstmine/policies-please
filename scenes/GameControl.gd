@@ -1,15 +1,19 @@
 extends CanvasLayer
-var HiddenCursorEnabled = false
-var isApproving = false
-var isDenying = false
-var PassingPolicyAnimationExit = false
-var PassingPolicyAnimationEnter = false
+var HiddenCursorEnabled: bool = false
+var isApproving: bool = false
+var isDenying: bool = false
+var PassingPolicyAnimationExit: bool = false
+var PassingPolicyAnimationEnter: bool = false
+var current_policy: Dictionary
+var PoliciesProcessed: int = 0
 func _ready():
 	SignalBus.connect("displayBill", _on_paperstack_toggle)
 	SignalBus.connect("StampSelected_Deny", _on_StampSelectedDeny_toggle)
 	SignalBus.connect("StampSelected_Approve",_on_StampSelectedApprove_toggle)
 	SignalBus.connect("policyPressed", _on_PolicyPressed)
-
+	SignalBus.connect("broadcastCurrentPolicy", _on_GetCurrentPolicy)
+func _on_GetCurrentPolicy(policy):
+	current_policy = policy
 func _on_paperstack_toggle(value):
 	$PassingPolicies.visible = value
 	
@@ -36,30 +40,33 @@ func switchMouseCursor(value, texture):
 
 func _on_PolicyPressed():
 	if isApproving:
-		print("APPROVED")
 		$PassingPolicies/Paper/Stamp.texture = load('res://assets/Art/Approved.png')
+		SignalBus.emit_signal('policyPassed', current_policy)
 	if isDenying:
-		print("DENIED")
 		$PassingPolicies/Paper/Stamp.texture = load('res://assets/Art/Denied.png')
 	if isApproving or isDenying:
 		$PassingPolicies/Paper/Stamp.visible = true
+		$PassingPolicies/Paper.disabled = true
+		PoliciesProcessed+=1
 		await get_tree().create_timer(.5).timeout
 		PassingPolicyAnimationExit = true
 func resetPolicy():
-	print("reset")
-	$PassingPolicies.position.y = 1500
+	$PassingPolicies.position.y = 1000
 	PassingPolicyAnimationEnter = true
 	$PassingPolicies/Paper/Stamp.visible = false
+	SignalBus.emit_signal("newPolicy")
+
 func _process(delta):
 	if HiddenCursorEnabled == true:
 		$HiddenCursor.position = get_viewport().get_mouse_position()
 	if PassingPolicyAnimationExit == true:
-		$PassingPolicies.position.y -= 20
-		if $PassingPolicies.position.y <= -1500:
+		$PassingPolicies.position.y -= 10
+		if $PassingPolicies.position.y <= -1000:
 			resetPolicy()
 			PassingPolicyAnimationExit = false
 	if PassingPolicyAnimationEnter == true:
-		$PassingPolicies.position.y -= 20
+		$PassingPolicies.position.y -= 10
 		if $PassingPolicies.position.y <= 324:
 			$PassingPolicies.position.y = 324
 			PassingPolicyAnimationEnter = false
+			$PassingPolicies/Paper.disabled = false
