@@ -223,13 +223,15 @@ mouse_filter = 2
 
 [node name="SFX1" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStream_2l77h")
+volume_db = -15.0
 
 [node name="SFX2" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStream_nqdth")
+volume_db = -15.0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStream_5cypo")
-volume_db = -10.0
+volume_db = -25.0
 script = ExtResource("11_5cypo")
 
 [connection signal="pressed" from="Canvas/MoveLeft" to="Canvas/MoveLeft" method="_on_pressed"]

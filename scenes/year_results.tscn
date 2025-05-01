@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="1_5aifg"]
 [ext_resource type="FontFile" uid="uid://eisnswgiao3b" path="res://assets/Fonts/pixelplay.ttf" id="1_beqdq"]
 [ext_resource type="Script" uid="uid://80rlndpmslqn" path="res://scenes/year_results.gd" id="1_sbp5s"]
-[ext_resource type="Shader" uid="uid://clq33pn7qdbmk" path="res://shaders/screen.gdshader" id="3_sbp5s"]
+[ext_resource type="Shader" uid="uid://cwgd766mrjks2" path="res://shaders/screen2.gdshader" id="4_beqdq"]
 
 [sub_resource type="Animation" id="Animation_sbp5s"]
 length = 0.001
@@ -42,7 +42,8 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nute0"]
-shader = ExtResource("3_sbp5s")
+shader = ExtResource("4_beqdq")
+shader_parameter/scanline_count = 50.0
 
 [node name="YearResults" type="Control"]
 modulate = Color(1, 1, 1, 0)
