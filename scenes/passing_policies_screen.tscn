@@ -101,19 +101,20 @@ fit_content = true
 
 [node name="Stamp" type="TextureRect" parent="Paper"]
 visible = false
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -78.0
-offset_top = -64.0
-offset_right = 1022.0
-offset_bottom = 779.0
+offset_left = -128.0
+offset_top = -34.23
+offset_right = 872.0
+offset_bottom = 965.77
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.14, 0.14)
+scale = Vector2(0.255, 0.255)
 texture = ExtResource("4_6xion")
 
 [connection signal="button_down" from="Paper" to="." method="_on_paper_button_down"]

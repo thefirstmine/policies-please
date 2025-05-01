@@ -203,6 +203,7 @@ color = Color(0, 0, 0, 1)
 visible = false
 
 [node name="DeveloperStats" parent="Canvas" instance=ExtResource("3_ygxny")]
+visible = false
 offset_left = 60.165
 offset_top = 69.755
 offset_right = 60.165

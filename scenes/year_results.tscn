@@ -226,6 +226,7 @@ text = "Currency"
 
 [node name="Stats" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 475.0
 offset_top = 155.0
 offset_right = 1363.68
