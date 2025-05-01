@@ -10,7 +10,7 @@ signal displayPolicy(PolicyData)
 signal newPolicy()
 signal policyPassed()
 signal broadcastCurrentPolicy()
-signal fiscalYearEnd()
+signal fiscalYearEnd(compiledBills)
 #func _ready():
 	#print("Game running")
 	#

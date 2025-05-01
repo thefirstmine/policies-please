@@ -1,52 +1,34 @@
 shader_type canvas_item;
+const float UPDATE_INTERVAL = .163;
+const float STATIC_GRANULARITY = .005;
+const float EDGE_BLUR = .5;
+const float BORDER_SIZE = .3;
 
-const float range = 0.0005;
-const float noiseQuality = 250.0;
-const float noiseIntensity = 0.00008;
-const float offsetIntensity = 0.001;
-const float colorOffsetIntensity = 0.15;
-uniform float amount = 40.0;
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
-float rand(vec2 co)
-{
-    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+float generate_random_static (in float size, in float interval, in vec2 uv){
+	float time_step = TIME - mod(TIME,interval);
+	vec2 uv_step = uv - mod(uv, size);
+	return fract(sin(dot(uv_step,vec2(12.0278*sin(time_step),15.0905)))*43758.5453);
 }
 
-float verticalBar(float pos, float UVY, float offset)
-{
-    float edge0 = (pos - range);
-    float edge1 = (pos + range);
-
-    float x = smoothstep(edge0, pos, UVY) * offset;
-    x -= smoothstep(pos, edge1, UVY) * offset;
-    return x;
+vec2 get_polar_coords (vec2 center, vec2 uv){
+	vec2 pos = uv-center;
+	float r = length(pos);
+	float theta = atan(pos.y,pos.x);
+	return vec2(r,theta);
 }
-const float saturation = 0.2;
-void fragment()
-{
 
-    vec2 uv = SCREEN_UV;
-    for (float i = 0.0; i < 0.71; i += 0.1313)
-    {
-        float d = mod(TIME * i, 1.7);
-        float o = sin(1.0 - tan(TIME * 0.24 * i));
-    	o *= offsetIntensity;
-        uv.x += verticalBar(d, UV.y, o);
-    }
-    
-    float UVY = uv.y;
-    UVY *= noiseQuality;
-    UVY = float(int(UVY)) * (1.0 / noiseQuality);
-    float noise = rand(vec2(TIME * 0.00001, UVY));
-    uv.x += noise * noiseIntensity;
+vec4 layer (in vec4 front_color, in vec4 back_color){
+	return vec4(mix(back_color.rgb,front_color.rgb,front_color.a),front_color.a+back_color.a);
+}
 
-    vec2 offsetR = vec2(0.009 * sin(TIME), 0.0) * colorOffsetIntensity;
-    vec2 offsetG = vec2(0.0073 * (cos(TIME * 0.97)), 0.0) * colorOffsetIntensity;
-    
-    float r = texture(SCREEN_TEXTURE, uv + offsetR).r;
-    float g = texture(SCREEN_TEXTURE, uv + offsetG).g;
-    float b = texture(SCREEN_TEXTURE, uv).b;
-    vec4 tex = vec4(r, g, b, 1.0);
-
-    COLOR = tex;
+void fragment() {
+	vec3 static_plot = vec3(generate_random_static(STATIC_GRANULARITY,UPDATE_INTERVAL,UV));
+	
+	vec2 c1 = vec2(0.5);
+	vec2 pv1 = get_polar_coords(c1,UV);
+	float func = BORDER_SIZE-.015*cos(4.0*pv1.y);
+	float border_plot = smoothstep(func,func+EDGE_BLUR, pv1.x);
+	vec4 border_color = vec4(vec3(0.0),1.0)*border_plot;
+	COLOR = vec4(static_plot,.1);
+	COLOR = layer(COLOR,border_color);
 }

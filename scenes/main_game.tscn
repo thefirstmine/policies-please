@@ -175,14 +175,6 @@ theme_override_fonts/font = ExtResource("6_wi4c7")
 theme_override_font_sizes/font_size = 111
 text = "Statistics"
 
-[node name="DeveloperStats" parent="Canvas" instance=ExtResource("3_ygxny")]
-visible = false
-offset_left = 8.0
-offset_top = 10.0
-offset_right = 8.0
-offset_bottom = 10.0
-mouse_filter = 2
-
 [node name="HiddenCursor" type="Sprite2D" parent="Canvas"]
 visible = false
 z_index = 10
@@ -200,11 +192,19 @@ theme_override_font_sizes/normal_font_size = 64
 text = "Bills Remaining: 6
 "
 
-[node name="YearResults" parent="Canvas" instance=ExtResource("9_2l77h")]
-
 [node name="BlackScreen" type="ColorRect" parent="Canvas"]
 visible = false
 modulate = Color(0, 0, 0, 0)
 offset_right = 1153.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
+
+[node name="YearResults" parent="Canvas" instance=ExtResource("9_2l77h")]
+visible = false
+
+[node name="DeveloperStats" parent="Canvas" instance=ExtResource("3_ygxny")]
+offset_left = 60.165
+offset_top = 69.755
+offset_right = 60.165
+offset_bottom = 69.755
+mouse_filter = 2

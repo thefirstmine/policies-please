@@ -5,13 +5,11 @@ var isDenying: bool = false
 var PassingPolicyAnimationExit: bool = false
 var PassingPolicyAnimationEnter: bool = false
 var current_policy: Dictionary
-var PoliciesProcessed: int = 0
-const MAX_POLICIES_TO_REVIEW: int = 6
+const MAX_POLICIES_TO_REVIEW: int = 2
 var PoliciesReviewed = 0
 var isFinishingUpFiscalYear = false
-
+var CompiledPassedBills: Array
 func _ready():
-	
 	SignalBus.connect("displayBill", _on_paperstack_toggle)
 	SignalBus.connect("StampSelected_Deny", _on_StampSelectedDeny_toggle)
 	SignalBus.connect("StampSelected_Approve",_on_StampSelectedApprove_toggle)
@@ -51,6 +49,7 @@ func _on_PolicyPressed():
 	if isApproving:
 		$PassingPolicies/Paper/Stamp.texture = load('res://assets/Art/Approved.png')
 		SignalBus.emit_signal('policyPassed', current_policy)
+		CompiledPassedBills.append(current_policy)
 	if isDenying:
 		$PassingPolicies/Paper/Stamp.texture = load('res://assets/Art/Denied.png')
 	if isApproving or isDenying:
@@ -58,7 +57,6 @@ func _on_PolicyPressed():
 		$RemainingBills.text = "Bills Remaining: " + str(MAX_POLICIES_TO_REVIEW - PoliciesReviewed)
 		$PassingPolicies/Paper/Stamp.visible = true
 		$PassingPolicies/Paper.disabled = true
-		PoliciesProcessed+=1
 		await get_tree().create_timer(.5).timeout
 		PassingPolicyAnimationExit = true
 		
@@ -73,18 +71,16 @@ func resetPolicy():
 		$PassingPolicies.position.y = 1500
 		PassingPolicyAnimationEnter = true
 		$PassingPolicies/Paper/Stamp.visible = false
-		pass
-	else:
-		pass
 		
 func moveOnToNextFiscalYear():
 	await get_tree().create_timer(1).timeout
+	transition()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	HiddenCursorEnabled = false
 	$"HiddenCursor".visible = false
 	isApproving = false
 	isDenying = false
-	SignalBus.emit_signal("fiscalYearEnd")
+	SignalBus.emit_signal("fiscalYearEnd", CompiledPassedBills)
 func _process(delta):
 	if HiddenCursorEnabled == true:
 		$HiddenCursor.position = get_viewport().get_mouse_position()

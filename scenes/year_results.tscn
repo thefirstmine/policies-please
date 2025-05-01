@@ -5,10 +5,6 @@
 [ext_resource type="Script" uid="uid://80rlndpmslqn" path="res://scenes/year_results.gd" id="1_sbp5s"]
 [ext_resource type="Shader" uid="uid://clq33pn7qdbmk" path="res://shaders/screen.gdshader" id="3_sbp5s"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nute0"]
-shader = ExtResource("3_sbp5s")
-shader_parameter/amount = 40.0
-
 [sub_resource type="Animation" id="Animation_sbp5s"]
 length = 0.001
 tracks/0/type = "value"
@@ -45,8 +41,10 @@ _data = {
 &"fadeIn": SubResource("Animation_beqdq")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nute0"]
+shader = ExtResource("3_sbp5s")
+
 [node name="YearResults" type="Control"]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -62,16 +60,16 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Labels" type="Panel" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 306.0
-offset_top = 195.0
-offset_right = 1022.0
-offset_bottom = 660.0
-scale = Vector2(0.775, 0.775)
+offset_left = 318.0
+offset_top = 155.0
+offset_right = 1034.0
+offset_bottom = 620.0
+scale = Vector2(0.5, 0.5)
 
-[node name="GDP" type="RichTextLabel" parent="Panel"]
+[node name="GDP" type="RichTextLabel" parent="Labels"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -85,7 +83,7 @@ theme_override_font_sizes/normal_font_size = 64
 text = "GDP
 "
 
-[node name="Satisfaction" type="RichTextLabel" parent="Panel"]
+[node name="Satisfaction" type="RichTextLabel" parent="Labels"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -99,7 +97,7 @@ theme_override_fonts/normal_font = ExtResource("1_beqdq")
 theme_override_font_sizes/normal_font_size = 64
 text = "Satisfaction"
 
-[node name="Inflation" type="RichTextLabel" parent="Panel"]
+[node name="Inflation" type="RichTextLabel" parent="Labels"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -113,7 +111,7 @@ theme_override_fonts/normal_font = ExtResource("1_beqdq")
 theme_override_font_sizes/normal_font_size = 64
 text = "Inflation"
 
-[node name="Multiplier" type="RichTextLabel" parent="Panel"]
+[node name="Multiplier" type="RichTextLabel" parent="Labels"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -127,12 +125,279 @@ theme_override_fonts/normal_font = ExtResource("1_beqdq")
 theme_override_font_sizes/normal_font_size = 64
 text = "Multiplier"
 
-[node name="VHS" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_nute0")
-layout_mode = 0
-offset_right = 1151.0
-offset_bottom = 648.0
+[node name="Taxes" type="RichTextLabel" parent="Labels"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 280.0
+offset_right = 67.0
+offset_bottom = 827.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "Taxes"
+
+[node name="Unemployment" type="RichTextLabel" parent="Labels"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 350.0
+offset_right = 11.0
+offset_bottom = 905.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "Unemployment"
+
+[node name="Debt" type="RichTextLabel" parent="Labels"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 420.0
+offset_right = 11.0
+offset_bottom = 975.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "Debts"
+
+[node name="Total Demand" type="RichTextLabel" parent="Labels"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 490.0
+offset_right = 11.0
+offset_bottom = 1045.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "Total Demand
+"
+
+[node name="Total Supply" type="RichTextLabel" parent="Labels"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 560.0
+offset_right = 11.0
+offset_bottom = 1115.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "Total Supply"
+
+[node name="Exports" type="RichTextLabel" parent="Labels"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 630.0
+offset_right = 11.0
+offset_bottom = 1185.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "Exports"
+
+[node name="Currency Value" type="RichTextLabel" parent="Labels"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 700.0
+offset_right = 11.0
+offset_bottom = 1255.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "Currency"
+
+[node name="Stats" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 475.0
+offset_top = 155.0
+offset_right = 1363.68
+offset_bottom = 620.0
+scale = Vector2(0.5, 0.5)
+
+[node name="GDP" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_right = 11.0
+offset_bottom = 555.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "0
+
+"
+horizontal_alignment = 2
+
+[node name="Satisfaction" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 70.0
+offset_right = 11.0
+offset_bottom = 558.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+horizontal_alignment = 2
+
+[node name="Inflation" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 140.0
+offset_right = 11.0
+offset_bottom = 628.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+horizontal_alignment = 2
+
+[node name="Multiplier" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 210.0
+offset_right = 11.0
+offset_bottom = 698.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+horizontal_alignment = 2
+
+[node name="Taxes" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 280.0
+offset_right = 11.0
+offset_bottom = 827.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+horizontal_alignment = 2
+
+[node name="Unemployment" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 350.0
+offset_right = 11.0
+offset_bottom = 905.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+horizontal_alignment = 2
+
+[node name="Debt" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 420.0
+offset_right = 11.0
+offset_bottom = 975.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+horizontal_alignment = 2
+
+[node name="Total Demand" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 490.0
+offset_right = 11.0
+offset_bottom = 1045.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "0
+"
+horizontal_alignment = 2
+
+[node name="Total Supply" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 560.0
+offset_right = 11.0
+offset_bottom = 1115.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+horizontal_alignment = 2
+
+[node name="Exports" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 630.0
+offset_right = 11.0
+offset_bottom = 1185.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+horizontal_alignment = 2
+
+[node name="Currency Value" type="RichTextLabel" parent="Stats"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 700.0
+offset_right = 11.0
+offset_bottom = 1255.0
+grow_horizontal = 2
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/normal_font = ExtResource("1_beqdq")
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+horizontal_alignment = 2
 
 [node name="Results" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -142,10 +407,32 @@ offset_right = 1155.0
 offset_bottom = 152.0
 theme_override_fonts/normal_font = ExtResource("1_5aifg")
 theme_override_font_sizes/normal_font_size = 64
-text = "End of Fiscal Year 1"
+text = "End of Quarter 1"
 horizontal_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_sbp5s")
 }
+
+[node name="Next" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.835
+anchor_right = 1.0
+anchor_bottom = 0.948
+offset_left = 483.0
+offset_top = -4.08002
+offset_right = -483.0
+offset_bottom = -4.30408
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("1_5aifg")
+theme_override_font_sizes/font_size = 64
+text = "[Next]"
+
+[node name="VHS" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_nute0")
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 648.0
