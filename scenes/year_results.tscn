@@ -44,6 +44,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nute0"]
 shader = ExtResource("4_beqdq")
 shader_parameter/scanline_count = 50.0
+shader_parameter/scanline_speed = 1.0
 
 [node name="YearResults" type="Control"]
 modulate = Color(1, 1, 1, 0)

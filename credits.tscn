@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsfyo4t6pkwbt"]
+[gd_scene load_steps=7 format=3 uid="uid://dsfyo4t6pkwbt"]
 
 [ext_resource type="Script" uid="uid://c2brqdtsgo1xh" path="res://credits.gd" id="1_g4wvt"]
 [ext_resource type="Shader" uid="uid://cwgd766mrjks2" path="res://shaders/screen2.gdshader" id="1_nm7lk"]
+[ext_resource type="Texture2D" uid="uid://cxp8hlu1fmwf0" path="res://assets/Art/Denied.png" id="2_j6beo"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="3_pjc1l"]
 [ext_resource type="FontFile" uid="uid://dgjbxd0euk85l" path="res://assets/Fonts/resource.ttf" id="4_pjc1l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c1t8d"]
 shader = ExtResource("1_nm7lk")
 shader_parameter/scanline_count = 50.0
+shader_parameter/scanline_speed = 1.0
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -24,12 +26,23 @@ offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.000525508, 0.0654354, 0.102364, 1)
 
+[node name="Logo" type="TextureRect" parent="."]
+modulate = Color(0, 0.627451, 1, 1)
+layout_mode = 0
+offset_left = -177.0
+offset_top = 54.0
+offset_right = 372.0
+offset_bottom = 606.0
+rotation = -0.404916
+scale = Vector2(2.935, 2.935)
+texture = ExtResource("2_j6beo")
+
 [node name="Container" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 240.0
-offset_top = 45.795
+offset_top = 20.945
 offset_right = 912.0
-offset_bottom = 530.795
+offset_bottom = 505.945
 
 [node name="Credits" type="RichTextLabel" parent="Container"]
 layout_mode = 1
