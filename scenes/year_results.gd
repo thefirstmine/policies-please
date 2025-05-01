@@ -1,20 +1,34 @@
 extends Control
 var AggregateChanges: Dictionary
 var economicVariables = [    
-	"main_econ_GDP",
-	"main_econ_PopulationSatisfaction",
-	"inflation_rate",
-	"growth_multiplier",
-	"tax_rate",
+	"GDP",
+	"PopulationSatisfaction",
+	"inflation",
+	"growthMultiplier",
+	"taxRate",
 	"unemployment",
-	"gov_debt",
-	"ag_demand",
-	"ag_supply",
-	"net_exports",
-	"currency_value"]
+	"govDebt",
+	"agDemand",
+	"agSupply",
+	"netExports",
+	"currencyValue"]
+var oldEconomyData
+var newEconomyData
+var ChangedEconomyData
 func _ready():
 	SignalBus.connect("fiscalYearEnd", _onYearEnd)
-	
+	SignalBus.connect("deliverEconomyData", _requestedEconomyData)
+	SignalBus.economyUpdated.connect(_on_economy_update)
+func _requestedEconomyData(EconomyValues):
+	oldEconomyData = EconomyValues
+func _on_economy_update(EconomyValues):
+	newEconomyData = EconomyValues
+func get_economy_diff(old_data: Dictionary, new_data: Dictionary) -> Dictionary:
+	var diff := {}
+	for key in old_data.keys():
+		if new_data.has(key):
+			diff[key] = new_data[key] - old_data[key]
+	return diff
 func _onYearEnd(compiledBills):
 	await get_tree().create_timer(2).timeout
 	self.visible = true
@@ -28,14 +42,20 @@ func _onYearEnd(compiledBills):
 			else:
 				AggregateChanges[j] = compiledBills[i]["data"][j]
 	print(AggregateChanges)
+	SignalBus.emit_signal("requestEconomyData")
+	SignalBus.emit_signal("processPolicy", AggregateChanges)
+
+	ChangedEconomyData = get_economy_diff(oldEconomyData, newEconomyData)
+	print("Changed Economy Data:", ChangedEconomyData)
+	await get_tree().create_timer(.5).timeout
 	displayDataChanges()
 func displayDataChanges():
 	var animation_duration = 0.5  # seconds
 	var frames = int(animation_duration / get_process_delta_time())  # how many frames we have
 	for i in range($Stats.get_child_count()):
 		var var_name = economicVariables[i]
-		if AggregateChanges.has(var_name):
-			var target_value = AggregateChanges[var_name]
+		if ChangedEconomyData.has(var_name) and !(ChangedEconomyData[var_name] <= 0.01 and ChangedEconomyData[var_name] >= -0.01):
+			var target_value = ChangedEconomyData[var_name]
 			var current_value = 0.0
 			var use_percent = abs(target_value) < 1.0
 			var step = (target_value - current_value) / frames

@@ -3,14 +3,14 @@ extends Node2D
 @onready var econ = get_parent()
 
 func passPolicy(policy_data: Dictionary):
-	var policy_stats:Dictionary = policy_data["data"]	
+	var policy_stats:Dictionary = policy_data	
 	for key in policy_stats.keys():
 		if econ.has_variable(key): 
 			econ.set(key, econ.get(key) + policy_stats[key])
 		else:
 			push_warning("Policy key '" + str(key) + "' not found in econ.")
 	interdependentEffects()
-	
+	get_parent().updateEconomy()
 func interdependentEffects():
 	# Calculate potential GDP from Aggregate Supply
 	var potential_gdp = econ.ag_supply
@@ -73,9 +73,10 @@ func getRandomPolicy():
 	return policies[randomPolicyIndex]
 
 func _ready():
+	SignalBus.connect("requestEconomyData", deliverEconomicData)
 	SignalBus.connect("newPolicy", newPolicy)
 	SignalBus.connect("policyPassed", _on_PolicyPassed)
-
+	SignalBus.connect("processPolicy", passPolicy)
 	policies.resize(10)
 	policies[0] = {
 		"name": "Emergency Infrastructure & Stimulus Act (EISA)",
@@ -202,7 +203,19 @@ func newPolicy():
 	var policy = getRandomPolicy()
 	SignalBus.emit_signal("displayPolicy", policy)
 	SignalBus.emit_signal('broadcastCurrentPolicy', policy)
-
+func deliverEconomicData():
+	SignalBus.deliverEconomyData.emit(
+		{	"GDP": econ.main_econ_GDP,
+			"PopulationSatisfaction": econ.main_econ_PopulationSatisfaction,
+			"taxRate": econ.tax_rate,
+			"unemployment": econ.unemployment,
+			"govDebt": econ.gov_debt,
+			"agDemand": econ.ag_demand,
+			"agSupply": econ.ag_supply,
+			"netExports": econ.net_exports,
+			"growthMultiplier": econ.growth_multiplier,
+			"inflation": econ.inflation_rate,
+			"currencyValue": econ.currency_value})
 func _on_PolicyPassed(policy):
 		print("Passed Policy")
 		print(policy)

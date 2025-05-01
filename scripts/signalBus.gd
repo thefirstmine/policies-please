@@ -11,6 +11,9 @@ signal newPolicy()
 signal policyPassed()
 signal broadcastCurrentPolicy()
 signal fiscalYearEnd(compiledBills)
+signal processPolicy(PolicyData)
+signal requestEconomyData()
+signal deliverEconomyData(Data)
 #func _ready():
 	#print("Game running")
 	#
