@@ -1,14 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://ymir6m4xep68"]
+[gd_scene load_steps=24 format=3 uid="uid://ymir6m4xep68"]
 
 [ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://scenes/economy_engine.tscn" id="2_ipu61"]
 [ext_resource type="Script" uid="uid://d0guekvm4yrdf" path="res://scripts/GameControl.gd" id="3_70vka"]
 [ext_resource type="PackedScene" uid="uid://bucwegmqhbbyh" path="res://scenes/developer_screen.tscn" id="3_ygxny"]
 [ext_resource type="PackedScene" uid="uid://3ehs24ltueon" path="res://scenes/passing_policies_screen.tscn" id="5_ipu61"]
+[ext_resource type="Script" uid="uid://bv7q4p4ixrf6a" path="res://scenes/move_left.gd" id="6_nqdth"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="6_wi4c7"]
 [ext_resource type="PackedScene" uid="uid://cbybs0coya5ir" path="res://scenes/fiscal_report_screen.tscn" id="6_ygxny"]
 [ext_resource type="PackedScene" uid="uid://cxeh8jilnmpia" path="res://scenes/default.tscn" id="7_wi4c7"]
 [ext_resource type="Texture2D" uid="uid://b8qp8ypdet0vv" path="res://assets/Art/stampDeny.png" id="8_70vka"]
+[ext_resource type="Script" uid="uid://cc5vv5ejr7pjb" path="res://scenes/move_right.gd" id="8_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://33gtxv2npslv" path="res://scenes/year_results.tscn" id="9_2l77h"]
+[ext_resource type="Script" uid="uid://bkofxn3kwngpa" path="res://scenes/music.gd" id="11_5cypo"]
 
 [sub_resource type="Animation" id="Animation_5cypo"]
 length = 0.001
@@ -76,6 +79,12 @@ bg_color = Color(0.239216, 0.211765, 1, 0.196078)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cypo"]
 bg_color = Color(0.239216, 0.211765, 1, 0.588235)
 
+[sub_resource type="AudioStream" id="AudioStream_2l77h"]
+
+[sub_resource type="AudioStream" id="AudioStream_nqdth"]
+
+[sub_resource type="AudioStream" id="AudioStream_5cypo"]
+
 [node name="root" type="Node2D"]
 
 [node name="Economy" parent="." instance=ExtResource("2_ipu61")]
@@ -118,6 +127,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_70vka")
 theme_override_styles/hover = SubResource("StyleBoxFlat_nqdth")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_70vka")
 theme_override_styles/normal = SubResource("StyleBoxFlat_70vka")
+script = ExtResource("6_nqdth")
 
 [node name="Label" type="Label" parent="Canvas/MoveLeft"]
 texture_filter = 1
@@ -154,6 +164,7 @@ theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_2l77h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_5cypo")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2l77h")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2l77h")
+script = ExtResource("8_o6v7o")
 
 [node name="Label" type="Label" parent="Canvas/MoveRight"]
 texture_filter = 1
@@ -209,3 +220,18 @@ offset_top = 69.755
 offset_right = 60.165
 offset_bottom = 69.755
 mouse_filter = 2
+
+[node name="SFX1" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStream_2l77h")
+
+[node name="SFX2" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStream_nqdth")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStream_5cypo")
+volume_db = -10.0
+script = ExtResource("11_5cypo")
+
+[connection signal="pressed" from="Canvas/MoveLeft" to="Canvas/MoveLeft" method="_on_pressed"]
+[connection signal="pressed" from="Canvas/MoveRight" to="Canvas/MoveRight" method="_on_pressed"]
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]

@@ -9,7 +9,15 @@ const MAX_POLICIES_TO_REVIEW: int = 6
 var PoliciesReviewed = 0
 var isFinishingUpFiscalYear = false
 var CompiledPassedBills: Array
+var SFXPlayer1
+var SFXPlayer2
+var MusicPlayer
 func _ready():
+	SFXPlayer1 = $"../SFX1"
+	SFXPlayer2 = $"../SFX2"
+	MusicPlayer = $"../Music"
+	MusicPlayer.stream = load("res://assets/Audio/gameMusic.wav")
+	MusicPlayer.playDelay()
 	SignalBus.connect("displayBill", _on_paperstack_toggle)
 	SignalBus.connect("StampSelected_Deny", _on_StampSelectedDeny_toggle)
 	SignalBus.connect("StampSelected_Approve",_on_StampSelectedApprove_toggle)
@@ -23,7 +31,12 @@ func transition():
 	$AnimationPlayer.play("fade_to_black")
 func _on_paperstack_toggle(value):
 	$PassingPolicies.visible = value
-	
+	if $PassingPolicies.visible == true:
+		SFXPlayer1.stream = load("res://assets/Audio/paperSFX.mp3")
+		SFXPlayer1.play()
+	else:
+		SFXPlayer1.stream = load("res://assets/Audio/paperDeselect.mp3")
+		SFXPlayer1.play()
 func _on_StampSelectedDeny_toggle(value):
 	isDenying = value
 	isApproving = !value
@@ -53,6 +66,8 @@ func _on_PolicyPressed():
 	if isDenying:
 		$PassingPolicies/Paper/Stamp.texture = load('res://assets/Art/Denied.png')
 	if isApproving or isDenying:
+		SFXPlayer1.stream = load("res://assets/Audio/stampsfx.wav")
+		SFXPlayer1.play()
 		PoliciesReviewed += 1
 		$RemainingBills.text = "Bills Remaining: " + str(MAX_POLICIES_TO_REVIEW - PoliciesReviewed)
 		$PassingPolicies/Paper/Stamp.visible = true

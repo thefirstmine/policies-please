@@ -5,7 +5,8 @@ func _ready():
 
 func _on_paper_pressed() -> void:
 	SignalBus.emit_signal("policyPressed")
-	
+
+
 func _on_policyDisplay(policyData):
 
 	$Paper/Title.text = policyData["name"]
