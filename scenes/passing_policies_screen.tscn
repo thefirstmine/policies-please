@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://3ehs24ltueon"]
+[gd_scene load_steps=6 format=3 uid="uid://3ehs24ltueon"]
 
 [ext_resource type="Script" uid="uid://be1kq7evcsg7k" path="res://scripts/PolicyActions.gd" id="1_ap5kf"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="1_t61h4"]
+[ext_resource type="Texture2D" uid="uid://cnxot2suug0bl" path="res://assets/Art/policy page.png" id="2_05c2n"]
 [ext_resource type="FontFile" uid="uid://nqqjhbwjrim2" path="res://assets/Fonts/BMmini.TTF" id="2_uspd6"]
 [ext_resource type="Texture2D" uid="uid://cighacd5fofbo" path="res://assets/Art/Approved.png" id="4_6xion"]
 
@@ -31,15 +32,19 @@ grow_vertical = 2
 localize_numeral_system = false
 mouse_filter = 1
 
-[node name="PaperColor" type="ColorRect" parent="Paper"]
+[node name="PaperColor" type="TextureRect" parent="Paper"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -35.5
+offset_right = -32.0
+offset_bottom = -35.5
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
-color = Color(1, 0.860919, 0.556071, 1)
+scale = Vector2(1.235, 1.235)
+texture = ExtResource("2_05c2n")
 
 [node name="Title" type="RichTextLabel" parent="Paper"]
 modulate = Color(0, 0, 0, 1)
