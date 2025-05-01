@@ -1,13 +1,72 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=13 format=3 uid="uid://rpl8flekvmlc"]
+=======
+[gd_scene load_steps=16 format=3 uid="uid://rpl8flekvmlc"]
+>>>>>>> Stashed changes
 
 [ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://scenes/economy_engine.tscn" id="2_ipu61"]
-[ext_resource type="Script" uid="uid://d0guekvm4yrdf" path="res://scenes/GameControl.gd" id="3_70vka"]
+[ext_resource type="Script" uid="uid://d0guekvm4yrdf" path="res://scripts/GameControl.gd" id="3_70vka"]
 [ext_resource type="PackedScene" uid="uid://bucwegmqhbbyh" path="res://scenes/developer_screen.tscn" id="3_ygxny"]
 [ext_resource type="PackedScene" uid="uid://3ehs24ltueon" path="res://scenes/passing_policies_screen.tscn" id="5_ipu61"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="6_wi4c7"]
 [ext_resource type="PackedScene" uid="uid://cbybs0coya5ir" path="res://scenes/fiscal_report_screen.tscn" id="6_ygxny"]
 [ext_resource type="PackedScene" uid="uid://cxeh8jilnmpia" path="res://scenes/default.tscn" id="7_wi4c7"]
 [ext_resource type="Texture2D" uid="uid://b8qp8ypdet0vv" path="res://assets/Art/stampDeny.png" id="8_70vka"]
+[ext_resource type="PackedScene" uid="uid://33gtxv2npslv" path="res://scenes/year_results.tscn" id="9_2l77h"]
+
+[sub_resource type="Animation" id="Animation_2l77h"]
+resource_name = "fade_to_black"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5cypo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nqdth"]
+resource_name = "fade_to_normal"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqdth"]
+_data = {
+&"RESET": SubResource("Animation_5cypo"),
+&"fade_to_black": SubResource("Animation_2l77h"),
+&"fade_to_normal": SubResource("Animation_nqdth")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70vka"]
 bg_color = Color(1, 0, 0.235294, 0.509804)
@@ -27,6 +86,12 @@ bg_color = Color(0.239216, 0.211765, 1, 1)
 
 [node name="Canvas" type="CanvasLayer" parent="."]
 script = ExtResource("3_70vka")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Canvas"]
+root_node = NodePath("../BlackScreen")
+libraries = {
+&"": SubResource("AnimationLibrary_nqdth")
+}
 
 [node name="FiscalReport" parent="Canvas" instance=ExtResource("6_ygxny")]
 visible = false
@@ -126,3 +191,23 @@ visible = false
 z_index = 10
 position = Vector2(376, 195)
 texture = ExtResource("8_70vka")
+
+[node name="RemainingBills" type="RichTextLabel" parent="Canvas"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 574.0
+offset_bottom = 215.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("6_wi4c7")
+theme_override_font_sizes/normal_font_size = 64
+text = "Bills Remaining: 6
+"
+
+[node name="YearResults" parent="Canvas" instance=ExtResource("9_2l77h")]
+
+[node name="BlackScreen" type="ColorRect" parent="Canvas"]
+visible = false
+modulate = Color(0, 0, 0, 0)
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
