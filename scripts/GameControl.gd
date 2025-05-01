@@ -1,5 +1,4 @@
 extends CanvasLayer
-<<<<<<< Updated upstream:scenes/GameControl.gd
 var HiddenCursorEnabled: bool = false
 var isApproving: bool = false
 var isDenying: bool = false
@@ -7,33 +6,23 @@ var PassingPolicyAnimationExit: bool = false
 var PassingPolicyAnimationEnter: bool = false
 var current_policy: Dictionary
 var PoliciesProcessed: int = 0
-=======
-var HiddenCursorEnabled = false
-var isApproving = false
-var isDenying = false
-var PassingPolicyAnimationExit = false
-var PassingPolicyAnimationEnter = false
 const MAX_POLICIES_TO_REVIEW: int = 6
 var PoliciesReviewed = 0
 var isFinishingUpFiscalYear = false
 
->>>>>>> Stashed changes:scripts/GameControl.gd
 func _ready():
 	
 	SignalBus.connect("displayBill", _on_paperstack_toggle)
 	SignalBus.connect("StampSelected_Deny", _on_StampSelectedDeny_toggle)
 	SignalBus.connect("StampSelected_Approve",_on_StampSelectedApprove_toggle)
 	SignalBus.connect("policyPressed", _on_PolicyPressed)
-<<<<<<< Updated upstream:scenes/GameControl.gd
 	SignalBus.connect("broadcastCurrentPolicy", _on_GetCurrentPolicy)
 func _on_GetCurrentPolicy(policy):
 	current_policy = policy
-=======
 
 func transition():
 	$BlackScreen.visible = true	
 	$AnimationPlayer.play("fade_to_black")
->>>>>>> Stashed changes:scripts/GameControl.gd
 func _on_paperstack_toggle(value):
 	$PassingPolicies.visible = value
 	
@@ -74,13 +63,11 @@ func _on_PolicyPressed():
 		PassingPolicyAnimationExit = true
 		
 func resetPolicy():
-<<<<<<< Updated upstream:scenes/GameControl.gd
 	$PassingPolicies.position.y = 1000
 	PassingPolicyAnimationEnter = true
 	$PassingPolicies/Paper/Stamp.visible = false
 	SignalBus.emit_signal("newPolicy")
 
-=======
 	if !(PoliciesReviewed >= MAX_POLICIES_TO_REVIEW):
 		print("reset")
 		$PassingPolicies.position.y = 1500
@@ -92,8 +79,12 @@ func resetPolicy():
 		
 func moveOnToNextFiscalYear():
 	await get_tree().create_timer(1).timeout
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	HiddenCursorEnabled = false
+	$"HiddenCursor".visible = false
+	isApproving = false
+	isDenying = false
 	SignalBus.emit_signal("fiscalYearEnd")
->>>>>>> Stashed changes:scripts/GameControl.gd
 func _process(delta):
 	if HiddenCursorEnabled == true:
 		$HiddenCursor.position = get_viewport().get_mouse_position()
@@ -103,15 +94,13 @@ func _process(delta):
 		if $PassingPolicies.position.y <= -1000:
 			resetPolicy()
 			PassingPolicyAnimationExit = false
-	if PassingPolicyAnimationEnter == true:
+	if PoliciesReviewed >= MAX_POLICIES_TO_REVIEW and isFinishingUpFiscalYear == false:
+		isFinishingUpFiscalYear = true
+		moveOnToNextFiscalYear()
+
+	if PassingPolicyAnimationEnter == true and isFinishingUpFiscalYear == false:
 		$PassingPolicies.position.y -= 10
 		if $PassingPolicies.position.y <= 324:
 			$PassingPolicies.position.y = 324
 			PassingPolicyAnimationEnter = false
-<<<<<<< Updated upstream:scenes/GameControl.gd
 			$PassingPolicies/Paper.disabled = false
-=======
-	if PoliciesReviewed >= MAX_POLICIES_TO_REVIEW and isFinishingUpFiscalYear == false:
-		isFinishingUpFiscalYear = true
-		moveOnToNextFiscalYear()
->>>>>>> Stashed changes:scripts/GameControl.gd

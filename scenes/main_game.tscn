@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=13 format=3 uid="uid://rpl8flekvmlc"]
-=======
-[gd_scene load_steps=16 format=3 uid="uid://rpl8flekvmlc"]
->>>>>>> Stashed changes
+[gd_scene load_steps=18 format=3 uid="uid://ymir6m4xep68"]
 
 [ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://scenes/economy_engine.tscn" id="2_ipu61"]
 [ext_resource type="Script" uid="uid://d0guekvm4yrdf" path="res://scripts/GameControl.gd" id="3_70vka"]
@@ -13,6 +9,21 @@
 [ext_resource type="PackedScene" uid="uid://cxeh8jilnmpia" path="res://scenes/default.tscn" id="7_wi4c7"]
 [ext_resource type="Texture2D" uid="uid://b8qp8ypdet0vv" path="res://assets/Art/stampDeny.png" id="8_70vka"]
 [ext_resource type="PackedScene" uid="uid://33gtxv2npslv" path="res://scenes/year_results.tscn" id="9_2l77h"]
+
+[sub_resource type="Animation" id="Animation_5cypo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_2l77h"]
 resource_name = "fade_to_black"
@@ -28,21 +39,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_5cypo"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_nqdth"]
@@ -69,16 +65,16 @@ _data = {
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70vka"]
-bg_color = Color(1, 0, 0.235294, 0.509804)
+bg_color = Color(1, 0, 0.235294, 0.196078)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqdth"]
-bg_color = Color(1, 0, 0.235294, 1)
+bg_color = Color(1, 0, 0.235294, 0.588235)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2l77h"]
-bg_color = Color(0.239216, 0.211765, 1, 0.509804)
+bg_color = Color(0.239216, 0.211765, 1, 0.196078)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cypo"]
-bg_color = Color(0.239216, 0.211765, 1, 1)
+bg_color = Color(0.239216, 0.211765, 1, 0.588235)
 
 [node name="root" type="Node2D"]
 
@@ -113,7 +109,7 @@ texture_filter = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_top = 124.0
-offset_right = 60.0
+offset_right = 40.0
 offset_bottom = -124.0
 grow_vertical = 2
 mouse_filter = 1
@@ -148,7 +144,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -60.0
+offset_left = -40.0
 offset_top = 124.0
 offset_bottom = -124.0
 grow_horizontal = 0
@@ -180,6 +176,7 @@ theme_override_font_sizes/font_size = 111
 text = "Statistics"
 
 [node name="DeveloperStats" parent="Canvas" instance=ExtResource("3_ygxny")]
+visible = false
 offset_left = 8.0
 offset_top = 10.0
 offset_right = 8.0
