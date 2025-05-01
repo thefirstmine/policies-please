@@ -1,0 +1,164 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3f08fx1yjy47"]
+
+[ext_resource type="Texture2D" uid="uid://dbys3jsbjkfnq" path="res://assets/Art/background.png" id="1_1me84"]
+[ext_resource type="Script" uid="uid://dwp5t2ud5e83r" path="res://scripts/computer_view.gd" id="1_qtd3l"]
+[ext_resource type="Texture2D" uid="uid://bkb8m4hpn2l54" path="res://assets/Art/table.png" id="2_xh5f1"]
+[ext_resource type="Texture2D" uid="uid://d3e3nfj8bjb70" path="res://assets/Art/computer_screen.png" id="3_agc5e"]
+[ext_resource type="Texture2D" uid="uid://ck8a5yo0g7lbj" path="res://assets/Art/exit.png" id="5_x73eq"]
+[ext_resource type="FontFile" uid="uid://dgjbxd0euk85l" path="res://assets/Fonts/resource.ttf" id="6_x73eq"]
+
+[sub_resource type="Animation" id="Animation_s1xeo"]
+resource_name = "zoom_in"
+length = 0.33
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Computer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Computer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(394, 372), Vector2(49, 13)]
+}
+
+[sub_resource type="Animation" id="Animation_k2i1q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Computer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Computer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(394, 372)]
+}
+
+[sub_resource type="Animation" id="Animation_qtd3l"]
+resource_name = "zoom_out"
+length = 0.33
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Computer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Computer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(49, 13), Vector2(394, 372)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gx0c7"]
+_data = {
+&"RESET": SubResource("Animation_k2i1q"),
+&"zoom_in": SubResource("Animation_s1xeo"),
+&"zoom_out": SubResource("Animation_qtd3l")
+}
+
+[node name="computer_view" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qtd3l")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_1me84")
+
+[node name="Table" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = -101.0
+offset_right = -47.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_xh5f1")
+
+[node name="Computer" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 394.0
+offset_top = 372.0
+offset_right = 746.0
+offset_bottom = 596.0
+toggle_mode = true
+texture_normal = ExtResource("3_agc5e")
+
+[node name="ExitButton" type="TextureButton" parent="Computer"]
+visible = false
+layout_mode = 0
+offset_left = 320.0
+offset_top = -1.0
+offset_right = 1161.0
+offset_bottom = 359.0
+scale = Vector2(0.055, 0.055)
+texture_normal = ExtResource("5_x73eq")
+
+[node name="ComputerText" type="RichTextLabel" parent="Computer"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 1072.0
+offset_bottom = 592.0
+scale = Vector2(0.25, 0.25)
+theme_override_fonts/normal_font = ExtResource("6_x73eq")
+theme_override_font_sizes/normal_font_size = 64
+text = "placeholdedr text :3c"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gx0c7")
+}
+
+[connection signal="toggled" from="Computer" to="." method="_on_texture_button_toggled"]
+[connection signal="pressed" from="Computer/ExitButton" to="." method="_on_exit_button_pressed"]
