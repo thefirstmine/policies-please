@@ -30,6 +30,7 @@ offset_bottom = 148.5
 grow_horizontal = 2
 grow_vertical = 2
 localize_numeral_system = false
+focus_mode = 0
 mouse_filter = 1
 
 [node name="PaperColor" type="TextureRect" parent="Paper"]

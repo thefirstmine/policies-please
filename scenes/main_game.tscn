@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ymir6m4xep68"]
+[gd_scene load_steps=26 format=3 uid="uid://ymir6m4xep68"]
 
 [ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://scenes/economy_engine.tscn" id="2_ipu61"]
 [ext_resource type="Script" uid="uid://d0guekvm4yrdf" path="res://scripts/GameControl.gd" id="3_70vka"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cc5vv5ejr7pjb" path="res://scenes/move_right.gd" id="8_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://33gtxv2npslv" path="res://scenes/year_results.tscn" id="9_2l77h"]
 [ext_resource type="Script" uid="uid://bkofxn3kwngpa" path="res://scenes/music.gd" id="11_5cypo"]
+[ext_resource type="Shader" uid="uid://cwgd766mrjks2" path="res://shaders/screen2.gdshader" id="13_wjob3"]
 
 [sub_resource type="Animation" id="Animation_5cypo"]
 length = 0.001
@@ -78,6 +79,11 @@ bg_color = Color(0.239216, 0.211765, 1, 0.196078)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cypo"]
 bg_color = Color(0.239216, 0.211765, 1, 0.588235)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8xp80"]
+shader = ExtResource("13_wjob3")
+shader_parameter/scanline_count = 50.0
+shader_parameter/scanline_speed = 1.0
 
 [sub_resource type="AudioStream" id="AudioStream_2l77h"]
 
@@ -220,6 +226,13 @@ offset_top = 69.755
 offset_right = 60.165
 offset_bottom = 69.755
 mouse_filter = 2
+
+[node name="VHS" type="ColorRect" parent="Canvas"]
+visible = false
+material = SubResource("ShaderMaterial_8xp80")
+offset_right = 1151.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
 
 [node name="SFX1" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStream_2l77h")

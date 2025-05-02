@@ -15,7 +15,10 @@ var economicVariables = [
 var oldEconomyData
 var newEconomyData
 var ChangedEconomyData
+var SFX
 func _ready():
+	SFX = $"../../SFX2"
+
 	SignalBus.connect("fiscalYearEnd", _onYearEnd)
 	SignalBus.connect("deliverEconomyData", _requestedEconomyData)
 	SignalBus.economyUpdated.connect(_on_economy_update)
@@ -49,37 +52,63 @@ func _onYearEnd(compiledBills):
 	print("Changed Economy Data:", ChangedEconomyData)
 	await get_tree().create_timer(.5).timeout
 	displayDataChanges()
+# List of positive and negative variables
+var positive_vars = ["GDP", "PopulationSatisfaction", "growthMultiplier", "agSupply", "netExports"]
+var negative_vars = ["unemployment", "govDebt", "inflation"]
+# Removed context-dependent logic
+
+# Determines color based on variable type and change
+func get_modulate_color(var_name: String, change: float) -> Color:
+	if positive_vars.has(var_name):
+		return Color.html("#42f575") if change > 0 else Color.html("#ff2b2b")
+	elif negative_vars.has(var_name):
+		return Color.html("#ff2b2b") if change > 0 else Color.html("#42f575")
+	else:
+		return Color.html("#42f575") if change > 0 else Color.html("#ff2b2b")
+
 func displayDataChanges():
 	var animation_duration = 0.5  # seconds
-	var frames = int(animation_duration / get_process_delta_time())  # how many frames we have
+	var frames = int(animation_duration / get_process_delta_time())
+	var increasing_pitch = 1
 	for i in range($Stats.get_child_count()):
 		var var_name = economicVariables[i]
+		SFX.stream = load("res://assets/Audio/counter.wav")
+		
 		if ChangedEconomyData.has(var_name) and !(ChangedEconomyData[var_name] <= 0.01 and ChangedEconomyData[var_name] >= -0.01):
 			var target_value = ChangedEconomyData[var_name]
 			var current_value = 0.0
 			var use_percent = abs(target_value) < 1.0
 			var step = (target_value - current_value) / frames
+
 			for j in range(frames):
 				current_value += step
 				if j == frames - 1:
 					current_value = target_value
-				var sign_text
-				if current_value >= 0:
-					$Labels.get_child(i).modulate = Color.html("#42f575")
-					sign_text = "+"	
-				else:
-					$Labels.get_child(i).modulate = Color.html("#ff2b2b")
-					sign_text = "-"
-				
-				var display_value = ""
-				if use_percent:
-					display_value = str(abs(current_value * 100)).pad_decimals(1) + "%"
-				else:
-					display_value = str(round(abs(current_value)))
+
+				var sign_text = "+" if current_value >= 0 else "-"
+				var display_value = str(abs(current_value * 100)).pad_decimals(1) + "%" if use_percent else str(round(abs(current_value)))
+
+
+				# Get color and pitch
+				var color = get_modulate_color(var_name, target_value)
+				$Labels.get_child(i).modulate = color
 				$Stats.get_child(i).text = sign_text + display_value
-				await get_tree().process_frame  
+
+				if !SFX.playing:
+					if color == Color.html("#42f575"):
+						if SFX.pitch_scale <= 6:
+							SFX.pitch_scale = increasing_pitch
+							increasing_pitch += 0.04
+					else:
+						SFX.pitch_scale = 0.15
+					SFX.play()
+
+				await get_tree().process_frame
 		else:
-			await get_tree().create_timer(animation_duration/4).timeout
+			await get_tree().create_timer(animation_duration / 2).timeout
 			$Labels.get_child(i).modulate = Color.html("#4d4d4d")
 			$Stats.get_child(i).text = str(0)
-			await get_tree().create_timer(animation_duration/4).timeout
+			SFX.pitch_scale = 0.2
+			SFX.stream = load("res://assets/Audio/err.wav")
+			SFX.play()
+			await get_tree().create_timer(animation_duration / 2).timeout
