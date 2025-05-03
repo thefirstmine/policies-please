@@ -33,6 +33,7 @@ func get_economy_diff(old_data: Dictionary, new_data: Dictionary) -> Dictionary:
 			diff[key] = new_data[key] - old_data[key]
 	return diff
 func _onYearEnd(compiledBills):
+	$Next.disabled = true
 	await get_tree().create_timer(2).timeout
 	self.visible = true
 	$AnimationPlayer.play("fadeIn")
@@ -54,7 +55,7 @@ func _onYearEnd(compiledBills):
 	displayDataChanges()
 # List of positive and negative variables
 var positive_vars = ["GDP", "PopulationSatisfaction", "growthMultiplier", "agSupply", "netExports"]
-var negative_vars = ["unemployment", "govDebt", "inflation"]
+var negative_vars = ["unemployment", "govDebt"]
 # Removed context-dependent logic
 
 # Determines color based on variable type and change
@@ -96,11 +97,13 @@ func displayDataChanges():
 
 				if !SFX.playing:
 					if color == Color.html("#42f575"):
+						SFX.stream = load("res://assets/Audio/counter.wav")
 						if SFX.pitch_scale <= 6:
 							SFX.pitch_scale = increasing_pitch
 							increasing_pitch += 0.04
 					else:
-						SFX.pitch_scale = 0.15
+						SFX.stream = load("res://assets/Audio/err.wav")
+						SFX.pitch_scale = 0.2
 					SFX.play()
 
 				await get_tree().process_frame
@@ -108,7 +111,24 @@ func displayDataChanges():
 			await get_tree().create_timer(animation_duration / 2).timeout
 			$Labels.get_child(i).modulate = Color.html("#4d4d4d")
 			$Stats.get_child(i).text = str(0)
-			SFX.pitch_scale = 0.2
-			SFX.stream = load("res://assets/Audio/err.wav")
+			SFX.pitch_scale = 0.15
+			SFX.stream = load("res://assets/Audio/counter.wav")
 			SFX.play()
 			await get_tree().create_timer(animation_duration / 2).timeout
+	await get_tree().create_timer(.5).timeout
+	SFX.pitch_scale = 1
+	SFX.stream = load("res://assets/Audio/enable.wav")
+	SFX.play()
+	$Next.disabled = false
+func _on_next_pressed() -> void:
+	self.visible = false
+	print("next")
+	SFX.pitch_scale = 1
+	SFX.stream = load("res://assets/Audio/Flash.ogg")
+	SFX.play()
+	await get_tree().create_timer(.5).timeout
+	
+	$"../AnimationPlayer".play("fade_to_normal")
+	await get_tree().create_timer(1).timeout
+	$"../BlackScreen".visible = false
+	SignalBus.emit_signal("newFiscalYear")

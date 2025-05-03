@@ -428,6 +428,7 @@ offset_left = 483.0
 offset_top = -4.08002
 offset_right = -483.0
 offset_bottom = -4.30408
+focus_mode = 0
 theme_type_variation = &"FlatButton"
 theme_override_fonts/font = ExtResource("1_5aifg")
 theme_override_font_sizes/font_size = 64
@@ -438,3 +439,6 @@ material = SubResource("ShaderMaterial_nute0")
 layout_mode = 0
 offset_right = 1151.0
 offset_bottom = 648.0
+mouse_filter = 2
+
+[connection signal="pressed" from="Next" to="." method="_on_next_pressed"]

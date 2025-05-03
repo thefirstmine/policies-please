@@ -5,7 +5,7 @@ var isDenying: bool = false
 var PassingPolicyAnimationExit: bool = false
 var PassingPolicyAnimationEnter: bool = false
 var current_policy: Dictionary
-const MAX_POLICIES_TO_REVIEW: int = 6
+const MAX_POLICIES_TO_REVIEW: int = 2
 var PoliciesReviewed = 0
 var isFinishingUpFiscalYear = false
 var CompiledPassedBills: Array
@@ -18,6 +18,7 @@ func _ready():
 	MusicPlayer = $"../Music"
 	MusicPlayer.stream = load("res://assets/Audio/gameMusic.wav")
 	MusicPlayer.playDelay()
+	SignalBus.connect("newFiscalYear", _onYearStart)
 	SignalBus.connect("displayBill", _on_paperstack_toggle)
 	SignalBus.connect("StampSelected_Deny", _on_StampSelectedDeny_toggle)
 	SignalBus.connect("StampSelected_Approve",_on_StampSelectedApprove_toggle)
@@ -80,13 +81,13 @@ func resetPolicy():
 	PassingPolicyAnimationEnter = true
 	$PassingPolicies/Paper/Stamp.visible = false
 	SignalBus.emit_signal("newPolicy")
-
+	print("Resetting" + str(PoliciesReviewed))
 	if !(PoliciesReviewed >= MAX_POLICIES_TO_REVIEW):
 		print("reset")
 		$PassingPolicies.position.y = 1500
 		PassingPolicyAnimationEnter = true
 		$PassingPolicies/Paper/Stamp.visible = false
-		
+	
 func moveOnToNextFiscalYear():
 	await get_tree().create_timer(1).timeout
 	transition()
@@ -96,10 +97,19 @@ func moveOnToNextFiscalYear():
 	isApproving = false
 	isDenying = false
 	SignalBus.emit_signal("fiscalYearEnd", CompiledPassedBills)
+func _onYearStart():
+	PassingPolicyAnimationExit = false
+	PoliciesReviewed = 0
+	isFinishingUpFiscalYear = false
+	PassingPolicyAnimationEnter = true
+	$PassingPolicies.position.y = 1500
+	PassingPolicyAnimationEnter = true
+	$PassingPolicies/Paper/Stamp.visible = false
+	resetPolicy()
 func _process(delta):
 	if HiddenCursorEnabled == true:
 		$HiddenCursor.position = get_viewport().get_mouse_position()
-
+	print($PassingPolicies.position.y)
 	if PassingPolicyAnimationExit == true:
 		$PassingPolicies.position.y -= 10
 		if $PassingPolicies.position.y <= -1000:
@@ -110,6 +120,7 @@ func _process(delta):
 		moveOnToNextFiscalYear()
 
 	if PassingPolicyAnimationEnter == true and isFinishingUpFiscalYear == false:
+		print('da')
 		$PassingPolicies.position.y -= 10
 		if $PassingPolicies.position.y <= 324:
 			$PassingPolicies.position.y = 324
