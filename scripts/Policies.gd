@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var econ = get_parent()
-
+const POLICIES_COUNT = 31
 func passPolicy(policy_data: Dictionary):
 	var policy_stats:Dictionary = policy_data	
 	for key in policy_stats.keys():
@@ -65,7 +65,7 @@ func getRandomPolicy():
 	var randomPolicyIndex
 	while true:
 		rng = RandomNumberGenerator.new()
-		randomPolicyIndex = rng.randi_range(0, 9)
+		randomPolicyIndex = rng.randi_range(0, POLICIES_COUNT-1)
 		if !rolledPolicies.has(randomPolicyIndex):
 			rolledPolicies.append(randomPolicyIndex)
 			break
@@ -77,7 +77,7 @@ func _ready():
 	SignalBus.connect("newPolicy", newPolicy)
 	SignalBus.connect("policyPassed", _on_PolicyPassed)
 	SignalBus.connect("processPolicy", passPolicy)
-	policies.resize(10)
+	policies.resize(POLICIES_COUNT)
 	policies[0] = {
 		"name": "Emergency Infrastructure & Stimulus Act (EISA)",
 		"type": "Fiscal",
@@ -188,6 +188,254 @@ func _ready():
 			"ag_demand": 80,
 			"main_econ_PopulationSatisfaction": 0.12,
 			"gov_debt": 100
+		}
+	}
+	
+
+	policies [10] = {
+		"name": "Carbon Tax & Dividend Act",
+		"type": "Fiscal",
+		"description": "Introduces a carbon tax on fossil fuel emissions, aiming to internalize environmental costs and reduce carbon output. Revenue is redistributed equally to citizens as a dividend, maintaining overall demand while incentivizing green energy adoption.",
+		"data": {
+			"ag_demand": 50,
+			"ag_supply": -90,
+			"inflation_rate": 0.02,
+			"main_econ_PopulationSatisfaction": 0.05
+		}
+	}
+
+	policies [11] = {
+		"name": "National Workforce Retraining Act",
+		"type": "Fiscal",
+		"description": "Funds large-scale retraining and upskilling programs for workers displaced by automation and globalization. This long-term policy aims to reduce structural unemployment and improve labor productivity.",
+		"data": {
+			"ag_supply": 80,
+			"unemployment": -0.04,
+			"main_econ_PopulationSatisfaction": 0.07,
+			"gov_debt": 75
+		}    
+	}
+
+	policies [12] = {
+		"name": "Financial Transaction Tax",
+		"type": "Fiscal",
+		"description": "Imposes a small tax on stock and derivatives trading to reduce speculative behavior and generate public revenue. Can slightly lower market liquidity but stabilize markets and raise funds for social spending.",
+		"data": {
+			"tax_rate": 0.04,
+			"gov_debt": -50,
+			"ag_demand": -10,
+			"inflation_rate": -0.005
+		}    
+	}
+
+	policies [13] = {
+		"name": "Rural Connectivity Expansion Program",
+		"type": "Fiscal",
+		"description": "Aims to close the digital divide by investing in high-speed internet infrastructure in underserved rural areas, boosting economic activity and inclusion in those regions.",
+		"data": {
+			"ag_demand": 40,
+			"ag_supply": 30,
+			"gov_debt": 60,
+			"main_econ_PopulationSatisfaction": 0.06
+		}            
+	}
+
+	policies [14] = {
+		"name": "National Housing Affordability Act",
+		"type": "Fiscal",
+		"description": "Funds the construction of affordable housing and introduces rent control in high-cost urban areas to alleviate housing crises, reduce homelessness, and increase disposable income for low-income households.",
+		"data": {
+			"ag_demand": 70,
+			"inflation_rate": -0.02,
+			"gov_debt": 90,
+			"main_econ_PopulationSatisfaction": 0.09
+		}        
+	}
+
+	policies [15] = {
+		"name": "Unilateral Military Invasion",
+		"type": "Fiscal",
+		"description": "A large-scale military invasion without international support, leading to prolonged conflict, high military spending, and global condemnation. Civilian casualties and economic isolation follow.",
+		"data": {
+			"gov_debt": 250,
+			"ag_demand": -100,
+			"net_exports": -120,
+			"main_econ_PopulationSatisfaction": -0.3,
+			"inflation_rate": 0.03
+		}        
+	}
+
+	policies [16] = {
+		"name": "Nuclear Test Escalation",
+		"type": "Protectionism",
+		"description": "The country resumes underground nuclear weapons testing, violating international treaties. Global backlash results in sanctions, environmental damage, and plummeting diplomatic relations.",
+		"data": {
+			"net_exports": -90,
+			"currency_value": -0.08,
+			"main_econ_PopulationSatisfaction": -0.25,
+			"ag_supply": -50
+		}        
+	}
+
+	policies [17] = {
+		"name": "Nuclear Reactor Meltdown",
+		"type": "Market-Managing",
+		"description": "A catastrophic failure at a nuclear power plant due to regulatory negligence causes a radioactive disaster, displacing communities and collapsing trust in government oversight.",
+		"data": {
+			"ag_supply": -100,
+			"main_econ_PopulationSatisfaction": -0.4,
+			"growth_multiplier": -0.1,
+			"inflation_rate": 0.01
+		}        
+	}
+
+	policies [18] = {
+		"name": "Compulsory Military Draft",
+		"type": "Fiscal",
+		"description": "A national draft is enacted during wartime, forcing citizens into military service. It disrupts labor markets and sparks widespread civil unrest, especially among younger populations.",
+		"data": {
+			"ag_supply": -40,
+			"main_econ_PopulationSatisfaction": -0.2,
+			"growth_multiplier": -0.03
+		}       
+	}
+
+	policies [19] = {
+		"name": "Mismanagement of Nuclear Waste",
+		"type": "Market-Managing",
+		"description": "Improper disposal of nuclear waste leads to widespread contamination, health crises, and environmental lawsuits. Public trust erodes and cleanup costs spiral.",
+		"data": {
+			"ag_supply": -70,
+			"main_econ_PopulationSatisfaction": -0.35,
+			"gov_debt": 100
+		}        
+	}
+
+	policies [20] = {
+			"name": "Digital Economy Expansion Act",
+			"type": "Fiscal",
+			"description": "Invests heavily in nationwide digital infrastructure, tech education, and startup grants to foster a knowledge-based economy and digital job growth.",
+			"data": {
+				"ag_supply": 100,
+				"growth_multiplier": 0.07,
+				"gov_debt": 80
+			}
+		}
+
+	policies [21] = {
+		"name": "Sovereign Wealth Fund Initiative",
+		"type": "Fiscal",
+		"description": "Allocates surplus revenue from natural resources into a national investment fund, generating long-term passive income and insulating against commodity shocks.",
+		"data": {
+			"gov_debt": -50,
+			"growth_multiplier": 0.03,
+			"net_exports": 20
+		}
+	}
+
+	policies [22] = {
+		"name": "Urban Densification Incentives",
+		"type": "Market-Managing",
+		"description": "Provides tax breaks and subsidies for high-density housing developments near job centers to improve affordability and reduce urban sprawl.",
+		"data": {
+			"ag_demand": 30,
+			"ag_supply": 60,
+			"inflation_rate": -0.01
+		}
+
+	}
+
+	policies [23] = {
+		"name": "National Demographic Renewal Plan",
+		"type": "Fiscal",
+		"description": "Offers financial incentives for families to have children and improves childcare access to counter declining birthrates and future labor shortages.",
+		"data": {
+			"main_econ_PopulationSatisfaction": 0.1,
+			"growth_multiplier": 0.02,
+			"gov_debt": 60
+		}
+
+	}
+
+	policies [24] = {
+		"name": "Artificial Intelligence Integration Program",
+		"type": "Fiscal",
+		"description": "Supports business and government adoption of AI for productivity and automation. Includes job retraining funds to reduce displacement.",
+		"data": {
+			"ag_supply": 120,
+			"main_econ_PopulationSatisfaction": -0.05,
+			"gov_debt": 90
+		}
+
+	}
+
+	policies [25] = {
+	   	"name": "Luxury Goods Tax Expansion",
+		"type": "Fiscal",
+		"description": "Imposes higher taxes on luxury items and high-income earners to fund public programs and reduce income inequality.",
+		"data": {
+			"gov_debt": -70,
+			"main_econ_PopulationSatisfaction": 0.03,
+			"ag_demand": -20
+		}
+
+	}
+
+	policies [26] = {
+		"name": "Digital Economy Expansion Act",
+		"type": "Fiscal",
+		"description": "Invests heavily in nationwide digital infrastructure, tech education, and startup grants to foster a knowledge-based economy and digital job growth.",
+		"data": {
+			"ag_supply": 100,
+			"growth_multiplier": 0.07,
+			"gov_debt": 80
+		}
+	}
+
+	policies [27] = {
+		"name": "Luxury Goods Tax Expansion",
+		"type": "Market-Managing",
+		"description": "Imposes higher taxes on luxury items and high-income earners to fund public programs and reduce income inequality.",
+		"data": {
+			"gov_debt": -70,
+			"main_econ_PopulationSatisfaction": 0.03,
+			"ag_demand": -20
+		}
+
+	}
+
+	policies [28] = {
+		"name": "Gig Economy Rights Act",
+		"type": "Market-Managing",
+		"description": "Regulates the gig economy by guaranteeing minimum wages, benefits, and protections to freelancers and app-based workers.",
+		"data": {
+			"main_econ_PopulationSatisfaction": 0.1,
+			"ag_supply": -20,
+			"inflation_rate": 0.01
+		}
+	}
+	policies [29] = {
+		"name": "Foreign Investment Restriction Law",
+		"type": "Protectionism",
+		"description": "Imposes restrictions on foreign ownership in key industries to protect national security and domestic enterprises.",
+		"data": {
+			"net_exports": -30,
+			"currency_value": 0.02,
+			"ag_supply": -40
+		}
+	}
+	policies[30] = {
+		"name": "Nuclear Bomb Detonation at the Nation's Capital",
+		"type": "Miscellaneous",
+		"description": "Sets of a nuclear bomb at the nation's capital, not more needs to be said. We the Senate believe in lunacy.",
+		"data": {
+			"ag_supply": -300,
+			"currency_value": -0.1,
+			"net_exports": -100,
+			"gov_debt": 400,
+			"main_econ_PopulationSatisfaction": -0.4,
+			"ag_demand": -40,
+			"inflation_rate": .3
 		}
 	}
 	await get_tree().create_timer(.01).timeout

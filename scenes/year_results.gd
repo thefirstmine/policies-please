@@ -16,6 +16,7 @@ var oldEconomyData
 var newEconomyData
 var ChangedEconomyData
 var SFX
+var FiscalQuarterNumber: int = 1
 func _ready():
 	SFX = $"../../SFX2"
 
@@ -33,6 +34,12 @@ func get_economy_diff(old_data: Dictionary, new_data: Dictionary) -> Dictionary:
 			diff[key] = new_data[key] - old_data[key]
 	return diff
 func _onYearEnd(compiledBills):
+	$Results.text = "End of Quarter " + str(FiscalQuarterNumber)
+	FiscalQuarterNumber+=1
+	for i in $Labels.get_children():
+		i.modulate = Color(1, 1, 1, 1)
+	for i in $Stats.get_children():
+		i.text = "0"
 	$Next.disabled = true
 	await get_tree().create_timer(2).timeout
 	self.visible = true

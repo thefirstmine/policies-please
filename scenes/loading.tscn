@@ -1,0 +1,143 @@
+[gd_scene load_steps=12 format=3 uid="uid://cgq7gjljhojsk"]
+
+[ext_resource type="Script" uid="uid://ddg0qebw3oy41" path="res://scenes/loading.gd" id="1_ir5ef"]
+[ext_resource type="FontFile" uid="uid://dgjbxd0euk85l" path="res://assets/Fonts/resource.ttf" id="2_dhqfv"]
+[ext_resource type="Shader" uid="uid://cwgd766mrjks2" path="res://shaders/screen2.gdshader" id="3_101rs"]
+
+[sub_resource type="Animation" id="Animation_yc7uc"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_dhqfv"]
+resource_name = "end_load"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1152, -0.25, 0, 0.1, -1170.09),
+"times": PackedFloat32Array(-0.233333, 0.8)
+}
+
+[sub_resource type="Animation" id="Animation_ir5ef"]
+resource_name = "start_load"
+length = 1.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1152, -0.25, 0, 0.1, -1170.09, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.06667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"loading_screen_has_full_coverage"],
+"method": &"emit_signal"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yc7uc"]
+_data = {
+&"RESET": SubResource("Animation_yc7uc"),
+&"end_load": SubResource("Animation_dhqfv"),
+&"start_load": SubResource("Animation_ir5ef")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ir5ef"]
+bg_color = Color(0, 0.0666667, 0.101961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhqfv"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yc7uc"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yt702"]
+shader = ExtResource("3_101rs")
+shader_parameter/scanline_count = 50.0
+shader_parameter/scanline_speed = 1.0
+
+[node name="Control" type="CanvasLayer"]
+script = ExtResource("1_ir5ef")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yc7uc")
+}
+autoplay = "start_load"
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 1152.0
+offset_right = 2304.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ir5ef")
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -331.5
+offset_top = -13.5
+offset_right = 331.5
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_dhqfv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_yc7uc")
+show_percentage = false
+
+[node name="PostNote" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -300.895
+offset_right = 768.0
+offset_bottom = -120.895
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.6, 0.6)
+theme_override_constants/line_separation = 0
+theme_override_fonts/normal_font = ExtResource("2_dhqfv")
+theme_override_font_sizes/normal_font_size = 64
+text = "Loading..."
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="VHS" type="ColorRect" parent="Panel"]
+material = SubResource("ShaderMaterial_yt702")
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)

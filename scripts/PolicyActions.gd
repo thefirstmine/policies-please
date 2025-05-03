@@ -20,3 +20,5 @@ func _on_policyDisplay(policyData):
 		$Paper/Type.modulate = Color(.5, .5, .1, 1)
 	if policyData["type"] == "Trade Policy":
 		$Paper/Type.modulate = Color(.1, .7, .1, 1)
+	if policyData["type"] == "Miscellaneous":
+		$Paper/Type.modulate = Color(0,0,0, 1)

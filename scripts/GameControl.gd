@@ -5,7 +5,7 @@ var isDenying: bool = false
 var PassingPolicyAnimationExit: bool = false
 var PassingPolicyAnimationEnter: bool = false
 var current_policy: Dictionary
-const MAX_POLICIES_TO_REVIEW: int = 2
+const MAX_POLICIES_TO_REVIEW: int = 6
 var PoliciesReviewed = 0
 var isFinishingUpFiscalYear = false
 var CompiledPassedBills: Array
@@ -81,7 +81,6 @@ func resetPolicy():
 	PassingPolicyAnimationEnter = true
 	$PassingPolicies/Paper/Stamp.visible = false
 	SignalBus.emit_signal("newPolicy")
-	print("Resetting" + str(PoliciesReviewed))
 	if !(PoliciesReviewed >= MAX_POLICIES_TO_REVIEW):
 		print("reset")
 		$PassingPolicies.position.y = 1500
@@ -98,6 +97,8 @@ func moveOnToNextFiscalYear():
 	isDenying = false
 	SignalBus.emit_signal("fiscalYearEnd", CompiledPassedBills)
 func _onYearStart():
+	$RemainingBills.text = "Bills Remaining: " + str(MAX_POLICIES_TO_REVIEW)
+
 	PassingPolicyAnimationExit = false
 	PoliciesReviewed = 0
 	isFinishingUpFiscalYear = false
@@ -109,7 +110,6 @@ func _onYearStart():
 func _process(delta):
 	if HiddenCursorEnabled == true:
 		$HiddenCursor.position = get_viewport().get_mouse_position()
-	print($PassingPolicies.position.y)
 	if PassingPolicyAnimationExit == true:
 		$PassingPolicies.position.y -= 10
 		if $PassingPolicies.position.y <= -1000:
@@ -120,7 +120,6 @@ func _process(delta):
 		moveOnToNextFiscalYear()
 
 	if PassingPolicyAnimationEnter == true and isFinishingUpFiscalYear == false:
-		print('da')
 		$PassingPolicies.position.y -= 10
 		if $PassingPolicies.position.y <= 324:
 			$PassingPolicies.position.y = 324

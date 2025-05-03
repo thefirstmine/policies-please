@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ymir6m4xep68"]
+[gd_scene load_steps=25 format=3 uid="uid://ymir6m4xep68"]
 
 [ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://scenes/economy_engine.tscn" id="2_ipu61"]
 [ext_resource type="Script" uid="uid://d0guekvm4yrdf" path="res://scripts/GameControl.gd" id="3_70vka"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://3ehs24ltueon" path="res://scenes/passing_policies_screen.tscn" id="5_ipu61"]
 [ext_resource type="Script" uid="uid://bv7q4p4ixrf6a" path="res://scenes/move_left.gd" id="6_nqdth"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="6_wi4c7"]
-[ext_resource type="PackedScene" uid="uid://cbybs0coya5ir" path="res://scenes/fiscal_report_screen.tscn" id="6_ygxny"]
 [ext_resource type="PackedScene" uid="uid://cxeh8jilnmpia" path="res://scenes/default.tscn" id="7_wi4c7"]
 [ext_resource type="Texture2D" uid="uid://b8qp8ypdet0vv" path="res://assets/Art/stampDeny.png" id="8_70vka"]
 [ext_resource type="Script" uid="uid://cc5vv5ejr7pjb" path="res://scenes/move_right.gd" id="8_o6v7o"]
@@ -139,9 +138,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_nqdth")
 }
 
-[node name="FiscalReport" parent="Canvas" instance=ExtResource("6_ygxny")]
-visible = false
-
 [node name="Default" parent="Canvas" instance=ExtResource("7_wi4c7")]
 
 [node name="PassingPolicies" parent="Canvas" instance=ExtResource("5_ipu61")]
@@ -225,7 +221,7 @@ rotation = -1.5708
 scale = Vector2(0.325, 0.325)
 theme_override_fonts/font = ExtResource("6_wi4c7")
 theme_override_font_sizes/font_size = 111
-text = "Statistics"
+text = "Computer"
 
 [node name="HiddenCursor" type="Sprite2D" parent="Canvas"]
 visible = false

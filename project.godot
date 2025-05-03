@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Policies Please"
-run/main_scene="res://scenes/main_game.tscn"
+run/main_scene="uid://d2p3rqb86jjqc"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SignalBus="*res://scripts/signalBus.gd"
+LoadManager="*res://scripts/LoadManager.gd"
 
 [rendering]
 
