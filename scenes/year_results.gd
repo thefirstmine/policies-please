@@ -34,7 +34,10 @@ func get_economy_diff(old_data: Dictionary, new_data: Dictionary) -> Dictionary:
 			diff[key] = new_data[key] - old_data[key]
 	return diff
 func _onYearEnd(compiledBills):
-	$Results.text = "End of Quarter " + str(FiscalQuarterNumber)
+	if FiscalQuarterNumber == 4:
+		Ending()
+		return 0
+	$Results.texture = load("res://assets/Art/results"+ str(FiscalQuarterNumber) +".png")
 	FiscalQuarterNumber+=1
 	for i in $Labels.get_children():
 		i.modulate = Color(1, 1, 1, 1)
@@ -128,8 +131,10 @@ func displayDataChanges():
 	SFX.play()
 	$Next.disabled = false
 func _on_next_pressed() -> void:
+	
 	self.visible = false
 	$"../BlackScreen".modulate = Color(1, 1, 1, 1)
+	$"../BlackScreen/Text".visible = true	
 	$"../BlackScreen/Text".text = "Fiscal Quarter " + str(FiscalQuarterNumber)
 	print("next")
 	SFX.pitch_scale = 1
@@ -141,3 +146,5 @@ func _on_next_pressed() -> void:
 	await get_tree().create_timer(1.5).timeout
 	$"../BlackScreen".visible = false
 	SignalBus.emit_signal("newFiscalYear")
+func Ending():
+	print("ENDING")

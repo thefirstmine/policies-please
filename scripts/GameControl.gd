@@ -5,7 +5,7 @@ var isDenying: bool = false
 var PassingPolicyAnimationExit: bool = false
 var PassingPolicyAnimationEnter: bool = false
 var current_policy: Dictionary
-const MAX_POLICIES_TO_REVIEW: int = 6
+const MAX_POLICIES_TO_REVIEW: int = 1
 var PoliciesReviewed = 0
 var isFinishingUpFiscalYear = false
 var CompiledPassedBills: Array
@@ -29,6 +29,7 @@ func _on_GetCurrentPolicy(policy):
 
 func transition():
 	$BlackScreen.visible = true	
+	$BlackScreen/Text.visible = false	
 	$AnimationPlayer.play("fade_to_black")
 func _on_paperstack_toggle(value):
 	$PassingPolicies.visible = value

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://33gtxv2npslv"]
+[gd_scene load_steps=10 format=3 uid="uid://33gtxv2npslv"]
 
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="1_5aifg"]
 [ext_resource type="FontFile" uid="uid://eisnswgiao3b" path="res://assets/Fonts/pixelplay.ttf" id="1_beqdq"]
 [ext_resource type="Script" uid="uid://80rlndpmslqn" path="res://scenes/year_results.gd" id="1_sbp5s"]
+[ext_resource type="Texture2D" uid="uid://cu2pklg0g0654" path="res://assets/Art/results1.png" id="3_sbp5s"]
 [ext_resource type="Shader" uid="uid://cwgd766mrjks2" path="res://shaders/screen2.gdshader" id="4_beqdq"]
 
 [sub_resource type="Animation" id="Animation_sbp5s"]
@@ -402,16 +403,13 @@ theme_override_font_sizes/normal_font_size = 64
 text = "0"
 horizontal_alignment = 2
 
-[node name="Results" type="RichTextLabel" parent="."]
+[node name="Results" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 3.0
 offset_top = 59.0
 offset_right = 1155.0
 offset_bottom = 152.0
-theme_override_fonts/normal_font = ExtResource("1_5aifg")
-theme_override_font_sizes/normal_font_size = 64
-text = "End of Quarter 1"
-horizontal_alignment = 1
+texture = ExtResource("3_sbp5s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
