@@ -148,3 +148,6 @@ func _on_next_pressed() -> void:
 	SignalBus.emit_signal("newFiscalYear")
 func Ending():
 	print("ENDING")
+	print(newEconomyData)
+	SignalBus.emit_signal("requestEconomyData")
+	print(newEconomyData)

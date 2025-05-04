@@ -439,4 +439,6 @@ offset_right = 1151.0
 offset_bottom = 648.0
 mouse_filter = 2
 
+[node name="EndingMusic" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="Next" to="." method="_on_next_pressed"]
