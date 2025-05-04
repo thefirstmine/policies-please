@@ -96,6 +96,7 @@ func moveOnToNextFiscalYear():
 	isApproving = false
 	isDenying = false
 	SignalBus.emit_signal("fiscalYearEnd", CompiledPassedBills)
+	CompiledPassedBills = []
 func _onYearStart():
 	$RemainingBills.text = "Bills Remaining: " + str(MAX_POLICIES_TO_REVIEW)
 
