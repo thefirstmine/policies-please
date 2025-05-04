@@ -61,6 +61,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(0, 648)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Button:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(50, -100)]
+}
 
 [sub_resource type="Animation" id="Animation_v2mkm"]
 resource_name = "cameraEaseIn"
@@ -87,7 +99,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(5.53333, 6),
 "transitions": PackedFloat32Array(2, 2),
 "update": 0,
-"values": [Vector2(50, -100), Vector2(50, 400)]
+"values": [Vector2(50, -100), Vector2(50, 300)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -96,7 +108,7 @@ tracks/2/path = NodePath("CanvasLayer/Credits:position")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(6, 6.5),
+"times": PackedFloat32Array(6.5, 7),
 "transitions": PackedFloat32Array(2, 2),
 "update": 0,
 "values": [Vector2(50, -100), Vector2(50, 500)]
@@ -112,6 +124,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 648), Vector2(375, 648)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer/Button:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6, 6.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(50, -100), Vector2(50, 400)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ppfnh"]
@@ -354,6 +378,16 @@ theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ctwoq")
 text = "[Credits]"
 
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 50.0
+offset_top = -100.0
+offset_right = 329.0
+offset_bottom = -35.0
+theme_override_fonts/font = ExtResource("2_fcv5n")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ctwoq")
+text = "[Tutorial]"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ppfnh")
@@ -430,4 +464,6 @@ pitch_scale = 0.8
 [connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/Credits" to="." method="_on_credits_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="CanvasLayer/Button" to="." method="_on_tutorial_mouse_entered"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_tutorial_pressed"]
 [connection signal="finished" from="MenuMusic" to="." method="_on_menu_music_finished"]

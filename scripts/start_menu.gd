@@ -19,10 +19,14 @@ func _on_start_pressed() -> void:
 func _on_credits_pressed() -> void:
 	LoadManager.load_scene("res://scenes/credits.tscn")
 
+func _on_tutorial_pressed() -> void:
+	LoadManager.load_scene("res://scenes/tutorial.tscn")
 
 func _on_start_mouse_entered() -> void:
 	$SFX.play()
 
-
 func _on_credits_mouse_entered() -> void:
+	$SFX.play()
+
+func _on_tutorial_mouse_entered() -> void:
 	$SFX.play()

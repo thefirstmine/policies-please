@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj4mt1ms6l13g"]
+
+[ext_resource type="Script" uid="uid://par84mwdu3j2" path="res://scripts/tutorial.gd" id="1_0hilk"]
+[ext_resource type="Texture2D" uid="uid://ceav58ax01lwq" path="res://assets/Tutorial/tut_1.png" id="3_4kmhl"]
+[ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="7_dwom6"]
+[ext_resource type="Script" uid="uid://c4m6be6o2wlfg" path="res://scripts/textbox.gd" id="13_5qvs7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kfc1"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0hilk")
+
+[node name="Textbox" type="CanvasLayer" parent="."]
+script = ExtResource("13_5qvs7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Textbox"]
+position = Vector2(576, 324)
+scale = Vector2(1, 1)
+texture = ExtResource("3_4kmhl")
+
+[node name="TextboxContainer" type="MarginContainer" parent="Textbox"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -157.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="Textbox/TextboxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7kfc1")
+
+[node name="MarginContainer" type="MarginContainer" parent="Textbox/TextboxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Panel" type="Panel" parent="Textbox/TextboxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Textbox/TextboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Start" type="Label" parent="Textbox/TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(21, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_dwom6")
+theme_override_font_sizes/font_size = 48
+text = "*"
+
+[node name="Label" type="Label" parent="Textbox/TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("7_dwom6")
+theme_override_font_sizes/font_size = 48
+text = "Greetings, President! The quick brown fox jumps over the lazy dog"
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="End" type="Label" parent="Textbox/TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(21, 0)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("7_dwom6")
+theme_override_font_sizes/font_size = 48
+text = "v"
