@@ -22,7 +22,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		$Background.visible = false
 		$ComputerScreen.visible = true
 		SignalBus.emit_signal("requestEconomyData")
-		
+		$ComputerBuzzing.play()
 
 		$ComputerScreen/Statistics.text = ("GDP: " + str(EconomyData["GDP"]) +"
 Happiness: " + str(round_to_dec(EconomyData["PopulationSatisfaction"]*100, 2)) + "%" + "
@@ -44,6 +44,7 @@ func _on_back_mouse_entered() -> void:
 
 
 func _on_back_pressed() -> void:
+	$ComputerBuzzing.stop()
 	$Computer.disabled = false
 	$Computer.visible = true
 	$MoveLeft.visible = true

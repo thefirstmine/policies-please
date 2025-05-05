@@ -5,7 +5,7 @@ var isDenying: bool = false
 var PassingPolicyAnimationExit: bool = false
 var PassingPolicyAnimationEnter: bool = false
 var current_policy: Dictionary
-const MAX_POLICIES_TO_REVIEW: int = 6
+const MAX_POLICIES_TO_REVIEW: int = 1
 var PoliciesReviewed = 0
 var isFinishingUpFiscalYear = false
 var CompiledPassedBills: Array

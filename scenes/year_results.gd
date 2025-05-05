@@ -34,9 +34,7 @@ func get_economy_diff(old_data: Dictionary, new_data: Dictionary) -> Dictionary:
 			diff[key] = new_data[key] - old_data[key]
 	return diff
 func _onYearEnd(compiledBills):
-	if FiscalQuarterNumber == 4:
-		Ending()
-		return 0
+
 	$Results.texture = load("res://assets/Art/results"+ str(FiscalQuarterNumber) +".png")
 	FiscalQuarterNumber+=1
 	for i in $Labels.get_children():
@@ -63,6 +61,7 @@ func _onYearEnd(compiledBills):
 	print("Changed Economy Data:", ChangedEconomyData)
 	await get_tree().create_timer(.5).timeout
 	displayDataChanges()
+
 # List of positive and negative variables
 var positive_vars = ["GDP", "PopulationSatisfaction", "growthMultiplier", "agSupply", "netExports"]
 var negative_vars = ["unemployment", "govDebt"]
@@ -130,8 +129,10 @@ func displayDataChanges():
 	SFX.stream = load("res://assets/Audio/enable.wav")
 	SFX.play()
 	$Next.disabled = false
-func _on_next_pressed() -> void:
-	
+func _on_next_pressed():
+	if FiscalQuarterNumber == 5:
+		Ending()
+		return 0
 	self.visible = false
 	$"../BlackScreen".modulate = Color(1, 1, 1, 1)
 	$"../BlackScreen/Text".visible = true	
@@ -149,5 +150,11 @@ func _on_next_pressed() -> void:
 func Ending():
 	print("ENDING")
 	print(newEconomyData)
+	$Labels.visible = false
+	$Stats.visible = false
+	$Results.visible = false
+	$Next.visible = false
+	$Ending.visible = true
 	SignalBus.emit_signal("requestEconomyData")
 	print(newEconomyData)
+	$Ending.text = "Ending 1 BLABLABLA"
