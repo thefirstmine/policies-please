@@ -16,5 +16,13 @@ signal requestEconomyData()
 signal deliverEconomyData(Data)
 signal newFiscalYear()
 #func _ready():
-	#print("Game running")
-	#
+	#print("Game running!")
+	#set_process_input(true) 
+#
+#func _input(ev):
+	#if Input.is_key_pressed(KEY_F11):
+		#if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		#else:
+			#DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	

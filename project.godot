@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 SignalBus="*res://scripts/signalBus.gd"
 LoadManager="*res://scripts/LoadManager.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
