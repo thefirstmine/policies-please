@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://d2p3rqb86jjqc"]
 
-[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_h61rw"]
+[ext_resource type="Script" uid="uid://dsh83r3ej0qex" path="res://scripts/start_menu.gd" id="1_h61rw"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="2_fcv5n"]
 [ext_resource type="ArrayMesh" uid="uid://ci86itrqsgkrg" path="res://assets/Art/WhiteHouse.obj" id="3_4v6gu"]
 [ext_resource type="Shader" uid="uid://biufq2yw8nwv8" path="res://shaders/pixelate.gdshader" id="4_fcv5n"]
@@ -358,10 +358,17 @@ anchor_bottom = 1.0
 grow_vertical = 2
 color = Color(0, 0, 0, 0.470588)
 
+[node name="Button2" type="Button" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -259.0
+offset_top = -65.0
+offset_right = 1520.0
+offset_bottom = 668.0
+
 [node name="Start" type="Button" parent="CanvasLayer"]
-offset_left = 100.0
+offset_left = 50.0
 offset_top = -100.0
-offset_right = 300.0
+offset_right = 250.0
 offset_bottom = -27.0
 theme_override_fonts/font = ExtResource("2_fcv5n")
 theme_override_font_sizes/font_size = 64
@@ -369,9 +376,9 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_v2mkm")
 text = "[Start]"
 
 [node name="Credits" type="Button" parent="CanvasLayer"]
-offset_left = 100.0
+offset_left = 50.0
 offset_top = -100.0
-offset_right = 364.0
+offset_right = 314.0
 offset_bottom = -27.0
 theme_override_fonts/font = ExtResource("2_fcv5n")
 theme_override_font_sizes/font_size = 64
@@ -379,9 +386,9 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_ctwoq")
 text = "[Credits]"
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 50.0
+offset_left = 40.0
 offset_top = -100.0
-offset_right = 457.0
+offset_right = 447.0
 offset_bottom = -35.0
 theme_override_fonts/font = ExtResource("2_fcv5n")
 theme_override_font_sizes/font_size = 64
@@ -460,6 +467,7 @@ environment = SubResource("Environment_v2mkm")
 volume_db = -2.0
 pitch_scale = 0.8
 
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/Start" to="." method="_on_start_mouse_entered"]
 [connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]
 [connection signal="mouse_entered" from="CanvasLayer/Credits" to="." method="_on_credits_mouse_entered"]

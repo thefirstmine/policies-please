@@ -109,11 +109,11 @@ func _onYearStart():
 	PassingPolicyAnimationEnter = true
 	$PassingPolicies/Paper/Stamp.visible = false
 	resetPolicy()
-func _process(delta):
+func _process(_delta):
 	if HiddenCursorEnabled == true:
 		$HiddenCursor.position = get_viewport().get_mouse_position()
 	if PassingPolicyAnimationExit == true:
-		$PassingPolicies.position.y -= 10
+		$PassingPolicies.position.y -= 20
 		if $PassingPolicies.position.y <= -1000:
 			resetPolicy()
 			PassingPolicyAnimationExit = false
@@ -122,7 +122,7 @@ func _process(delta):
 		moveOnToNextFiscalYear()
 
 	if PassingPolicyAnimationEnter == true and isFinishingUpFiscalYear == false:
-		$PassingPolicies.position.y -= 10
+		$PassingPolicies.position.y -= 20
 		if $PassingPolicies.position.y <= 324:
 			$PassingPolicies.position.y = 324
 			PassingPolicyAnimationEnter = false

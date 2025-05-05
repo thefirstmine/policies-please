@@ -17,6 +17,7 @@ var newEconomyData
 var ChangedEconomyData
 var SFX
 var FiscalQuarterNumber: int = 1
+var isNuclear = false
 func _ready():
 	SFX = $"../../SFX2"
 
@@ -34,7 +35,12 @@ func get_economy_diff(old_data: Dictionary, new_data: Dictionary) -> Dictionary:
 			diff[key] = new_data[key] - old_data[key]
 	return diff
 func _onYearEnd(compiledBills):
-
+	#print("Compiled Bills:")
+	print(compiledBills)
+	for i in compiledBills:
+		if i["name"] == "Nuclear Bomb Detonation at the Nation's Capital":
+			isNuclear = true
+			print("Its going to get nuclear")
 	$Results.texture = load("res://assets/Art/results"+ str(FiscalQuarterNumber) +".png")
 	FiscalQuarterNumber+=1
 	for i in $Labels.get_children():
@@ -59,6 +65,20 @@ func _onYearEnd(compiledBills):
 
 	ChangedEconomyData = get_economy_diff(oldEconomyData, newEconomyData)
 	print("Changed Economy Data:", ChangedEconomyData)
+	if isNuclear:
+		ChangedEconomyData = {
+			"GDP": -9999,
+			"PopulationSatisfaction": -9999,
+			"taxRate": -9999,
+			"unemployment": 9999,
+			"govDebt": 9999,
+			"agDemand": -9999,
+			"agSupply": -9999,
+			"netExports": -9999,
+			"growthMultiplier": -9999,
+			"inflation": -9999,
+			"currencyValue": -9999
+		}
 	await get_tree().create_timer(.5).timeout
 	displayDataChanges()
 
@@ -130,7 +150,7 @@ func displayDataChanges():
 	SFX.play()
 	$Next.disabled = false
 func _on_next_pressed():
-	if FiscalQuarterNumber == 5:
+	if FiscalQuarterNumber == 5 or isNuclear:
 		Ending()
 		return 0
 	self.visible = false
@@ -157,4 +177,48 @@ func Ending():
 	$Ending.visible = true
 	SignalBus.emit_signal("requestEconomyData")
 	print(newEconomyData)
-	$Ending.text = "Ending 1 BLABLABLA"
+	if isNuclear:
+		Ending_Nuclear()
+	else:
+		Ending_Depression()
+	
+func Ending_Nuclear():
+	var Music = load("res://assets/Audio/EndingBad.mp3")
+	$Ending/Banner.texture = load("res://assets/Art/ending_nuke.png")
+
+	$EndingMusic.stream = Music
+	$EndingMusic.play()
+	$Ending.text = "Ending 5 - Nuclear"
+
+func Ending_Depression():
+	var Music = load("res://assets/Audio/EndingBad.mp3")
+	$Ending/Banner.texture = load("res://assets/Art/ending_depression.png")
+	$EndingMusic.stream = Music
+	$EndingMusic.play()
+	$Ending.text = "Ending 2 - Depression"
+
+
+func Ending_Exile():
+	var Music = load("res://assets/Audio/EndingNeutral.wav")
+	$EndingMusic.stream = Music
+	$EndingMusic.play()
+	$Ending.text = "Ending 3 - Exile"
+
+
+	
+func Ending_Stagnation():
+	var Music = load("res://assets/Audio/EndingNeutral.wav")
+	$EndingMusic.stream = Music
+	$EndingMusic.play()
+	$Ending.text = "Ending 1 - Stagnation"
+
+
+func Ending_Prosperity():
+	var Music = load("res://assets/Audio/EndingGood.wav")
+	$EndingMusic.stream = Music
+	$EndingMusic.play()
+	$Ending.text = "Ending 4 - Prosperity"
+
+
+func _on_again_pressed() -> void:
+	LoadManager.load_scene("res://scenes/start_menu.tscn")

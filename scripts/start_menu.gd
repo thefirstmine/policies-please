@@ -30,3 +30,10 @@ func _on_credits_mouse_entered() -> void:
 
 func _on_tutorial_mouse_entered() -> void:
 	$SFX.play()
+
+
+func _on_button_2_pressed() -> void:
+	if $AnimationPlayer.is_playing():
+		$AnimationPlayer.seek(5.5, true)
+		$AnimationPlayer.speed_scale = 1.5
+		$CanvasLayer/Button2.disabled = true

@@ -31,46 +31,44 @@ texture = ExtResource("1_e232d")
 
 [node name="Table" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 47.0
-offset_top = -101.0
-offset_right = -47.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_7vjpr")
 
 [node name="PaperStack" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 201.0
-offset_top = 461.0
-offset_right = 481.0
-offset_bottom = 664.0
+offset_left = 69.0
+offset_top = 435.0
+offset_right = 395.0
+offset_bottom = 680.0
+scale = Vector2(1.2, 1.2)
 toggle_mode = true
 texture_normal = ExtResource("3_ya6ni")
 texture_hover = ExtResource("4_6y2o2")
-stretch_mode = 0
+stretch_mode = 4
 
 [node name="StampApprove" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 826.0
-offset_top = 530.0
-offset_right = 873.0
-offset_bottom = 587.0
-scale = Vector2(2.2, 2.2)
+offset_left = 803.0
+offset_top = 469.0
+offset_right = 850.0
+offset_bottom = 526.0
+scale = Vector2(2.7, 2.7)
 toggle_mode = true
 texture_normal = ExtResource("5_wdrtm")
 texture_hover = ExtResource("6_u4rra")
 
 [node name="StampDeny" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 756.0
-offset_top = 503.0
-offset_right = 803.0
-offset_bottom = 560.0
-scale = Vector2(2.2, 2.2)
+offset_left = 890.0
+offset_top = 509.0
+offset_right = 937.0
+offset_bottom = 566.0
+scale = Vector2(2.7, 2.7)
 toggle_mode = true
 texture_normal = ExtResource("7_1grx1")
 texture_hover = ExtResource("8_hvtui")

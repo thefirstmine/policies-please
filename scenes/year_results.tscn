@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://33gtxv2npslv"]
+[gd_scene load_steps=12 format=3 uid="uid://33gtxv2npslv"]
 
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="1_5aifg"]
 [ext_resource type="FontFile" uid="uid://eisnswgiao3b" path="res://assets/Fonts/pixelplay.ttf" id="1_beqdq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cu2pklg0g0654" path="res://assets/Art/results1.png" id="3_sbp5s"]
 [ext_resource type="Shader" uid="uid://cwgd766mrjks2" path="res://shaders/screen2.gdshader" id="4_beqdq"]
 [ext_resource type="FontFile" uid="uid://dgjbxd0euk85l" path="res://assets/Fonts/resource.ttf" id="4_nute0"]
+[ext_resource type="Texture2D" uid="uid://b88e7filmoh3p" path="res://assets/Art/ending_depression.png" id="5_s6u37"]
 
 [sub_resource type="Animation" id="Animation_sbp5s"]
 length = 0.001
@@ -420,14 +421,14 @@ libraries = {
 [node name="Ending" type="RichTextLabel" parent="."]
 visible = false
 layout_mode = 0
-offset_left = 30.0
-offset_top = 20.0
-offset_right = 1293.0
-offset_bottom = 743.0
+offset_left = 22.195
+offset_top = 10.0
+offset_right = 1296.19
+offset_bottom = 697.0
 scale = Vector2(0.905, 0.905)
 theme_override_fonts/normal_font = ExtResource("1_beqdq")
 theme_override_font_sizes/normal_font_size = 64
-text = "Ending 1 - Economic Depression"
+text = "  Ending 1 - Economic Depression"
 
 [node name="Description" type="RichTextLabel" parent="Ending"]
 layout_mode = 0
@@ -439,8 +440,48 @@ scale = Vector2(0.8, 0.8)
 theme_override_fonts/normal_font = ExtResource("4_nute0")
 theme_override_font_sizes/normal_font_size = 64
 text = "Under your management, the economy took a turn for the very, very bad, and you've made your people very, very unhappy. On the one-year anniversary of your administration, your citizens stormed the gates of your office to clamor for change. Amidst the chaos, a protester chucked a Molotov at your window, causing the entire office to erupt in flames.
- ...Maybe politics just isn't for you. "
+ "
 horizontal_alignment = 3
+
+[node name="Description2" type="RichTextLabel" parent="Ending"]
+layout_mode = 0
+offset_left = 47.685
+offset_top = 632.87
+offset_right = 1422.69
+offset_bottom = 3021.87
+scale = Vector2(0.8, 0.8)
+theme_override_fonts/normal_font = ExtResource("4_nute0")
+theme_override_font_sizes/normal_font_size = 64
+text = " ...Maybe politics just isn't for you."
+
+[node name="Banner" type="TextureRect" parent="Ending"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.019
+anchor_top = -0.03
+offset_left = 23.206
+offset_top = 134.375
+offset_right = 499.0
+offset_bottom = 202.765
+scale = Vector2(2.55, 2.55)
+texture = ExtResource("5_s6u37")
+stretch_mode = 5
+
+[node name="Again" type="Button" parent="Ending"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.835
+anchor_right = 1.0
+anchor_bottom = 0.948
+offset_left = 809.729
+offset_top = 14.2003
+offset_right = -109.271
+offset_bottom = 13.9763
+focus_mode = 0
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("1_5aifg")
+theme_override_font_sizes/font_size = 64
+text = "[Play Again]"
 
 [node name="Next" type="Button" parent="."]
 layout_mode = 1
@@ -467,4 +508,5 @@ mouse_filter = 2
 
 [node name="EndingMusic" type="AudioStreamPlayer" parent="."]
 
+[connection signal="pressed" from="Ending/Again" to="." method="_on_again_pressed"]
 [connection signal="pressed" from="Next" to="." method="_on_next_pressed"]

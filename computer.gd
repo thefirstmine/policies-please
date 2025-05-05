@@ -8,6 +8,8 @@ func _ready():
 func _on_computer_pressed() -> void:
 	$AnimationPlayer.play("Zoom In")
 	$Computer.disabled = true
+	$SFX.stream = load("res://assets/Audio/bootup.wav")
+	$SFX.play()
 	updateStats()
 
 func round_to_dec(num, digit):
@@ -44,6 +46,8 @@ func _on_back_mouse_entered() -> void:
 
 
 func _on_back_pressed() -> void:
+	$SFX.stream = load("res://assets/Audio/shutdown.wav")
+	$SFX.play()
 	$ComputerBuzzing.stop()
 	$Computer.disabled = false
 	$Computer.visible = true
@@ -60,3 +64,7 @@ func updateStats():
 	await get_tree().create_timer(.1).timeout
 	SignalBus.emit_signal("requestEconomyData")
 	print(EconomyData)
+
+
+func _on_computer_buzzing_finished() -> void:
+	$ComputerBuzzing.play()

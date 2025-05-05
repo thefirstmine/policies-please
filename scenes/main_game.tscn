@@ -11,9 +11,10 @@
 [ext_resource type="Script" uid="uid://cc5vv5ejr7pjb" path="res://scenes/move_right.gd" id="8_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://33gtxv2npslv" path="res://scenes/year_results.tscn" id="9_2l77h"]
 [ext_resource type="PackedScene" uid="uid://xo2pk2vf5tyt" path="res://computer.tscn" id="9_8xp80"]
-[ext_resource type="Script" path="res://scenes/music.gd" id="11_5cypo"]
+[ext_resource type="Script" uid="uid://bkofxn3kwngpa" path="res://scenes/music.gd" id="11_5cypo"]
 [ext_resource type="PackedScene" uid="uid://ci66tp6aq1kce" path="res://window_scene.tscn" id="12_wjob3"]
 [ext_resource type="Shader" uid="uid://cwgd766mrjks2" path="res://shaders/screen2.gdshader" id="13_wjob3"]
+[ext_resource type="AudioStream" uid="uid://dnohbnk2o62q0" path="res://assets/Audio/gameMusic.wav" id="14_sp04v"]
 
 [sub_resource type="Animation" id="Animation_5cypo"]
 length = 0.001
@@ -67,7 +68,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-25.0, -74.988]
+"values": [-5.0, -74.988]
 }
 
 [sub_resource type="Animation" id="Animation_nqdth"]
@@ -95,7 +96,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-71.361, -25.0]
+"values": [-71.361, -5.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nqdth"]
@@ -125,8 +126,6 @@ shader_parameter/scanline_speed = 1.0
 [sub_resource type="AudioStream" id="AudioStream_2l77h"]
 
 [sub_resource type="AudioStream" id="AudioStream_nqdth"]
-
-[sub_resource type="AudioStream" id="AudioStream_5cypo"]
 
 [node name="root" type="Node2D"]
 
@@ -242,10 +241,6 @@ visible = false
 
 [node name="Computer" parent="Canvas" instance=ExtResource("9_8xp80")]
 visible = false
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
 
 [node name="HiddenCursor" type="Sprite2D" parent="Canvas"]
 visible = false
@@ -306,7 +301,7 @@ stream = SubResource("AudioStream_nqdth")
 volume_db = 10.0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStream_5cypo")
+stream = ExtResource("14_sp04v")
 volume_db = -25.0
 script = ExtResource("11_5cypo")
 

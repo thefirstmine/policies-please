@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://xo2pk2vf5tyt"]
+[gd_scene load_steps=23 format=3 uid="uid://xo2pk2vf5tyt"]
 
 [ext_resource type="Script" uid="uid://coho7hxaj3tap" path="res://move_left_computer.gd" id="1_18hgq"]
 [ext_resource type="Texture2D" uid="uid://bg3rsvo7l3teq" path="res://assets/Art/computer_bg.png" id="1_gcbbq"]
@@ -9,8 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://qj4lik60jimy" path="res://assets/Art/computer_hover.png" id="7_iiass"]
 [ext_resource type="Texture2D" uid="uid://cgqpjmi5fu57e" path="res://assets/Art/computerZoomed.png" id="8_gxngq"]
 [ext_resource type="FontFile" uid="uid://dgjbxd0euk85l" path="res://assets/Fonts/resource.ttf" id="9_iiass"]
+[ext_resource type="Texture2D" uid="uid://bi73840xic7ia" path="res://assets/Art/x_normal.png" id="9_meoe4"]
 [ext_resource type="Shader" uid="uid://caeptf8wxj1x5" path="res://computer.gdshader" id="10_pgtsp"]
+[ext_resource type="Texture2D" uid="uid://bgfsmbq5eu2o3" path="res://assets/Art/x_pressed.png" id="10_pmph0"]
 [ext_resource type="AudioStream" uid="uid://dpgtw7v5wg2wo" path="res://assets/Audio/computer_buzz.mp3" id="11_o7oi2"]
+[ext_resource type="Texture2D" uid="uid://ct0ojuot8bg0f" path="res://assets/Art/x_hover.png" id="11_tupdg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jr5mb"]
 bg_color = Color(1, 0, 0.235294, 0.196078)
@@ -223,10 +226,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2043.99
-offset_top = -962.935
-offset_right = -2043.99
-offset_bottom = -962.935
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k1uhn")
@@ -307,7 +306,10 @@ offset_top = 34.0
 offset_right = -72.0
 offset_bottom = 62.0
 grow_horizontal = 0
-scale = Vector2(0.29, 0.29)
+scale = Vector2(0.32, 0.32)
+texture_normal = ExtResource("9_meoe4")
+texture_pressed = ExtResource("10_pmph0")
+texture_hover = ExtResource("11_tupdg")
 stretch_mode = 0
 
 [node name="Data" type="RichTextLabel" parent="ComputerScreen"]
@@ -388,3 +390,4 @@ pitch_scale = 0.9
 [connection signal="mouse_entered" from="ComputerScreen/Back" to="." method="_on_back_mouse_entered"]
 [connection signal="pressed" from="ComputerScreen/Back" to="." method="_on_back_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="finished" from="ComputerBuzzing" to="." method="_on_computer_buzzing_finished"]
