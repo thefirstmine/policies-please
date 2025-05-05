@@ -26,7 +26,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		SignalBus.emit_signal("requestEconomyData")
 		$ComputerBuzzing.play()
 
-		$ComputerScreen/Statistics.text = ("GDP: " + str(EconomyData["GDP"]) +"
+		$ComputerScreen/Statistics.text = ("GDP: " + str(round_to_dec(EconomyData["GDP"], 2)) +"
 Happiness: " + str(round_to_dec(EconomyData["PopulationSatisfaction"]*100, 2)) + "%" + "
 Taxes: " + str(round_to_dec(EconomyData["taxRate"]*100, 2)) + "%"  +"
 Unemployment: " + str(round_to_dec(EconomyData["unemployment"]*100, 2)) + "%"  +"

@@ -66,6 +66,7 @@ func _onYearEnd(compiledBills):
 	ChangedEconomyData = get_economy_diff(oldEconomyData, newEconomyData)
 	print("Changed Economy Data:", ChangedEconomyData)
 	if isNuclear:
+		$Doom.visible = true
 		ChangedEconomyData = {
 			"GDP": -9999,
 			"PopulationSatisfaction": -9999,
@@ -179,45 +180,56 @@ func Ending():
 	print(newEconomyData)
 	if isNuclear:
 		Ending_Nuclear()
-	else:
+	elif newEconomyData["GDP"] <= 700:
 		Ending_Depression()
+	elif newEconomyData["PopulationSatisfaction"] <= .3:
+		Ending_Exile()
+	elif newEconomyData["GDP"] >= 1300:
+		Ending_Prosperity()
+	else:
+		Ending_Stagnation()
 	
 func Ending_Nuclear():
 	var Music = load("res://assets/Audio/EndingBad.mp3")
 	$Ending/Banner.texture = load("res://assets/Art/ending_nuke.png")
-
 	$EndingMusic.stream = Music
 	$EndingMusic.play()
 	$Ending.text = "Ending 5 - Nuclear"
-
+	$"Ending/Description".text = "Dude. Really? You would just set off a nuclear bomb on your own country? Get it together, man."
+	$"Ending/Description2".text = ""
 func Ending_Depression():
-	var Music = load("res://assets/Audio/EndingBad.mp3")
+	var Music = load("res://assets/Audio/Ending_Bad2.mp3")
 	$Ending/Banner.texture = load("res://assets/Art/ending_depression.png")
 	$EndingMusic.stream = Music
 	$EndingMusic.play()
 	$Ending.text = "Ending 2 - Depression"
-
+	$"Ending/Description".text = "Under your management, the economy took a turn for the very, very bad, and you've made your people very, very unhappy. On the one-year anniversary of your administration, your citizens stormed the gates of your office to clamor for change. Amidst the chaos, a protester chucked a Molotov at your window, causing the entire office to erupt in flames. "
+	$"Ending/Description2".text = "...Maybe politics just isn't for you."
 
 func Ending_Exile():
 	var Music = load("res://assets/Audio/EndingNeutral.wav")
+	$Ending/Banner.texture = load("res://assets/Art/ending_impeachment.png")
 	$EndingMusic.stream = Music
 	$EndingMusic.play()
-	$Ending.text = "Ending 3 - Exile"
+	$Ending.text = "Ending 3 - Impeachment"
+	$"Ending/Description".text = "Despite your efforts to improve the economy, the citizens of your nation started to despise your leadership. The citizens felt oppressed, unsatisfied, and discontent under your leadership due to the policies you decided to pass. This may be a bad outcome for you, but may bring forth a turn of a new leaf for the country that you are no longer apart of."
+	$"Ending/Description2".text = ""
 
-
-	
 func Ending_Stagnation():
 	var Music = load("res://assets/Audio/EndingNeutral.wav")
 	$EndingMusic.stream = Music
 	$EndingMusic.play()
 	$Ending.text = "Ending 1 - Stagnation"
-
+	$"Ending/Description".text = "The year ends, and while your country is no longer the brink of collapse, there is a lull in economic growth. Thankfully, your citizens seem content enough with your leadership. After three more mediocre years, your term ends, and you retire peacefully. Hopefully, a better leader will take your place."
+	$"Ending/Description2".text = ""
 
 func Ending_Prosperity():
 	var Music = load("res://assets/Audio/EndingGood.wav")
 	$EndingMusic.stream = Music
 	$EndingMusic.play()
 	$Ending.text = "Ending 4 - Prosperity"
+	$"Ending/Description".text = "After a year fraught with challenges and instability, you were able to save your nation from an economic recession with your astute judgement and understanding of economic policies. Not only that, but your citizens have decided to celebrate this bright new age by creating a 16-foot tall statue of your likeness. You will be remembered by your country for centuries to come. Congratulations, and soak in your victory!"
+	$"Ending/Description2".text = ""
 
 
 func _on_again_pressed() -> void:
