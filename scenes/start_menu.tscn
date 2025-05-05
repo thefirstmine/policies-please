@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://d2p3rqb86jjqc"]
 
-[ext_resource type="Script" uid="uid://dsh83r3ej0qex" path="res://scripts/start_menu.gd" id="1_h61rw"]
+[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_h61rw"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="2_fcv5n"]
 [ext_resource type="ArrayMesh" uid="uid://ci86itrqsgkrg" path="res://assets/Art/WhiteHouse.obj" id="3_4v6gu"]
 [ext_resource type="Shader" uid="uid://biufq2yw8nwv8" path="res://shaders/pixelate.gdshader" id="4_fcv5n"]
@@ -135,7 +135,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(6, 6.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(50, -100), Vector2(50, 400)]
+"values": [Vector2(40, -100), Vector2(40, 400)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ppfnh"]
@@ -329,7 +329,6 @@ radiance_size = 1
 [sub_resource type="Environment" id="Environment_v2mkm"]
 background_mode = 2
 sky = SubResource("Sky_ia0g5")
-fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0, 0, 0, 1)
 fog_density = 0.6076
@@ -353,15 +352,16 @@ offset_bottom = 655.0
 color = Color(0, 0, 0, 1)
 
 [node name="SideBar" type="ColorRect" parent="CanvasLayer"]
+visible = false
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
 color = Color(0, 0, 0, 0.470588)
 
 [node name="Start" type="Button" parent="CanvasLayer"]
-offset_left = 100.0
+offset_left = 50.0
 offset_top = -100.0
-offset_right = 300.0
+offset_right = 250.0
 offset_bottom = -27.0
 theme_override_fonts/font = ExtResource("2_fcv5n")
 theme_override_font_sizes/font_size = 64
@@ -369,9 +369,9 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_v2mkm")
 text = "[Start]"
 
 [node name="Credits" type="Button" parent="CanvasLayer"]
-offset_left = 100.0
+offset_left = 50.0
 offset_top = -100.0
-offset_right = 364.0
+offset_right = 314.0
 offset_bottom = -27.0
 theme_override_fonts/font = ExtResource("2_fcv5n")
 theme_override_font_sizes/font_size = 64
@@ -379,14 +379,14 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_ctwoq")
 text = "[Credits]"
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 50.0
+offset_left = 40.0
 offset_top = -100.0
-offset_right = 329.0
+offset_right = 447.0
 offset_bottom = -35.0
 theme_override_fonts/font = ExtResource("2_fcv5n")
 theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ctwoq")
-text = "[Tutorial]"
+text = "[How To Play]"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -427,8 +427,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_nxjfj")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -526.158, 17.3713, -32.1222)
-light_color = Color(1, 0.580392, 0.482353, 1)
-light_energy = 150.0
+light_color = Color(0.949166, 0.523122, 0.482295, 1)
+light_energy = 500.0
 shadow_enabled = true
 omni_range = 4096.0
 

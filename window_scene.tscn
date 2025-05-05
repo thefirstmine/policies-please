@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://ci66tp6aq1kce"]
+
+[ext_resource type="Texture2D" uid="uid://d3emcb4bkbxo3" path="res://assets/Art/windowState-Neutral.png" id="1_3y2xj"]
+[ext_resource type="Script" uid="uid://ctpvgee5qw7hh" path="res://window_scene.gd" id="1_a1gmo"]
+[ext_resource type="Texture2D" uid="uid://cbkb0ij21s4l1" path="res://assets/Art/WindowBG.png" id="2_a1gmo"]
+[ext_resource type="Script" uid="uid://cbvhdat5cgw2g" path="res://scripts/move_right_window.gd" id="4_0uibn"]
+[ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="5_3pwh2"]
+[ext_resource type="Texture2D" uid="uid://67ejcei7vbdm" path="res://assets/Art/images.jpg" id="5_6pdpe"]
+[ext_resource type="Texture2D" uid="uid://ciu1fke6o8yim" path="res://assets/Art/d637xrm-d8a0b633-59fb-4e52-b911-db6b2fdc2a86.png" id="5_ua7kj"]
+[ext_resource type="Shader" uid="uid://c7k61qqxmn14d" path="res://window_scene.gdshader" id="6_3pwh2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5smns"]
+shader = ExtResource("6_3pwh2")
+shader_parameter/pos = Vector2(0, 0)
+shader_parameter/textureResolution = 100.0
+shader_parameter/moveDir = Vector2(1, 0.44)
+shader_parameter/noise = ExtResource("5_6pdpe")
+shader_parameter/noise2 = ExtResource("5_ua7kj")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5smns"]
+bg_color = Color(0.239216, 0.211765, 1, 0.196078)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ua7kj"]
+bg_color = Color(0.239216, 0.211765, 1, 0.588235)
+
+[node name="Window" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a1gmo")
+
+[node name="Outside" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3y2xj")
+
+[node name="Fog" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_5smns")
+layout_mode = 0
+offset_right = 1149.0
+offset_bottom = 641.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0.227451)
+
+[node name="Window" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_a1gmo")
+
+[node name="MoveRight" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = 124.0
+offset_bottom = -124.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_5smns")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ua7kj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5smns")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5smns")
+script = ExtResource("4_0uibn")
+
+[node name="Label" type="Label" parent="MoveRight"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 200.0
+offset_right = 1212.0
+offset_bottom = 312.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.5708
+scale = Vector2(0.325, 0.325)
+theme_override_fonts/font = ExtResource("5_3pwh2")
+theme_override_font_sizes/font_size = 111
+text = "Office"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MoveRight" to="MoveRight" method="_on_pressed"]

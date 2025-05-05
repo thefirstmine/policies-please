@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://3ehs24ltueon"]
 
-[ext_resource type="Script" uid="uid://be1kq7evcsg7k" path="res://scripts/PolicyActions.gd" id="1_ap5kf"]
+[ext_resource type="Script" path="res://scripts/PolicyActions.gd" id="1_ap5kf"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="1_t61h4"]
 [ext_resource type="Texture2D" uid="uid://cnxot2suug0bl" path="res://assets/Art/policy page.png" id="2_05c2n"]
 [ext_resource type="FontFile" uid="uid://nqqjhbwjrim2" path="res://assets/Fonts/BMmini.TTF" id="2_uspd6"]

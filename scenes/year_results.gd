@@ -141,11 +141,11 @@ func _on_next_pressed() -> void:
 	SFX.stream = load("res://assets/Audio/Flash.ogg")
 	SFX.play()
 	await get_tree().create_timer(2).timeout
-	
+	SignalBus.emit_signal("newFiscalYear")
 	$"../AnimationPlayer".play("fade_to_normal")
 	await get_tree().create_timer(1.5).timeout
 	$"../BlackScreen".visible = false
-	SignalBus.emit_signal("newFiscalYear")
+	
 func Ending():
 	print("ENDING")
 	print(newEconomyData)

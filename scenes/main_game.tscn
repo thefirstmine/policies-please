@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ymir6m4xep68"]
+[gd_scene load_steps=27 format=3 uid="uid://ymir6m4xep68"]
 
 [ext_resource type="PackedScene" uid="uid://q8vlmxq300cd" path="res://scenes/economy_engine.tscn" id="2_ipu61"]
 [ext_resource type="Script" uid="uid://d0guekvm4yrdf" path="res://scripts/GameControl.gd" id="3_70vka"]
@@ -10,7 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://b8qp8ypdet0vv" path="res://assets/Art/stampDeny.png" id="8_70vka"]
 [ext_resource type="Script" uid="uid://cc5vv5ejr7pjb" path="res://scenes/move_right.gd" id="8_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://33gtxv2npslv" path="res://scenes/year_results.tscn" id="9_2l77h"]
-[ext_resource type="Script" uid="uid://bkofxn3kwngpa" path="res://scenes/music.gd" id="11_5cypo"]
+[ext_resource type="PackedScene" uid="uid://xo2pk2vf5tyt" path="res://computer.tscn" id="9_8xp80"]
+[ext_resource type="Script" path="res://scenes/music.gd" id="11_5cypo"]
+[ext_resource type="PackedScene" uid="uid://ci66tp6aq1kce" path="res://window_scene.tscn" id="12_wjob3"]
 [ext_resource type="Shader" uid="uid://cwgd766mrjks2" path="res://shaders/screen2.gdshader" id="13_wjob3"]
 
 [sub_resource type="Animation" id="Animation_5cypo"]
@@ -151,6 +153,17 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 scale = Vector2(1.74, 1.74)
 
+[node name="RemainingBills" type="RichTextLabel" parent="Canvas"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 574.0
+offset_bottom = 215.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("6_wi4c7")
+theme_override_font_sizes/normal_font_size = 64
+text = "Bills Remaining: 6
+"
+
 [node name="MoveLeft" type="Button" parent="Canvas"]
 texture_filter = 1
 anchors_preset = 9
@@ -224,22 +237,17 @@ theme_override_fonts/font = ExtResource("6_wi4c7")
 theme_override_font_sizes/font_size = 111
 text = "Computer"
 
+[node name="Window" parent="Canvas" instance=ExtResource("12_wjob3")]
+visible = false
+
+[node name="Computer" parent="Canvas" instance=ExtResource("9_8xp80")]
+visible = false
+
 [node name="HiddenCursor" type="Sprite2D" parent="Canvas"]
 visible = false
 z_index = 10
 position = Vector2(376, 195)
 texture = ExtResource("8_70vka")
-
-[node name="RemainingBills" type="RichTextLabel" parent="Canvas"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 574.0
-offset_bottom = 215.0
-scale = Vector2(0.5, 0.5)
-theme_override_fonts/normal_font = ExtResource("6_wi4c7")
-theme_override_font_sizes/normal_font_size = 64
-text = "Bills Remaining: 6
-"
 
 [node name="BlackScreen" type="ColorRect" parent="Canvas"]
 modulate = Color(0, 0, 0, 0)
