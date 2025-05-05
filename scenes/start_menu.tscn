@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2p3rqb86jjqc"]
+[gd_scene load_steps=21 format=3 uid="uid://d2p3rqb86jjqc"]
 
 [ext_resource type="Script" uid="uid://dsh83r3ej0qex" path="res://scripts/start_menu.gd" id="1_h61rw"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="2_fcv5n"]
 [ext_resource type="ArrayMesh" uid="uid://ci86itrqsgkrg" path="res://assets/Art/WhiteHouse.obj" id="3_4v6gu"]
+[ext_resource type="Texture2D" uid="uid://tqagcvbjkjh" path="res://assets/Art/logo.png" id="3_nxjfj"]
 [ext_resource type="Shader" uid="uid://biufq2yw8nwv8" path="res://shaders/pixelate.gdshader" id="4_fcv5n"]
 [ext_resource type="Texture2D" uid="uid://h01yvl7hvdv4" path="res://assets/Art/5_69.png" id="4_nxjfj"]
 [ext_resource type="ArrayMesh" uid="uid://dmnybvxt3xtu0" path="res://assets/Art/Lowpoly_tree_sample.obj" id="6_4v6gu"]
@@ -73,6 +74,28 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(50, -100)]
 }
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Logo:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-350, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Logo:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-56, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_v2mkm"]
 resource_name = "cameraEaseIn"
@@ -136,6 +159,28 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(40, -100), Vector2(40, 400)]
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/Logo:position:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-350, -0.25, 0, 0.25, 0, -24, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(3.02, 4.55)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer/Logo:position:y")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-56, -0.25, 0, 0.25, 0, -60, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(3.02, 4.55)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ppfnh"]
@@ -360,10 +405,10 @@ color = Color(0, 0, 0, 0.470588)
 
 [node name="Button2" type="Button" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
-offset_left = -259.0
-offset_top = -65.0
-offset_right = 1520.0
-offset_bottom = 668.0
+offset_left = -250.0
+offset_top = -72.0
+offset_right = 1529.0
+offset_bottom = 661.0
 
 [node name="Start" type="Button" parent="CanvasLayer"]
 offset_left = 50.0
@@ -377,9 +422,9 @@ text = "[Start]"
 
 [node name="Credits" type="Button" parent="CanvasLayer"]
 offset_left = 50.0
-offset_top = -100.0
+offset_top = -99.9997
 offset_right = 314.0
-offset_bottom = -27.0
+offset_bottom = -26.9997
 theme_override_fonts/font = ExtResource("2_fcv5n")
 theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ctwoq")
@@ -394,6 +439,22 @@ theme_override_fonts/font = ExtResource("2_fcv5n")
 theme_override_font_sizes/font_size = 64
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ctwoq")
 text = "[How To Play]"
+
+[node name="Logo" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.22
+anchor_bottom = 0.12
+offset_left = -350.0
+offset_top = -56.0
+offset_right = -103.44
+offset_bottom = 366.24
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.86, 0.86)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("3_nxjfj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

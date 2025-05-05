@@ -182,9 +182,9 @@ func Ending():
 		Ending_Nuclear()
 	elif newEconomyData["GDP"] <= 700:
 		Ending_Depression()
-	elif newEconomyData["PopulationSatisfaction"] <= .3:
+	elif newEconomyData["PopulationSatisfaction"] <= .15:
 		Ending_Exile()
-	elif newEconomyData["GDP"] >= 1300:
+	elif newEconomyData["GDP"] >= 1600:
 		Ending_Prosperity()
 	else:
 		Ending_Stagnation()
