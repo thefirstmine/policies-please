@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bj4mt1ms6l13g"]
+[gd_scene load_steps=10 format=3 uid="uid://bj4mt1ms6l13g"]
 
 [ext_resource type="Script" uid="uid://par84mwdu3j2" path="res://scripts/tutorial.gd" id="1_0hilk"]
-[ext_resource type="Texture2D" uid="uid://ceav58ax01lwq" path="res://assets/Tutorial/tut_1.png" id="3_4kmhl"]
+[ext_resource type="Texture2D" uid="uid://cfmduiqakde08" path="res://assets/Tutorial/tut_1.png" id="3_4kmhl"]
+[ext_resource type="AudioStream" uid="uid://by2ym4jjod3wp" path="res://assets/Audio/textscroll.wav" id="5_ckvwl"]
+[ext_resource type="Script" uid="uid://bgha08isr0eu5" path="res://scripts/textscroll.gd" id="5_cq4me"]
+[ext_resource type="AudioStream" uid="uid://dnohbnk2o62q0" path="res://assets/Audio/gameMusic.wav" id="6_gbqnl"]
+[ext_resource type="Script" uid="uid://bkofxn3kwngpa" path="res://scenes/music.gd" id="7_ckvwl"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="7_dwom6"]
 [ext_resource type="Script" uid="uid://c4m6be6o2wlfg" path="res://scripts/textbox.gd" id="13_5qvs7"]
 
@@ -23,11 +27,12 @@ grow_vertical = 2
 script = ExtResource("1_0hilk")
 
 [node name="Textbox" type="CanvasLayer" parent="."]
+process_mode = 3
 script = ExtResource("13_5qvs7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Textbox"]
+process_mode = 1
 position = Vector2(576, 324)
-scale = Vector2(1, 1)
 texture = ExtResource("3_4kmhl")
 
 [node name="TextboxContainer" type="MarginContainer" parent="Textbox"]
@@ -87,3 +92,16 @@ size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("7_dwom6")
 theme_override_font_sizes/font_size = 48
 text = "v"
+
+[node name="TextscrollSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ckvwl")
+script = ExtResource("5_cq4me")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_gbqnl")
+volume_db = -25.0
+script = ExtResource("7_ckvwl")
+
+[connection signal="finished" from="TextscrollSFX" to="." method="_on_textscroll_sfx_finished"]
+[connection signal="finished" from="TextscrollSFX" to="TextscrollSFX" method="_on_finished"]
+[connection signal="finished" from="Music" to="Music" method="_on_finished"]
