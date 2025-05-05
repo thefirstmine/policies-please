@@ -242,6 +242,10 @@ visible = false
 
 [node name="Computer" parent="Canvas" instance=ExtResource("9_8xp80")]
 visible = false
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="HiddenCursor" type="Sprite2D" parent="Canvas"]
 visible = false
@@ -295,11 +299,11 @@ color = Color(0, 0, 0, 1)
 
 [node name="SFX1" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStream_2l77h")
-volume_db = -15.0
+volume_db = 10.0
 
 [node name="SFX2" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStream_nqdth")
-volume_db = -15.0
+volume_db = 10.0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStream_5cypo")

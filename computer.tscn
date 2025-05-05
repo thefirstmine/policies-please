@@ -1,18 +1,83 @@
-[gd_scene load_steps=13 format=3 uid="uid://xo2pk2vf5tyt"]
+[gd_scene load_steps=19 format=3 uid="uid://xo2pk2vf5tyt"]
 
 [ext_resource type="Script" uid="uid://coho7hxaj3tap" path="res://move_left_computer.gd" id="1_18hgq"]
 [ext_resource type="Texture2D" uid="uid://bg3rsvo7l3teq" path="res://assets/Art/computer_bg.png" id="1_gcbbq"]
 [ext_resource type="Script" uid="uid://cdwqdd27wlwog" path="res://computer.gd" id="1_k1uhn"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="2_gcbbq"]
-[ext_resource type="Texture2D" uid="uid://gifvyy6co6e6" path="res://assets/Art/computer_desk_off.png" id="5_gxngq"]
-[ext_resource type="Texture2D" uid="uid://bxufq61d3cyqs" path="res://assets/Art/computer_desk.png" id="6_iiass"]
-[ext_resource type="Texture2D" uid="uid://cctnbn4k27dql" path="res://assets/Art/computer_desk_hover.png" id="7_pgtsp"]
+[ext_resource type="Texture2D" uid="uid://c2oq8wko4fot1" path="res://assets/Art/computer_off.png" id="5_k1uhn"]
+[ext_resource type="Texture2D" uid="uid://b7v31lhr5jjv2" path="res://assets/Art/computer_on.png" id="6_gxngq"]
+[ext_resource type="Texture2D" uid="uid://qj4lik60jimy" path="res://assets/Art/computer_hover.png" id="7_iiass"]
+[ext_resource type="Texture2D" uid="uid://cgqpjmi5fu57e" path="res://assets/Art/computerZoomed.png" id="8_gxngq"]
+[ext_resource type="FontFile" uid="uid://dgjbxd0euk85l" path="res://assets/Fonts/resource.ttf" id="9_iiass"]
+[ext_resource type="Shader" uid="uid://caeptf8wxj1x5" path="res://computer.gdshader" id="10_pgtsp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jr5mb"]
 bg_color = Color(1, 0, 0.235294, 0.196078)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xfga"]
 bg_color = Color(1, 0, 0.235294, 0.588235)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o7oi2"]
+shader = ExtResource("10_pgtsp")
+shader_parameter/scanline_count = 50.0
+shader_parameter/scanline_speed = 1.0
+
+[sub_resource type="Animation" id="Animation_k1uhn"]
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:scale:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Fade:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_o7oi2"]
 resource_name = "Zoom In"
@@ -24,7 +89,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1765, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -2043.99, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
@@ -35,7 +100,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -875, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -962.935, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
@@ -46,7 +111,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 4.5, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 tracks/3/type = "bezier"
@@ -57,12 +122,37 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 4, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 4.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Fade:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.866667, -0.000621272, 1, -0.166667, -0.426203, 0.25, 0),
 "times": PackedFloat32Array(0, 1)
 }
 
-[sub_resource type="Animation" id="Animation_k1uhn"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_gxngq"]
+resource_name = "RemoveWhiteout"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fade:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_iiass"]
+resource_name = "Zoom Out"
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -70,9 +160,9 @@ tracks/0/path = NodePath(".:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-2043.99, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/1/type = "bezier"
 tracks/1/imported = false
@@ -81,9 +171,9 @@ tracks/1/path = NodePath(".:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-962.935, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
@@ -92,9 +182,9 @@ tracks/2/path = NodePath(".:scale:x")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(4.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
@@ -103,15 +193,28 @@ tracks/3/path = NodePath(".:scale:y")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(4.5, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Fade:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.166667, -0.426203, 0.25, 0, 0, -0.25, 0, 0.866667, -0.000621272),
+"times": PackedFloat32Array(0, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a1vod"]
 _data = {
 &"RESET": SubResource("Animation_k1uhn"),
-&"Zoom In": SubResource("Animation_o7oi2")
+&"RemoveWhiteout": SubResource("Animation_gxngq"),
+&"Zoom In": SubResource("Animation_o7oi2"),
+&"Zoom Out": SubResource("Animation_iiass")
 }
 
 [node name="Computer" type="Control"]
@@ -119,6 +222,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2043.99
+offset_top = -962.935
+offset_right = -2043.99
+offset_bottom = -962.935
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k1uhn")
@@ -174,14 +281,102 @@ offset_top = 168.0
 offset_right = 566.0
 offset_bottom = 295.0
 scale = Vector2(3, 3)
-texture_normal = ExtResource("5_gxngq")
-texture_pressed = ExtResource("6_iiass")
-texture_hover = ExtResource("7_pgtsp")
+texture_normal = ExtResource("5_k1uhn")
+texture_pressed = ExtResource("6_gxngq")
+texture_hover = ExtResource("7_iiass")
+texture_disabled = ExtResource("6_gxngq")
+
+[node name="ComputerScreen" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 454.443
+offset_top = 213.986
+offset_right = 854.443
+offset_bottom = 438.986
+scale = Vector2(0.64, 0.64)
+texture = ExtResource("8_gxngq")
+
+[node name="Back" type="TextureButton" parent="ComputerScreen"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -101.0
+offset_top = 34.0
+offset_right = -72.0
+offset_bottom = 62.0
+grow_horizontal = 0
+scale = Vector2(0.29, 0.29)
+stretch_mode = 0
+
+[node name="Data" type="RichTextLabel" parent="ComputerScreen"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 88.1945
+offset_top = 28.4722
+offset_right = 1151.19
+offset_bottom = 577.472
+scale = Vector2(0.75, 0.75)
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("9_iiass")
+theme_override_font_sizes/normal_font_size = 32
+text = "Fiscal Quarter Report"
+
+[node name="Statistics" type="RichTextLabel" parent="ComputerScreen"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 97.9167
+offset_top = 48.9583
+offset_right = 1160.92
+offset_bottom = 597.958
+scale = Vector2(0.4, 0.4)
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("9_iiass")
+theme_override_font_sizes/normal_font_size = 32
+text = "GDP:
+Happiness:
+Taxes:
+Unemployment:
+Government Debt:
+Aggregate Demand:
+Aggregate Supply:
+Total Exports:
+Growth Multiplier:
+Inflation:
+Currency Value:"
+
+[node name="VHS" type="ColorRect" parent="ComputerScreen"]
+material = SubResource("ShaderMaterial_o7oi2")
+offset_left = 80.0
+offset_top = 25.0
+offset_right = 319.0
+offset_bottom = 201.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Blocker" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 734.0
+offset_top = 186.0
+offset_right = 971.0
+offset_bottom = 415.0
+color = Color(1, 1, 1, 0)
+
+[node name="Fade" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1185.0
+offset_bottom = 722.0
+mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_a1vod")
 }
 
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="MoveLeft" to="MoveLeft" method="_on_pressed"]
 [connection signal="pressed" from="Computer" to="." method="_on_computer_pressed"]
+[connection signal="mouse_entered" from="ComputerScreen/Back" to="." method="_on_back_mouse_entered"]
+[connection signal="pressed" from="ComputerScreen/Back" to="." method="_on_back_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

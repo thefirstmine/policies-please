@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dsfyo4t6pkwbt"]
 
-[ext_resource type="Script" uid="uid://c2brqdtsgo1xh" path="res://scripts/credits.gd" id="1_mah5v"]
+[ext_resource type="Script" path="res://scripts/credits.gd" id="1_mah5v"]
 [ext_resource type="Shader" uid="uid://3ue5432fgb75" path="res://shaders/wave.gdshader" id="2_kyhnv"]
 [ext_resource type="Texture2D" uid="uid://cxp8hlu1fmwf0" path="res://assets/Art/Denied.png" id="3_ooihk"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="4_ih6pn"]
@@ -184,7 +184,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
-volume_db = -25.0
+volume_db = -5.0
 pitch_scale = 0.6
 
 [connection signal="finished" from="CreditsMusic" to="." method="_on_credits_music_finished"]

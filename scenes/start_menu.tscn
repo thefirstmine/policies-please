@@ -359,9 +359,9 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.470588)
 
 [node name="Start" type="Button" parent="CanvasLayer"]
-offset_left = 50.0
+offset_left = 100.0
 offset_top = -100.0
-offset_right = 250.0
+offset_right = 300.0
 offset_bottom = -27.0
 theme_override_fonts/font = ExtResource("2_fcv5n")
 theme_override_font_sizes/font_size = 64
@@ -369,9 +369,9 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_v2mkm")
 text = "[Start]"
 
 [node name="Credits" type="Button" parent="CanvasLayer"]
-offset_left = 50.0
+offset_left = 100.0
 offset_top = -100.0
-offset_right = 314.0
+offset_right = 364.0
 offset_bottom = -27.0
 theme_override_fonts/font = ExtResource("2_fcv5n")
 theme_override_font_sizes/font_size = 64
@@ -379,9 +379,9 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_ctwoq")
 text = "[Credits]"
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 40.0
+offset_left = 50.0
 offset_top = -100.0
-offset_right = 447.0
+offset_right = 457.0
 offset_bottom = -35.0
 theme_override_fonts/font = ExtResource("2_fcv5n")
 theme_override_font_sizes/font_size = 64
@@ -394,7 +394,7 @@ libraries = {
 }
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
-volume_db = -25.0
+volume_db = -10.0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 texture_filter = 1
@@ -457,7 +457,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_u4qax")
 environment = SubResource("Environment_v2mkm")
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
-volume_db = -25.0
+volume_db = -2.0
 pitch_scale = 0.8
 
 [connection signal="mouse_entered" from="CanvasLayer/Start" to="." method="_on_start_mouse_entered"]
