@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfmduiqakde08"
-path="res://.godot/imported/tut_1.png-32f4c63bca058c76a1b71b746123d116.ctex"
+uid="uid://7cqik6ugvqvj"
+path="res://.godot/imported/tut_5.png-50c891cb2b6b038068885f95777fba32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tutorial/tut_1.png"
-dest_files=["res://.godot/imported/tut_1.png-32f4c63bca058c76a1b71b746123d116.ctex"]
+source_file="res://assets/Tutorial/tut_5.png"
+dest_files=["res://.godot/imported/tut_5.png-50c891cb2b6b038068885f95777fba32.ctex"]
 
 [params]
 
