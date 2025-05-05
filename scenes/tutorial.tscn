@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bj4mt1ms6l13g"]
+[gd_scene load_steps=11 format=3 uid="uid://bj4mt1ms6l13g"]
 
-[ext_resource type="Script" uid="uid://par84mwdu3j2" path="res://scripts/tutorial.gd" id="1_0hilk"]
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_0hilk"]
 [ext_resource type="Texture2D" uid="uid://cfmduiqakde08" path="res://assets/Tutorial/tut_1.png" id="3_4kmhl"]
 [ext_resource type="AudioStream" uid="uid://by2ym4jjod3wp" path="res://assets/Audio/textscroll.wav" id="5_ckvwl"]
-[ext_resource type="Script" uid="uid://bgha08isr0eu5" path="res://scripts/textscroll.gd" id="5_cq4me"]
+[ext_resource type="Script" path="res://scripts/textscroll.gd" id="5_cq4me"]
+[ext_resource type="FontFile" uid="uid://dgjbxd0euk85l" path="res://assets/Fonts/resource.ttf" id="5_nlqja"]
 [ext_resource type="AudioStream" uid="uid://dnohbnk2o62q0" path="res://assets/Audio/gameMusic.wav" id="6_gbqnl"]
 [ext_resource type="Script" uid="uid://bkofxn3kwngpa" path="res://scenes/music.gd" id="7_ckvwl"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="7_dwom6"]
-[ext_resource type="Script" uid="uid://c4m6be6o2wlfg" path="res://scripts/textbox.gd" id="13_5qvs7"]
+[ext_resource type="Script" path="res://scripts/textbox.gd" id="13_5qvs7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kfc1"]
 bg_color = Color(0, 0, 0, 1)
@@ -78,7 +79,7 @@ custom_minimum_size = Vector2(10, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("7_dwom6")
+theme_override_fonts/font = ExtResource("5_nlqja")
 theme_override_font_sizes/font_size = 48
 text = "Greetings, President! The quick brown fox jumps over the lazy dog"
 autowrap_mode = 2
