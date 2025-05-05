@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dsfyo4t6pkwbt"]
+[gd_scene load_steps=16 format=3 uid="uid://dsfyo4t6pkwbt"]
 
-[ext_resource type="Script" path="res://scripts/credits.gd" id="1_mah5v"]
+[ext_resource type="Script" uid="uid://c2brqdtsgo1xh" path="res://scripts/credits.gd" id="1_mah5v"]
 [ext_resource type="Shader" uid="uid://3ue5432fgb75" path="res://shaders/wave.gdshader" id="2_kyhnv"]
+[ext_resource type="Texture2D" uid="uid://cighacd5fofbo" path="res://assets/Art/Approved.png" id="3_ih6pn"]
 [ext_resource type="Texture2D" uid="uid://cxp8hlu1fmwf0" path="res://assets/Art/Denied.png" id="3_ooihk"]
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="4_ih6pn"]
 [ext_resource type="FontFile" uid="uid://dgjbxd0euk85l" path="res://assets/Fonts/resource.ttf" id="5_7lgdl"]
@@ -33,6 +34,90 @@ shader = ExtResource("6_c6kru")
 shader_parameter/scanline_count = 50.0
 shader_parameter/scanline_speed = 1.0
 
+[sub_resource type="Animation" id="Animation_7lgdl"]
+resource_name = "GoToSources"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -648, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
+}
+
+[sub_resource type="Animation" id="Animation_c6kru"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ih6pn"]
+resource_name = "GoToCredits"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-648, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.8)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qbfqv"]
+_data = {
+&"GoToCredits": SubResource("Animation_ih6pn"),
+&"GoToSources": SubResource("Animation_7lgdl"),
+&"RESET": SubResource("Animation_c6kru")
+}
+
 [node name="Credits" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -45,7 +130,7 @@ script = ExtResource("1_mah5v")
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 1152.0
-offset_bottom = 648.0
+offset_bottom = 1747.0
 color = Color(0.000525508, 0.0654354, 0.102364, 1)
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -53,6 +138,16 @@ material = SubResource("ShaderMaterial_5em78")
 layout_mode = 0
 offset_right = 1154.0
 offset_bottom = 703.0
+
+[node name="Logo2" type="TextureRect" parent="."]
+modulate = Color(0, 0.341176, 1, 1)
+offset_left = -157.0
+offset_top = 50.0
+offset_right = 392.0
+offset_bottom = 602.0
+rotation = 0.418879
+scale = Vector2(2.935, 2.935)
+texture = ExtResource("3_ih6pn")
 
 [node name="Logo" type="TextureRect" parent="."]
 modulate = Color(0, 0.627451, 1, 1)
@@ -64,6 +159,49 @@ offset_bottom = 606.0
 rotation = -0.404916
 scale = Vector2(2.935, 2.935)
 texture = ExtResource("3_ooihk")
+
+[node name="Credits" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 43.0
+offset_top = 723.0
+offset_right = 212.0
+offset_bottom = 823.0
+grow_horizontal = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(-0.045, 0)
+theme_override_fonts/normal_font = ExtResource("4_ih6pn")
+theme_override_font_sizes/normal_font_size = 64
+text = "Sources"
+horizontal_alignment = 1
+
+[node name="Names" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.221
+anchor_top = 0.142
+anchor_right = 1.179
+anchor_bottom = 4.128
+offset_left = 255.592
+offset_top = 698.984
+offset_right = 279.792
+offset_bottom = -603.944
+scale = Vector2(0.7, 0.7)
+theme_override_constants/line_separation = 30
+theme_override_fonts/normal_font = ExtResource("5_7lgdl")
+theme_override_font_sizes/normal_font_size = 64
+text = "Undertale Music, composed by Toby Fox allows for non-commercial use.
+
+Economy and policies are based on the Social Science 5 Learning Guides
+
+3D Models used fall under Creative Commons
+
+All other assets are made by our hard working assets team!
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
 
 [node name="Container" type="Control" parent="."]
 anchors_preset = 0
@@ -137,6 +275,25 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 2
 
+[node name="Back2" type="Button" parent="."]
+offset_left = -29.0
+offset_top = 1211.0
+offset_right = 249.0
+offset_bottom = 1284.0
+theme_override_fonts/font = ExtResource("4_ih6pn")
+theme_override_font_sizes/font_size = 64
+text = "[Back]"
+
+[node name="Sources" type="Button" parent="."]
+layout_mode = 0
+offset_left = 863.0
+offset_top = 565.0
+offset_right = 1141.0
+offset_bottom = 638.0
+theme_override_fonts/font = ExtResource("4_ih6pn")
+theme_override_font_sizes/font_size = 64
+text = "[Sources]"
+
 [node name="CreditsMusic" type="AudioStreamPlayer" parent="."]
 
 [node name="PostNote" type="RichTextLabel" parent="."]
@@ -151,6 +308,7 @@ offset_bottom = 97.15
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.6, 0.6)
+mouse_filter = 2
 theme_override_constants/line_separation = 0
 theme_override_fonts/normal_font = ExtResource("5_7lgdl")
 theme_override_font_sizes/normal_font_size = 64
@@ -177,9 +335,8 @@ texture_hover = ExtResource("7_ih6pn")
 [node name="VHS" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_c1t8d")
 layout_mode = 0
-offset_top = 6.10352e-05
 offset_right = 1151.0
-offset_bottom = 648.0
+offset_bottom = 1757.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
@@ -187,6 +344,13 @@ color = Color(0, 0, 0, 1)
 volume_db = -5.0
 pitch_scale = 0.6
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qbfqv")
+}
+
+[connection signal="pressed" from="Back2" to="." method="_on_back_2_pressed"]
+[connection signal="pressed" from="Sources" to="." method="_on_sources_pressed"]
 [connection signal="finished" from="CreditsMusic" to="." method="_on_credits_music_finished"]
 [connection signal="mouse_entered" from="Back" to="." method="_on_back_mouse_entered"]
 [connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

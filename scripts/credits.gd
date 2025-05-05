@@ -16,3 +16,11 @@ func _on_back_pressed() -> void:
 func _on_back_mouse_entered() -> void:
 	$SFX.stream = load("res://assets/Audio/hover.wav")
 	$SFX.play()
+
+
+func _on_sources_pressed() -> void:
+	$AnimationPlayer.play("GoToSources")
+
+
+func _on_back_2_pressed() -> void:
+	$AnimationPlayer.play("GoToCredits")
