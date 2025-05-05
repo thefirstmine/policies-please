@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://33gtxv2npslv"]
+[gd_scene load_steps=13 format=3 uid="uid://33gtxv2npslv"]
 
 [ext_resource type="FontFile" uid="uid://tky48g22e3sq" path="res://assets/Fonts/ChixaDemiBold.ttf" id="1_5aifg"]
 [ext_resource type="FontFile" uid="uid://eisnswgiao3b" path="res://assets/Fonts/pixelplay.ttf" id="1_beqdq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cu2pklg0g0654" path="res://assets/Art/results1.png" id="3_sbp5s"]
 [ext_resource type="Shader" uid="uid://cwgd766mrjks2" path="res://shaders/screen2.gdshader" id="4_beqdq"]
 [ext_resource type="FontFile" uid="uid://dgjbxd0euk85l" path="res://assets/Fonts/resource.ttf" id="4_nute0"]
+[ext_resource type="Texture2D" uid="uid://bgcvowxxg77mw" path="res://assets/Art/TheCloud.png" id="4_p4kd3"]
 [ext_resource type="Texture2D" uid="uid://b88e7filmoh3p" path="res://assets/Art/ending_depression.png" id="5_s6u37"]
 
 [sub_resource type="Animation" id="Animation_sbp5s"]
@@ -418,6 +419,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_sbp5s")
 }
 
+[node name="Doom" type="TextureRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.27451)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("4_p4kd3")
+
 [node name="Ending" type="RichTextLabel" parent="."]
 visible = false
 layout_mode = 0
@@ -474,9 +484,9 @@ anchor_top = 0.835
 anchor_right = 1.0
 anchor_bottom = 0.948
 offset_left = 809.729
-offset_top = 14.2003
+offset_top = 30.985
 offset_right = -109.271
-offset_bottom = 13.9763
+offset_bottom = 30.761
 focus_mode = 0
 theme_type_variation = &"FlatButton"
 theme_override_fonts/font = ExtResource("1_5aifg")
