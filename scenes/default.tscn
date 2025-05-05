@@ -1,14 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxeh8jilnmpia"]
+[gd_scene load_steps=13 format=3 uid="uid://cxeh8jilnmpia"]
 
-[ext_resource type="Texture2D" uid="uid://dbys3jsbjkfnq" path="res://assets/Art/background.png" id="1_e232d"]
 [ext_resource type="Script" path="res://scripts/DefaultActions.gd" id="1_u4rra"]
 [ext_resource type="Texture2D" uid="uid://bkb8m4hpn2l54" path="res://assets/Art/table.png" id="2_7vjpr"]
+[ext_resource type="Texture2D" uid="uid://b7uqbjkiluoye" path="res://assets/Art/BGFrame1.png" id="2_hvtui"]
+[ext_resource type="Texture2D" uid="uid://dl7jm2rw6gl2s" path="res://assets/Art/BGFrame2.png" id="3_qh87u"]
 [ext_resource type="Texture2D" uid="uid://twwvjtyud25a" path="res://assets/Art/papers.png" id="3_ya6ni"]
 [ext_resource type="Texture2D" uid="uid://4wabqj7ea7p5" path="res://assets/Art/papers_hover.png" id="4_6y2o2"]
+[ext_resource type="Texture2D" uid="uid://bte2hhybgfgu3" path="res://assets/Art/BGFrame3.png" id="4_jy3qc"]
 [ext_resource type="Texture2D" uid="uid://bdy0qgt7ip2js" path="res://assets/Art/stampApprove.png" id="5_wdrtm"]
 [ext_resource type="Texture2D" uid="uid://b6cfsxfm2xof6" path="res://assets/Art/stampApprove_hover.png" id="6_u4rra"]
 [ext_resource type="Texture2D" uid="uid://b8qp8ypdet0vv" path="res://assets/Art/stampDeny.png" id="7_1grx1"]
 [ext_resource type="Texture2D" uid="uid://ccahwluycak46" path="res://assets/Art/stampDeny_hover.png" id="8_hvtui"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_8w2qs"]
+frames = 3
+speed_scale = 3.0
+frame_0/texture = ExtResource("2_hvtui")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("3_qh87u")
+frame_1/duration = 0.5
+frame_2/texture = ExtResource("4_jy3qc")
+frame_2/duration = 0.5
 
 [node name="Default" type="Control"]
 texture_filter = 1
@@ -27,13 +39,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_e232d")
+texture = SubResource("AnimatedTexture_8w2qs")
 
 [node name="Table" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 145.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
