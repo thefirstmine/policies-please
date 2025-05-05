@@ -10,9 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://b8qp8ypdet0vv" path="res://assets/Art/stampDeny.png" id="8_70vka"]
 [ext_resource type="Script" uid="uid://cc5vv5ejr7pjb" path="res://scenes/move_right.gd" id="8_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://33gtxv2npslv" path="res://scenes/year_results.tscn" id="9_2l77h"]
-[ext_resource type="PackedScene" path="res://computer.tscn" id="9_8xp80"]
+[ext_resource type="PackedScene" uid="uid://xo2pk2vf5tyt" path="res://computer.tscn" id="9_8xp80"]
 [ext_resource type="Script" uid="uid://bkofxn3kwngpa" path="res://scenes/music.gd" id="11_5cypo"]
-[ext_resource type="PackedScene" path="res://window_scene.tscn" id="12_wjob3"]
+[ext_resource type="PackedScene" uid="uid://ci66tp6aq1kce" path="res://window_scene.tscn" id="12_wjob3"]
 [ext_resource type="Shader" uid="uid://cwgd766mrjks2" path="res://shaders/screen2.gdshader" id="13_wjob3"]
 [ext_resource type="AudioStream" uid="uid://dnohbnk2o62q0" path="res://assets/Audio/gameMusic.wav" id="14_sp04v"]
 
