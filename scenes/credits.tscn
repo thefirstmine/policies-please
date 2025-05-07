@@ -166,9 +166,9 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 43.0
-offset_top = 723.0
+offset_top = 670.0
 offset_right = 212.0
-offset_bottom = 823.0
+offset_bottom = 770.0
 grow_horizontal = 2
 scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(-0.045, 0)
@@ -185,21 +185,21 @@ anchor_top = 0.142
 anchor_right = 1.179
 anchor_bottom = 4.128
 offset_left = 255.592
-offset_top = 698.984
+offset_top = 626.984
 offset_right = 279.792
-offset_bottom = -603.944
+offset_bottom = -675.944
 scale = Vector2(0.7, 0.7)
 theme_override_constants/line_separation = 30
 theme_override_fonts/normal_font = ExtResource("5_7lgdl")
 theme_override_font_sizes/normal_font_size = 64
-text = "Undertale Music, composed by Toby Fox allows for non-commercial use.
-
-Economy and policies are based on the Social Science 5 Learning Guides
-
-3D Models used fall under Creative Commons
-
-All other assets are made by our hard working assets team!
-"
+text = "Music
+Fallen Down - Toby Fox
+You Idiot - Toby Fox
+Visual Assets
+White House 3d model - Hardeep Rawat
+Sound Effects
+Button click - user232
+All assets not mentioned above are either created by our asset team, or fall under creative commons."
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1

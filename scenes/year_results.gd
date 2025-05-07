@@ -217,6 +217,7 @@ func Ending_Exile():
 
 func Ending_Stagnation():
 	var Music = load("res://assets/Audio/EndingNeutral.wav")
+	$Ending/Banner.texture = load("res://assets/Art/ending_stagnation.png")
 	$EndingMusic.stream = Music
 	$EndingMusic.play()
 	$Ending.text = "Ending 1 - Stagnation"
@@ -225,6 +226,7 @@ func Ending_Stagnation():
 
 func Ending_Prosperity():
 	var Music = load("res://assets/Audio/EndingGood.wav")
+	$Ending/Banner.texture = load("res://assets/Art/ending_prosperity.png")
 	$EndingMusic.stream = Music
 	$EndingMusic.play()
 	$Ending.text = "Ending 4 - Prosperity"
