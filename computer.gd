@@ -6,6 +6,9 @@ func _ready():
 
 
 func _on_computer_pressed() -> void:
+	if get_parent().isFinishingUpFiscalYear == true:
+		return
+	
 	$AnimationPlayer.play("Zoom In")
 	$Computer.disabled = true
 	$SFX.stream = load("res://assets/Audio/bootup.wav")

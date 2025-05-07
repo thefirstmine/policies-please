@@ -185,19 +185,21 @@ anchor_top = 0.142
 anchor_right = 1.179
 anchor_bottom = 4.128
 offset_left = 255.592
-offset_top = 626.984
+offset_top = 664.984
 offset_right = 279.792
-offset_bottom = -675.944
+offset_bottom = -637.944
 scale = Vector2(0.7, 0.7)
-theme_override_constants/line_separation = 30
+theme_override_constants/line_separation = 10
 theme_override_fonts/normal_font = ExtResource("5_7lgdl")
-theme_override_font_sizes/normal_font_size = 64
-text = "Music
+theme_override_font_sizes/normal_font_size = 56
+text = "
 Fallen Down - Toby Fox
 You Idiot - Toby Fox
-Visual Assets
+
+
 White House 3d model - Hardeep Rawat
-Sound Effects
+
+
 Button click - user232
 All assets not mentioned above are either created by our asset team, or fall under creative commons."
 fit_content = true
@@ -276,6 +278,54 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 2
 
+[node name="Credits3" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 47.0
+offset_top = 911.0
+offset_right = 216.0
+offset_bottom = 1011.0
+grow_horizontal = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(-0.045, 0)
+theme_override_fonts/normal_font = ExtResource("4_ih6pn")
+theme_override_font_sizes/normal_font_size = 56
+text = "Models"
+horizontal_alignment = 1
+
+[node name="Credits4" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 40.0
+offset_top = 1049.0
+offset_right = 209.0
+offset_bottom = 1149.0
+grow_horizontal = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(-0.045, 0)
+theme_override_fonts/normal_font = ExtResource("4_ih6pn")
+theme_override_font_sizes/normal_font_size = 56
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="Credits2" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 42.0
+offset_top = 748.0
+offset_right = 211.0
+offset_bottom = 848.0
+grow_horizontal = 2
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(-0.045, 0)
+theme_override_fonts/normal_font = ExtResource("4_ih6pn")
+theme_override_font_sizes/normal_font_size = 56
+text = "Music"
+horizontal_alignment = 1
+
 [node name="Back2" type="Button" parent="."]
 layout_mode = 0
 offset_left = -29.0
@@ -297,6 +347,7 @@ theme_override_font_sizes/font_size = 64
 text = "[Sources]"
 
 [node name="CreditsMusic" type="AudioStreamPlayer" parent="."]
+volume_db = 6.0
 
 [node name="PostNote" type="RichTextLabel" parent="."]
 layout_mode = 1

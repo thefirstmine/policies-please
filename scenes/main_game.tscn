@@ -274,9 +274,6 @@ theme_override_fonts/normal_font = ExtResource("6_wi4c7")
 theme_override_font_sizes/normal_font_size = 64
 text = "Fiscal Quarter 1"
 
-[node name="YearResults" parent="Canvas" instance=ExtResource("9_2l77h")]
-visible = false
-
 [node name="DeveloperStats" parent="Canvas" instance=ExtResource("3_ygxny")]
 visible = false
 offset_left = 60.165
@@ -284,6 +281,9 @@ offset_top = 69.755
 offset_right = 60.165
 offset_bottom = 69.755
 mouse_filter = 2
+
+[node name="YearResults" parent="Canvas" instance=ExtResource("9_2l77h")]
+visible = false
 
 [node name="VHS" type="ColorRect" parent="Canvas"]
 visible = false
