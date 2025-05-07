@@ -95,7 +95,7 @@ func _ready():
 	policies[1] = {
 		"name": "Quantitative Easing Program",
 		"type": "Monetary",
-		"description": "The central bank buys government securities to inject money into the economy, lower long-term interest rates, and stimulate both investment and consumption during periods of low growth or deflationary pressure.",
+		"description": "The central bank buys government securities to inject money into the economy, lower long-term interest rates, and stimulate both investment and consumption during periods of low growth or deflationary pressure. This raises aggregate demand, lowers government debt, but slightly lowers your currency’s value. Also raises inflation, but very slightly.",
 		"data": {
 			"ag_demand": 100,
 			"inflation_rate": 0.01,
@@ -107,7 +107,7 @@ func _ready():
 	policies[2] = {
 		"name": "National R&D Grant Initiative",
 		"type": "Fiscal",
-		"description": "A government-funded initiative to support research and development in technology and green energy sectors. Designed to increase productivity and long-term aggregate supply, while fostering innovation.",
+		"description": "A government-funded initiative to support research and development in technology and green energy sectors. Designed to increase productivity and long-term aggregate supply, while fostering innovation. Since you’re using government funds, this increases debt. It does seem to make the people happier, though.",
 		"data": {
 			"ag_supply": 120,
 			"gov_debt": 150,
@@ -118,7 +118,7 @@ func _ready():
 	policies[3] = {
 		"name": "Tobacco & Sugar Price Controls",
 		"type": "Market-Managing",
-		"description": "Price floors are established on tobacco and sugary products to discourage unhealthy consumption, improve public health, and reduce long-term medical costs, albeit at the cost of lower supply and consumer freedom.",
+		"description": "Price floors are established on tobacco and sugary products to discourage unhealthy consumption, improve public health, and reduce long-term medical costs, albeit at the cost of lower supply and consumer freedom. This aims to decrease inflation. The people’s reaction is still left to be seen, however.",
 		"data": {
 			"ag_supply": -80,
 			"inflation_rate": -0.03,
@@ -129,7 +129,7 @@ func _ready():
 	policies[4] = {
 		"name": "Export Subsidy Reform Act",
 		"type": "Trade Policy",
-		"description": "This policy subsidizes domestic manufacturers' exports, making them more competitive internationally. It aims to reduce trade deficits and stimulate production.",
+		"description": "This policy subsidizes domestic manufacturers' exports, making them more competitive internationally. It aims to increase the country’s exports and stimulate production.",
 		"data": {
 			"net_exports": 90,
 			"ag_demand": 50,
@@ -183,247 +183,244 @@ func _ready():
 	policies[9] = {
 		"name": "Universal Basic Income Pilot",
 		"type": "Fiscal",
-		"description": "Implements a nationwide basic income for all citizens regardless of employment status. Intended to reduce poverty, boost consumer spending, and improve population well-being.",
+		"description": "Implements a nationwide basic income for all citizens regardless of employment status. Intended to reduce poverty, boost consumer spending, and improve population well-being. Increases government debt, however.",
 		"data": {
 			"ag_demand": 80,
 			"main_econ_PopulationSatisfaction": 0.12,
 			"gov_debt": 100
 		}
 	}
-	
 
-	policies [10] = {
-		"name": "Carbon Tax & Dividend Act",
+	policies[10] = {
+		"name": "Progressive Income Tax Reform",
 		"type": "Fiscal",
-		"description": "Introduces a carbon tax on fossil fuel emissions, aiming to internalize environmental costs and reduce carbon output. Revenue is redistributed equally to citizens as a dividend, maintaining overall demand while incentivizing green energy adoption.",
+		"description": "Adjusts income tax brackets to increase rates for high-income earners and decrease rates for low-income earners. Will make the upper class slightly unhappy while making the middle and lower classes much happier.",
 		"data": {
-			"ag_demand": 50,
-			"ag_supply": -90,
-			"inflation_rate": 0.02,
+			"tax_rate": -0.08,
+			"ag_demand": 60,
 			"main_econ_PopulationSatisfaction": 0.05
 		}
 	}
 
-	policies [11] = {
-		"name": "National Workforce Retraining Act",
-		"type": "Fiscal",
-		"description": "Funds large-scale retraining and upskilling programs for workers displaced by automation and globalization. This long-term policy aims to reduce structural unemployment and improve labor productivity.",
+	policies[11] = {
+		"name": "Central Bank Digital Currency (CBDC) Introduction",
+		"type": "Monetary",
+		"description": "Introduces a digital version of the national currency issued directly by the central bank to modernize the financial system and increase transaction efficiency. However, it may affect inflation and your currency’s value. People want to get a hold of the new cryptocurrency, though.",
 		"data": {
-			"ag_supply": 80,
-			"unemployment": -0.04,
-			"main_econ_PopulationSatisfaction": 0.07,
-			"gov_debt": 75
-		}    
-	}
-
-	policies [12] = {
-		"name": "Financial Transaction Tax",
-		"type": "Fiscal",
-		"description": "Imposes a small tax on stock and derivatives trading to reduce speculative behavior and generate public revenue. Can slightly lower market liquidity but stabilize markets and raise funds for social spending.",
-		"data": {
-			"tax_rate": 0.04,
-			"gov_debt": -50,
-			"ag_demand": -10,
-			"inflation_rate": -0.005
-		}    
-	}
-
-	policies [13] = {
-		"name": "Rural Connectivity Expansion Program",
-		"type": "Fiscal",
-		"description": "Aims to close the digital divide by investing in high-speed internet infrastructure in underserved rural areas, boosting economic activity and inclusion in those regions.",
-		"data": {
+			"currency_value": 0.03,
 			"ag_demand": 40,
-			"ag_supply": 30,
-			"gov_debt": 60,
-			"main_econ_PopulationSatisfaction": 0.06
-		}            
+			"inflation_rate": 0.03
+		}
 	}
 
-	policies [14] = {
-		"name": "National Housing Affordability Act",
+	policies[12] = {
+		"name": "Deregulation of the Telecommunications Sector",
+		"type": "Market-Managing",
+		"description": "Removes regulations on pricing and market entry in the telecommunications industry to foster competition, create more jobs in the industry, reduce consumer costs, and stimulate innovation.",
+		"data": {
+			"growth_multiplier": 0.04,
+			"main_econ_PopulationSatisfaction": 0.04,
+			"unemployment": -0.02
+		}
+	}
+
+	policies[13] = {
+		"name": "Carbon Tax Implementation",
+		"type": "Trade Policy",
+		"description": "Imposes a tax on the emission of carbon dioxide and other greenhouse gases to discourage activities that contribute to climate change and promote investment in clean energy. However, a majority of industries still rely on fossil fuels and people aren’t too keen to switch to electric cars.",
+		"data": {
+			"ag_supply": -50,
+			"net_exports": -10,
+			"tax_rate": 0.05,
+			"main_econ_PopulationSatisfaction": -0.05
+		}
+	}
+
+	policies[14] = {
+		"name": "Increased Minimum Wage",
 		"type": "Fiscal",
-		"description": "Funds the construction of affordable housing and introduces rent control in high-cost urban areas to alleviate housing crises, reduce homelessness, and increase disposable income for low-income households.",
+		"description": "Mandates a higher minimum wage for workers, aiming to boost the income of low-wage earners.",
 		"data": {
 			"ag_demand": 70,
-			"inflation_rate": -0.02,
-			"gov_debt": 90,
-			"main_econ_PopulationSatisfaction": 0.09
-		}        
+			"gov_debt": 200,
+			"unemployment": 0.03,
+			"ag_supply": -20,
+		}
 	}
 
-	policies [15] = {
-		"name": "Unilateral Military Invasion",
-		"type": "Fiscal",
-		"description": "A large-scale military invasion without international support, leading to prolonged conflict, high military spending, and global condemnation. Civilian casualties and economic isolation follow.",
+	policies[15] = {
+		"name": "Strategic Export Promotion Initiative",
+		"type": "Trade Policy",
+		"description": "The government invests in programs that support domestic industries in expanding their exports. This includes export financing, trade missions, and assistance with meeting international standards.",
 		"data": {
-			"gov_debt": 250,
-			"ag_demand": -100,
-			"net_exports": -120,
-			"main_econ_PopulationSatisfaction": -0.3,
-			"inflation_rate": 0.03
-		}        
+			"net_exports": 70,
+			"ag_supply": 40,
+			"growth_multiplier": 0.03,
+			"main_econ_PopulationSatisfaction": 0.03
+		}
 	}
 
-	policies [16] = {
-		"name": "Nuclear Test Escalation",
-		"type": "Protectionism",
-		"description": "The country resumes underground nuclear weapons testing, violating international treaties. Global backlash results in sanctions, environmental damage, and plummeting diplomatic relations.",
-		"data": {
-			"net_exports": -90,
-			"currency_value": -0.08,
-			"main_econ_PopulationSatisfaction": -0.25,
-			"ag_supply": -50
-		}        
-	}
-
-	policies [17] = {
-		"name": "Nuclear Reactor Meltdown",
+	policies[16] = {
+		"name": "Antitrust Regulation Enforcement",
 		"type": "Market-Managing",
-		"description": "A catastrophic failure at a nuclear power plant due to regulatory negligence causes a radioactive disaster, displacing communities and collapsing trust in government oversight.",
+		"description": "There has been a noticeable increase in the number of monopolized industries in the country, leading to high prices. This policy aims to enforce antitrust laws to prevent monopolies and oligopolies, promoting competition and protecting consumers.",
 		"data": {
-			"ag_supply": -100,
-			"main_econ_PopulationSatisfaction": -0.4,
-			"growth_multiplier": -0.1,
-			"inflation_rate": 0.01
-		}        
+			"ag_supply": 60,
+			"growth_multiplier": 0.02,
+			"main_econ_PopulationSatisfaction": 0.03
+		}
 	}
 
-	policies [18] = {
-		"name": "Compulsory Military Draft",
+	policies[17] = {
+		"name": "Tariffs on Imported Goods",
+		"type": "Trade Policy",
+		"description": "Imposes tariffs on every imported good to protect domestic producers from foreign competition. Glory to the republic!",
+		"data": {
+			"net_exports": -150,
+			"ag_demand": -200,
+			"ag_supply": -100,
+			"inflation_rate": 0.20,
+			"currency_value": -0.15, 
+			"main_econ_PopulationSatisfaction": -0.4,
+			"growth_multiplier": 0.7 
+		}
+	}
+
+	policies[18] = {
+		"name": "Increased Public Education Spending",
 		"type": "Fiscal",
-		"description": "A national draft is enacted during wartime, forcing citizens into military service. It disrupts labor markets and sparks widespread civil unrest, especially among younger populations.",
+		"description": "Increases government spending on public education to improve human capital, productivity, and long-term economic growth.",
+		"data": {
+			"ag_supply": 80,
+			"gov_debt": 90,
+			"main_econ_PopulationSatisfaction": 0.05
+		}
+	}
+
+	policies[19] = {
+		"name": "Currency Devaluation",
+		"type": "Monetary",
+		"description": "Reduces the value of the national currency relative to other currencies to make exports more competitive and imports more expensive.",
+		"data": {
+			"net_exports": 50,
+			"currency_value": -0.08,
+			"inflation_rate": 0.05
+		}
+	}
+
+	policies[20] = {
+		"name": "Financial Deregulation",
+		"type": "Market-Managing",
+		"description": "Reduces regulations on the financial industry to promote innovation and risk-taking, potentially increasing investment and economic activity.",
+		"data": {
+			"ag_demand": 90,
+			"growth_multiplier": 0.04
+		}
+	}
+
+	policies[21] = {
+		"name": "Subsidies for Renewable Energy",
+		"type": "Trade Policy",
+		"description": "Provides subsidies to renewable energy industries to encourage their growth and reduce reliance on fossil fuels.",
+		"data": {
+			"ag_supply": 40,
+			"net_exports": -10,
+			"main_econ_PopulationSatisfaction": 0.06,
+"gov_debt": 50
+		}
+	}
+
+	policies[22] = {
+		"name": "Reduced Corporate Income Tax",
+		"type": "Fiscal",
+		"description": "Lowers the tax rate on corporate profits to stimulate investment. This decreases the government's revenue, but increases the performance of these corporations.",
+		"data": {
+			"ag_demand": 60,
+			"ag_supply": 50,
+			"tax_rate": -0.06,
+			"unemployment": 0.02
+		}
+	}
+
+	policies[23] = {
+		"name": "Tight Monetary Policy",
+		"type": "Monetary",
+		"description": "Increases interest rates and reduces the money supply to combat inflation and stabilize the currency.",
+		"data": {
+			"inflation_rate": -0.05,
+			"currency_value": 0.07,
+			"ag_demand": -70
+		}
+	}
+
+	policies[24] = {
+		"name": "Price Ceilings on Essential Goods",
+		"type": "Market-Managing",
+		"description": "Sets maximum prices on essential goods like food and medicine to protect consumers from price gouging.",
 		"data": {
 			"ag_supply": -40,
-			"main_econ_PopulationSatisfaction": -0.2,
-			"growth_multiplier": -0.03
-		}       
-	}
-
-	policies [19] = {
-		"name": "Mismanagement of Nuclear Waste",
-		"type": "Market-Managing",
-		"description": "Improper disposal of nuclear waste leads to widespread contamination, health crises, and environmental lawsuits. Public trust erodes and cleanup costs spiral.",
-		"data": {
-			"ag_supply": -70,
-			"main_econ_PopulationSatisfaction": -0.35,
-			"gov_debt": 100
-		}        
-	}
-
-	policies [20] = {
-			"name": "Digital Economy Expansion Act",
-			"type": "Fiscal",
-			"description": "Invests heavily in nationwide digital infrastructure, tech education, and startup grants to foster a knowledge-based economy and digital job growth.",
-			"data": {
-				"ag_supply": 100,
-				"growth_multiplier": 0.07,
-				"gov_debt": 80
-			}
+			"main_econ_PopulationSatisfaction": 0.08,
+			"inflation_rate": -0.03
 		}
+	}
 
-	policies [21] = {
-		"name": "Sovereign Wealth Fund Initiative",
+	policies[25] = {
+		"name": "Export Quotas",
+		"type": "Trade Policy",
+		"description": "Limits the quantity of specific goods that can be exported to ensure domestic supply. Though it decreases the nation’s exports, the supply of our country is fostered.",
+		"data": {
+			"net_exports": -60,
+			"ag_supply": 60
+		}
+	}
+
+	policies[26] = {
+		"name": "Increased Unemployment Benefits",
 		"type": "Fiscal",
-		"description": "Allocates surplus revenue from natural resources into a national investment fund, generating long-term passive income and insulating against commodity shocks.",
+		"description": "Increases the amount and duration of unemployment benefits to support unemployed workers and maintain consumer spending.",
 		"data": {
-			"gov_debt": -50,
-			"growth_multiplier": 0.03,
-			"net_exports": 20
+			"ag_demand": 40,
+			"gov_debt": 70,
+			"main_econ_PopulationSatisfaction": 0.07,
+			"unemployment": -0.03
 		}
 	}
 
-	policies [22] = {
-		"name": "Urban Densification Incentives",
-		"type": "Market-Managing",
-		"description": "Provides tax breaks and subsidies for high-density housing developments near job centers to improve affordability and reduce urban sprawl.",
+	policies[27] = {
+		"name": "Forward Guidance",
+		"type": "Monetary",
+		"description": "The central bank communicates its intentions about future monetary policy to influence market expectations and behavior. They are interested in a small expansionary monetary policy that increases the money in circulation.",
 		"data": {
-			"ag_demand": 30,
-			"ag_supply": 60,
-			"inflation_rate": -0.01
-		}
-
-	}
-
-	policies [23] = {
-		"name": "National Demographic Renewal Plan",
-		"type": "Fiscal",
-		"description": "Offers financial incentives for families to have children and improves childcare access to counter declining birthrates and future labor shortages.",
-		"data": {
-			"main_econ_PopulationSatisfaction": 0.1,
-			"growth_multiplier": 0.02,
-			"gov_debt": 60
-		}
-
-	}
-
-	policies [24] = {
-		"name": "Artificial Intelligence Integration Program",
-		"type": "Fiscal",
-		"description": "Supports business and government adoption of AI for productivity and automation. Includes job retraining funds to reduce displacement.",
-		"data": {
-			"ag_supply": 120,
-			"main_econ_PopulationSatisfaction": -0.05,
-			"gov_debt": 90
-		}
-
-	}
-
-	policies [25] = {
-	   	"name": "Luxury Goods Tax Expansion",
-		"type": "Fiscal",
-		"description": "Imposes higher taxes on luxury items and high-income earners to fund public programs and reduce income inequality.",
-		"data": {
-			"gov_debt": -70,
-			"main_econ_PopulationSatisfaction": 0.03,
-			"ag_demand": -20
-		}
-
-	}
-
-	policies [26] = {
-		"name": "Digital Economy Expansion Act",
-		"type": "Fiscal",
-		"description": "Invests heavily in nationwide digital infrastructure, tech education, and startup grants to foster a knowledge-based economy and digital job growth.",
-		"data": {
-			"ag_supply": 100,
-			"growth_multiplier": 0.07,
-			"gov_debt": 80
-		}
-	}
-
-	policies [27] = {
-		"name": "Luxury Goods Tax Expansion",
-		"type": "Market-Managing",
-		"description": "Imposes higher taxes on luxury items and high-income earners to fund public programs and reduce income inequality.",
-		"data": {
-			"gov_debt": -70,
-			"main_econ_PopulationSatisfaction": 0.03,
-			"ag_demand": -20
-		}
-
-	}
-
-	policies [28] = {
-		"name": "Gig Economy Rights Act",
-		"type": "Market-Managing",
-		"description": "Regulates the gig economy by guaranteeing minimum wages, benefits, and protections to freelancers and app-based workers.",
-		"data": {
-			"main_econ_PopulationSatisfaction": 0.1,
-			"ag_supply": -20,
+			"currency_value": 0.02,
+			"ag_demand": 50,
 			"inflation_rate": 0.01
 		}
 	}
-	policies [29] = {
-		"name": "Foreign Investment Restriction Law",
-		"type": "Protectionism",
-		"description": "Imposes restrictions on foreign ownership in key industries to protect national security and domestic enterprises.",
+
+	policies[28] = {
+		"name": "Nationalization of Key Industries",
+		"type": "Market-Managing",
+		"description": "The government takes ownership and control of strategic industries like energy or transportation. This costs our government money and takes away from its citizens, but future potential growth is improved.",
 		"data": {
-			"net_exports": -30,
-			"currency_value": 0.02,
-			"ag_supply": -40
+			"ag_supply": -20,
+			"gov_debt": 200,
+			"main_econ_PopulationSatisfaction": -0.1,
+			"growth_multiplier": 0.08
 		}
 	}
+
+	policies[29] = {
+		"name": "Trade Embargo",
+		"type": "Trade Policy",
+		"description": "We believe that our country is capable of being completely self-sufficient. Trading with other countries shows a lack of trust in our own domestic markets to sufficiently provide for our nation. This policy proposes a complete ban on trade with other countries. ",
+		"data": {
+			"net_exports": -80,
+			"ag_demand": -30,
+			"currency_value": -0.9,
+			"inflation_rate": .5
+		}
+	}
+
 	policies[30] = {
 		"name": "Nuclear Bomb Detonation at the Nation's Capital",
 		"type": "Miscellaneous",
@@ -438,8 +435,10 @@ func _ready():
 			"inflation_rate": .3
 		}
 	}
+
+
 	await get_tree().create_timer(.01).timeout
-	passPolicy(policies[2])
+	#passPolicy(policies[2])
 	#await get_tree().create_timer(1).timeout
 	var policy = getRandomPolicy()
 	SignalBus.emit_signal("displayPolicy", getRandomPolicy())
